@@ -14,15 +14,15 @@ public class BaseEnemy : Tree
         {
             new Sequence(new List<Node>
             {
-                //new CheckIfInAttackRange(transform),
-                //new TaskAttack(transform),
+                new CheckAttackRange(transform),
+                new TaskAttack(transform),
             }),
             new Sequence(new List<Node>
             {
-                //new CheckIfInFovRange(transform),
-                //new TaskGoToTarget(transform),
+                new CheckFOVRange(transform),
+                new TaskGoToTarget(transform),
             }),
-            //new TaskPatrol(transform, waypoints),
+            new TaskPatrol(transform, waypoints),
         });
 
         return root;
