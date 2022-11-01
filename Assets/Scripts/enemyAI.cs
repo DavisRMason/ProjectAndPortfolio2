@@ -26,7 +26,7 @@ public class enemyAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager.instance.enemiesToKill++;
     }
 
     // Update is called once per frame
@@ -58,6 +58,7 @@ public class enemyAI : MonoBehaviour, IDamage
         //If HP falls low enough, destroy the object, or implement something else
         if(HP <= 0)
         {
+            gameManager.instance.updateEnemyNumber();
             Destroy(gameObject);
         }
     }

@@ -9,7 +9,7 @@ public class playerController : MonoBehaviour
     [Header("----- Components-----")]
     [SerializeField] private CharacterController controller;
 
-    #region Movement
+    #region Player Stats
     [Header("------ Player Stats -----")]
     [Range(1.0f, 30.0f)] [SerializeField] private float playerSpeed;
     [Range(1.5f, 50.0f)][SerializeField] private float playerJump;
@@ -17,6 +17,7 @@ public class playerController : MonoBehaviour
     [Range(1.5f, 3.5f)][SerializeField] private float sprintMod;
     [Range(1, 4)][SerializeField] private int jumpsMax;
     [Range(0, 30)][SerializeField] int HP;
+    int HPOrig;
     private Vector3 playerVelocity;
     private Vector3 move;
     float playerSpeedOrig;
@@ -38,8 +39,10 @@ public class playerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        respawn();
         playerSpeedOrig = playerSpeed;
         controller = GetComponent<CharacterController>();
+        HPOrig = HP;
     }
 
     // Update is called once per frame
@@ -133,11 +136,21 @@ public class playerController : MonoBehaviour
     {
         HP -= dmg;
 
+        StartCoroutine(gameManager.instance.playerDamageFlash());
+
         if (HP <= 0)
         {
-
+            gameManager.instance.playerDeadMenu.SetActive(true);
+            gameManager.instance.pause();
         }
     }
 
+    public void respawn()
+    {
+        controller.enabled = false;
+        transform.position = gameManager.instance.spawnPos.transform.position;
+        HP = HPOrig;
+        controller.enabled = true;
+    }
 }
 
