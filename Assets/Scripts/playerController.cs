@@ -26,6 +26,11 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject spear;
     [SerializeField] Transform shootPos;
 
+    [Header("----- Gun Stats -----")]
+    [SerializeField] float shootRate;
+    [SerializeField] int shootDist;
+    [SerializeField] int shootDamage;
+
     #endregion
 
     #region Bools_&_Statics
@@ -36,7 +41,6 @@ public class playerController : MonoBehaviour
     int jumpTimes;
     int hpOrig;
     float playerOrigSpeed;
-    
     bool isSprinting;
     bool isShooting;
     bool sprintEmtpy;
@@ -61,6 +65,7 @@ public class playerController : MonoBehaviour
     {
         movement();
         sprint();
+
     }
 
     void movement()
@@ -137,12 +142,22 @@ public class playerController : MonoBehaviour
         }
     }
 
-    void shoot()
+    IEnumerator shoot()
     {
-        if (Input.GetButton("Shoot") && weaponHave)
+        if (!isShooting && Input.GetButton("Shoot"))
         {
-            Instantiate(spear, shootPos.position, transform.rotation);
-            weaponHave = false;
+            isShooting = true;
+
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 05f)), out hit, shootDist))
+            {
+                if (hit.collider.GetComponent<IDamage>() != null)
+                {
+                    hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+                }
+            }
+            yield return new WaitForSeconds(shootRate);
+            isShooting = false;
         }
     }
 
@@ -166,5 +181,25 @@ public class playerController : MonoBehaviour
         yield return new WaitForSeconds(dashTime);
 
         playerSpeed = playerOrigSpeed;
+    }
+
+    public void Damage(int dmg)
+    {
+        healthPoints -= dmg;
+        
+        if (healthPoints <= 0)
+        {
+            gameManager.instance.playerDeadMenu.SetActive(true);
+            gameManager.instance.pause();
+        }
+    }
+
+    public void respawn()
+    {
+        controller.enabled = false;
+        healthPoints = hpOrig;
+        transform.position = gameManager.instance.spawnPos.transform.position;
+        gameManager.instance.playerDeadMenu.SetActive(false);
+        controller.enabled = true;
     }
 }
