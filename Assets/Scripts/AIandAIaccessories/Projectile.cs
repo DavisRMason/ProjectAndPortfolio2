@@ -9,7 +9,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] int timer;
     [SerializeField] int speed;
-    // Start is called before the first frame update
+
     void Start()
     {
         rb.velocity = transform.forward * speed;
