@@ -66,4 +66,9 @@ public class gameManager : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         playerDamageScreen.SetActive(false);
     }
+    public void youWin()
+    {
+        winMenu.SetActive(true);
+        pause();
+    }
 }
