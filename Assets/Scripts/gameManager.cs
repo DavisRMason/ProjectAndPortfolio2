@@ -60,5 +60,10 @@ public class gameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;  //locked in the centre of the screen
     }
-    
+    public IEnumerator playerDamageFlash()
+    {
+        playerDamageScreen.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        playerDamageScreen.SetActive(false);
+    }
 }
