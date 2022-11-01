@@ -20,7 +20,7 @@ public class Projectile : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            //gameManager.instance.playerScript.Damage(damage);
+            gameManager.instance.playerScript.Damage(damage);
         }
         Destroy(gameObject);
     }
