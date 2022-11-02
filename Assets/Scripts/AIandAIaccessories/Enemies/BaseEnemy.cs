@@ -16,6 +16,10 @@ public class BaseEnemy : Tree, IDamage
     public float attackRange;
     public int HP;
 
+    [Header("-----Blade Stats-----")]
+    [SerializeField] GameObject blade;
+    [SerializeField] Transform bladePos;
+
     public bool isDead = false;
 
     protected override Node setupTree()
