@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &5674637527898676486
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 739823413478787399, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 6730222982507295267, guid: b281160d68ddebb42a2ace22c385b1fa, type: 3}
+    - target: {fileID: 3523738050038170219, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523738050038170219, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5.9409
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523738050038170219, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5.9409
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523738050038170219, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5.9409
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523738050038170219, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.922535
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523738050038170219, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.0000028328
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523738050038170219, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.998646
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523738050038170219, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523738050038170219, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523738050038170219, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523738050038170219, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523738050038170219, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523738050038170219, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3523738050038170219, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527532841673092167, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
+      propertyPath: m_Name
+      value: Enemy Stealth Cannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 3808689633286356130, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
+      propertyPath: m_Name
+      value: ShootPosSB
+      objectReference: {fileID: 0}
+    - target: {fileID: 7536226303208091830, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
+      propertyPath: m_Radius
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7536226303208091830, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
+      propertyPath: m_Center.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7536226303208091830, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
+      propertyPath: m_Center.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7536226303208091830, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
