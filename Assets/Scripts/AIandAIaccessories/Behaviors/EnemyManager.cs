@@ -8,7 +8,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject enemy;
     public BaseEnemy enemyScript;
 
-    private int hP;
+    private bool isDead = false;
 
     private void Awake()
     {
@@ -17,10 +17,17 @@ public class EnemyManager : MonoBehaviour
         enemyScript = enemy.GetComponent<BaseEnemy>();
     }
 
+    public void takeDamage(int dmg)
+    {
+        instance.enemyScript.HP -= dmg;
+        instance.enemyScript.StartCoroutine(instance.enemyScript.FlashDamage());
+        if (instance.enemyScript.HP <= 0)
+            isDead = true;
+        if (isDead) Die();
+    }
+
     public bool TakeHit()
     {
-        hP -= 10;
-        bool isDead = hP <= 0;
         if (isDead) Die();
         return isDead;
     }

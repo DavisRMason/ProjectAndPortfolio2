@@ -371,9 +371,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  model: {fileID: 6888573304497840275}
   speed: 2
   fovRange: 4
   attackRange: 1
+  HP: 0
 --- !u!114 &235539584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,3 +390,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy: {fileID: 0}
   enemyScript: {fileID: 0}
+--- !u!137 &6888573304497840275 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2066896392024962670, guid: 45288819fde2143449a96207b14db0bb, type: 3}
+  m_PrefabInstance: {fileID: 4843119734272169725}
+  m_PrefabAsset: {fileID: 0}

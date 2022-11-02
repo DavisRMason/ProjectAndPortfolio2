@@ -514,9 +514,11 @@ MonoBehaviour:
   - {fileID: 1442501895}
   - {fileID: 317196417}
   - {fileID: 518485041}
+  model: {fileID: 0}
   speed: 2
   fovRange: 4
   attackRange: 1
+  HP: 0
 --- !u!1001 &1930164086
 PrefabInstance:
   m_ObjectHideFlags: 0
