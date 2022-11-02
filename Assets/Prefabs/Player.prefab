@@ -52,6 +52,9 @@ MonoBehaviour:
   controller: {fileID: 6332312677548483170}
   healthPoints: 30
   playerSpeed: 20
+  playerMaxSpeed: 0
+  dashMod: 0
+  dashTime: 0
   sprintMod: 15
   sprintMax: 5
   jumpHeight: 20
@@ -59,6 +62,9 @@ MonoBehaviour:
   jumpMax: 2
   spear: {fileID: 8987885137108990083, guid: 3e41b1a1d6e092d49bc5434114855acf, type: 3}
   shootPos: {fileID: 6332312677746479691}
+  shootRate: 0
+  shootDist: 0
+  shootDamage: 0
 --- !u!33 &6332312677548483172
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -168,7 +174,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6332312677615550572}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: 0}
+  m_LocalPosition: {x: 0, y: 0.611, z: 0.498}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

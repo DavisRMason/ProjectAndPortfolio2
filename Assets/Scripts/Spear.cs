@@ -30,4 +30,12 @@ public class Spear : MonoBehaviour
         rb.AddForce(transform.forward * speed);
         rb.rotation = transform.rotation;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            EnemyManager.instance.enemyScript.takeDamage(damage);
+        }
+    }
 }
