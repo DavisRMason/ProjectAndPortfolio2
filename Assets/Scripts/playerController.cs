@@ -65,7 +65,7 @@ public class playerController : MonoBehaviour
     {
         movement();
         sprint();
-
+        StartCoroutine(shoot());
     }
 
     void movement()
@@ -144,7 +144,7 @@ public class playerController : MonoBehaviour
 
     IEnumerator shoot()
     {
-        if (!isShooting && Input.GetButton("Shoot"))
+        if (isShooting == false && Input.GetButton("Shoot"))
         {
             isShooting = true;
 
