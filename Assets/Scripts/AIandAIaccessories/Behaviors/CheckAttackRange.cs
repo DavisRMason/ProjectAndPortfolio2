@@ -14,7 +14,7 @@ public class CheckAttackRange : Node
 
     public override NodeState Evaluate()
     {
-        object t = GetData("Target");
+        object t = GetData("target");
         if (t == null)
         {
             state = NodeState.FAILURE;
@@ -23,7 +23,7 @@ public class CheckAttackRange : Node
 
         Transform target = (Transform)t;
 
-        if (Vector3.Distance(transform.position, target.position) <= BaseEnemy.attackRange)
+        if (Vector3.Distance(transform.position, target.position) <= EnemyManager.instance.enemyScript.attackRange)
         {
             animator.SetBool("Attacking", true);
             animator.SetBool("Walking", false);

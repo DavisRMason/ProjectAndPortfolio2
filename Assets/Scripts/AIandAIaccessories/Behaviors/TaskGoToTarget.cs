@@ -12,11 +12,11 @@ public class TaskGoToTarget : Node
 
     public override NodeState Evaluate()
     {
-        Transform target = (Transform)GetData("Target");
+        Transform target = (Transform)GetData("target");
 
         if (Vector3.Distance(transform.position, target.position) > 0.01f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target.position, BaseEnemy.speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, target.position, EnemyManager.instance.enemyScript.speed * Time.deltaTime);
             transform.LookAt(target.position);
         }
         state = NodeState.RUNNING;

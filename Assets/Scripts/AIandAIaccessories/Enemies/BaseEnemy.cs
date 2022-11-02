@@ -1,14 +1,20 @@
 using BehaviourTree;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+using Tree = BehaviourTree.Tree;
 
 public class BaseEnemy : Tree
 {
-    public UnityEngine.Transform[] waypoints;
+    [Header("-----Components-----")]
+    public Transform[] waypoints;
 
-    public static float speed = 2f;
-    public static float fovRange = 6f;
-    public static float attackRange = 2f;
-    protected override BehaviourTree.Node setupTree()
+    [Header("-----Enemy Stats-----")]
+    public float speed;
+    public float fovRange;
+    public float attackRange;
+
+    protected override Node setupTree()
     {
         Node root = new Selector(new List<Node>
         {

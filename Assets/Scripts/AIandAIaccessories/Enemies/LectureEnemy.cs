@@ -89,5 +89,5 @@ public class LectureEnemy : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
             playerInRange = false;
-    }
+    }  
 }

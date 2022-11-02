@@ -46,7 +46,7 @@ namespace BehaviourTree
                 }
                 else
                 {
-                    _transform.position = Vector3.MoveTowards(_transform.position, wp.position, BaseEnemy.speed * Time.deltaTime);
+                    _transform.position = Vector3.MoveTowards(_transform.position, wp.position, EnemyManager.instance.enemyScript.speed * Time.deltaTime);
                     _transform.LookAt(wp.position);
                 }
             }
