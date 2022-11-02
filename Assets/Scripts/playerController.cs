@@ -148,18 +148,14 @@ public class playerController : MonoBehaviour
         {
             isShooting = true;
 
-            RaycastHit hit;
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 05f)), out hit, shootDist))
-            {
-                if (hit.collider.GetComponent<IDamage>() != null)
-                {
-                    hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
-                }
-            }
+            Instantiate(spear, shootPos.position, transform.rotation);
+
             yield return new WaitForSeconds(shootRate);
-            isShooting = false;
-        }
+        isShooting = false;
     }
+
+
+}
 
     IEnumerator dashForwards()
     {
