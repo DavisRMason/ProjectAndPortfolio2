@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : MonoBehaviour, IDamage
 {
     public static EnemyManager instance;
 
@@ -8,7 +8,7 @@ public class EnemyManager : MonoBehaviour
     public GameObject enemy;
     public BaseEnemy enemyScript;
 
-    private bool isDead = false;
+    public bool isDead = false;
 
     private void Awake()
     {
@@ -24,12 +24,6 @@ public class EnemyManager : MonoBehaviour
         if (instance.enemyScript.HP <= 0)
             isDead = true;
         if (isDead) Die();
-    }
-
-    public bool TakeHit()
-    {
-        if (isDead) Die();
-        return isDead;
     }
 
     private void Die()

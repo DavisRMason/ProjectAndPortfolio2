@@ -2,7 +2,6 @@ using BehaviourTree;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using Tree = BehaviourTree.Tree;
 
 public class BaseEnemy : Tree

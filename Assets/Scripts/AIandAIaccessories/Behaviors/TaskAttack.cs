@@ -29,7 +29,7 @@ public class TaskAttack : Node
         attackCounter = Time.deltaTime;
         if (attackCounter >= attackTime)
         {
-            bool enemyIsDead = enemyManager.TakeHit();
+            bool enemyIsDead = enemyManager.isDead;
             if (enemyIsDead)
             {
                 ClearData("target");
