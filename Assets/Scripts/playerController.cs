@@ -22,6 +22,8 @@ public class playerController : MonoBehaviour
     [Range(0, 40)][SerializeField] float gravityValue;
     [Range(1, 3)][SerializeField] int jumpMax;
 
+    //DMason: adding player health functionallity
+    public HealthBar hpBar;
     [Header("----- Spear Stats -----")]
     [SerializeField] GameObject spear;
     [SerializeField] Transform shootPos;
@@ -58,6 +60,9 @@ public class playerController : MonoBehaviour
         playerOrigSpeed = playerSpeed;
         hpOrig = healthPoints;
         sprintCurr = sprintMax;
+
+        //DMason: setting slider max to player max hp
+        hpBar.SetMaxHealth(hpOrig);
     }
 
     // Update is called once per frame
@@ -182,6 +187,9 @@ public class playerController : MonoBehaviour
     public void Damage(int dmg)
     {
         healthPoints -= dmg;
+
+        //DMason: reducing slider when damaged
+        hpBar.SetHealth(healthPoints);
         
         if (healthPoints <= 0)
         {
