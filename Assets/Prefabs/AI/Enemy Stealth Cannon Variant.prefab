@@ -69,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3527532841673092167, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
       propertyPath: m_Name
-      value: Enemy Stealth Cannon
+      value: Enemy Stealth Cannon Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3808689633286356130, guid: be624c44f89728e48b8bce7e92a94b77, type: 3}
       propertyPath: m_Name
