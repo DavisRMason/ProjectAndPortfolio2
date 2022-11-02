@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Tree = BehaviourTree.Tree;
 
-public class BaseEnemy : Tree
+public class BaseEnemy : Tree, IDamage
 {
     [Header("-----Components-----")]
     public Transform[] waypoints;
@@ -15,6 +15,8 @@ public class BaseEnemy : Tree
     public float fovRange;
     public float attackRange;
     public int HP;
+
+    public bool isDead = false;
 
     protected override Node setupTree()
     {
@@ -36,10 +38,26 @@ public class BaseEnemy : Tree
         return root;
     }
 
+    public void takeDamage(int dmg)
+    {
+        HP -= dmg;
+        StartCoroutine(FlashDamage());
+        if (HP <= 0)
+        {
+            isDead = true;
+            Die(); 
+        }
+    }
+
     public IEnumerator FlashDamage()
     {
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.3F);
         model.material.color = Color.white;
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
     }
 }

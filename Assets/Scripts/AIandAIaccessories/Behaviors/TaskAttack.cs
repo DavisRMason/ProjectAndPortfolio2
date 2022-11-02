@@ -29,7 +29,7 @@ public class TaskAttack : Node
         attackCounter = Time.deltaTime;
         if (attackCounter >= attackTime)
         {
-            bool enemyIsDead = enemyManager.isDead;
+            bool enemyIsDead = enemyManager.enemyScript.isDead;
             if (enemyIsDead)
             {
                 ClearData("target");

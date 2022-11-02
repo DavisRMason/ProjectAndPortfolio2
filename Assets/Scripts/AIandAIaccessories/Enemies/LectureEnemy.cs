@@ -22,14 +22,14 @@ public class LectureEnemy : MonoBehaviour, IDamage
     bool playerInRange;
     Vector3 playerDirection;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         gameManager.instance.enemiesToKill++;
         gameManager.instance.updateUI();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         agent.SetDestination(gameManager.instance.player.transform.position);
