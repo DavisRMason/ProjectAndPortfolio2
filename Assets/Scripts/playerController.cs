@@ -235,7 +235,7 @@ public class playerController : MonoBehaviour
         controller.enabled = true;
     }
 
-    public void ResetWeapons()
+    public void ResetWeapon()
     {
         weaponHave = true;
     }
