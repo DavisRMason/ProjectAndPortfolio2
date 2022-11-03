@@ -13,7 +13,7 @@ public class Spear : MonoBehaviour
 
     [Header("----- Spear Stats -----")]
     [SerializeField] int damage;
-    [SerializeField] int timer;
+    [SerializeField] float timer;
     [SerializeField] int speed;
 
     #endregion
@@ -27,8 +27,15 @@ public class Spear : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb.AddForce(transform.forward * speed);
-        rb.rotation = transform.rotation;
+        gameObject.transform.parent = null;
+        rb.AddForce(gameObject.transform.forward * speed);
+        Vector3.Slerp(gameObject.transform.forward, rb.velocity.normalized, Time.deltaTime * 2);
+        rb.ResetCenterOfMass();
+    }
+
+    void Awake()
+    {
+        StartCoroutine(Destroy());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,6 +43,22 @@ public class Spear : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             EnemyManager.instance.enemyScript.takeDamage(damage);
+        }
+    }
+
+    IEnumerator Destroy()
+    {
+
+        yield return new WaitForSeconds(timer);
+
+        Destroy(gameObject);
+    }
+
+    private void FixedUpdate()
+    {
+        if (rb.velocity != Vector3.zero)
+        {
+            rb.rotation = Quaternion.LookRotation(rb.velocity.normalized);
         }
     }
 }

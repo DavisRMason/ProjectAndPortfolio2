@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1793131584
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1793131585}
+  m_Layer: 3
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1793131585
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793131584}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.01265, y: 0.00869, z: 0.0216}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6332312677746479691}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6332312677548483175
 GameObject:
   m_ObjectHideFlags: 0
@@ -14,7 +45,7 @@ GameObject:
   - component: {fileID: 6332312677548483173}
   - component: {fileID: 6332312677548483174}
   - component: {fileID: 6332312677548483170}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -51,20 +82,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 6332312677548483170}
   healthPoints: 30
-  playerSpeed: 20
-  playerMaxSpeed: 0
-  dashMod: 0
-  dashTime: 0
-  sprintMod: 15
+  playerSpeed: 10
+  playerMaxSpeed: 40
+  dashMod: 2
+  dashTime: 0.3
+  sprintMod: 5
   sprintMax: 5
   jumpHeight: 20
   gravityValue: 40
   jumpMax: 2
-  spear: {fileID: 8987885137108990083, guid: 3e41b1a1d6e092d49bc5434114855acf, type: 3}
-  shootPos: {fileID: 6332312677746479691}
-  shootRate: 0
-  shootDist: 0
-  shootDamage: 0
+  hpBar: {fileID: 0}
+  spear: {fileID: 5366799299683523413, guid: e4db15f8f561bf84d9e257e2b397464c, type: 3}
+  shootPos: {fileID: 1793131585}
+  shootRate: 1
+  shootDist: 30
+  shootDamage: 5
 --- !u!33 &6332312677548483172
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -159,7 +191,7 @@ GameObject:
   - component: {fileID: 6332312677615550568}
   - component: {fileID: 6332312677615550570}
   - component: {fileID: 6332312677615550571}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -194,8 +226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6831b4cbcdf5cb44db47c51d6db66580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensHorz: 500
-  sensVert: 500
+  sensHorz: 350
+  sensVert: 350
   lockVertMin: -80
   lockVertMax: 80
   invertY: 0
@@ -260,6 +292,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 5a4cb9b0e09b5904883f03175571334a, type: 3}
       propertyPath: m_Name
       value: Halberd
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 5a4cb9b0e09b5904883f03175571334a, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5a4cb9b0e09b5904883f03175571334a, type: 3}
       propertyPath: m_RootOrder

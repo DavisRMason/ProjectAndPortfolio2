@@ -52,8 +52,6 @@ public class playerController : MonoBehaviour
 
     #endregion
 
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -153,7 +151,11 @@ public class playerController : MonoBehaviour
         {
             isShooting = true;
 
-            Instantiate(spear, shootPos.position, transform.rotation);
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.z = 2.0f;
+            Vector3 objectPos = Camera.main.ScreenToWorldPoint(mousePos);
+
+            Instantiate(spear, objectPos, Camera.main.transform.rotation);
 
             yield return new WaitForSeconds(shootRate);
         isShooting = false;

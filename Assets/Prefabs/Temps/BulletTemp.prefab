@@ -48,9 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 4126083661363768599}
-  damage: 20
-  timer: 6
-  speed: 700
+  damage: 2
+  timer: 1
+  speed: 2000
 --- !u!135 &3380016194935608833
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -59,7 +59,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5366799299683523413}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.2
