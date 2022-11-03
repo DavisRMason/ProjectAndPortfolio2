@@ -234,4 +234,9 @@ public class playerController : MonoBehaviour
         gameManager.instance.playerDeadMenu.SetActive(false);
         controller.enabled = true;
     }
+
+    public void ResetWeapons()
+    {
+        weaponHave = true;
+    }
 }
