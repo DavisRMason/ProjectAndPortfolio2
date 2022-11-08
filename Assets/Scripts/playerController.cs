@@ -5,7 +5,7 @@ using UnityEngine;
 public class playerController : MonoBehaviour
 {
     #region Variables
-    
+
     #region Unity_Editor
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
@@ -32,6 +32,7 @@ public class playerController : MonoBehaviour
     [SerializeField] float shootRate;
     [SerializeField] int shootDist;
     [SerializeField] int shootDamage;
+    [SerializeField] bool classWork;
 
     #endregion
 
@@ -68,7 +69,10 @@ public class playerController : MonoBehaviour
     {
         movement();
         sprint();
-        StartCoroutine(shoot());
+        if (!classWork)
+        StartCoroutine(shootSpear());
+        else
+        StartCoroutine(shootRay());
     }
 
     void movement()
@@ -79,7 +83,7 @@ public class playerController : MonoBehaviour
             playerVelocity.y = 0;
         }
 
-        move = transform.right * Input.GetAxis("Horizontal") 
+        move = transform.right * Input.GetAxis("Horizontal")
             + transform.forward * Input.GetAxis("Vertical");
         controller.Move(move * Time.deltaTime * playerSpeed);
 
@@ -136,7 +140,7 @@ public class playerController : MonoBehaviour
                     StartCoroutine(dashSides());
                 }
             }
-           
+
         }
         else if (Input.GetButtonUp("Sprint") && isSprinting)
         {
@@ -145,7 +149,29 @@ public class playerController : MonoBehaviour
         }
     }
 
-    IEnumerator shoot()
+    IEnumerator shootRay()
+    {
+        if(isShooting = false && Input.GetButton("Shoot"))
+        {
+            isShooting=true;
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+            {
+                if (hit.collider.GetComponent<IDamage>() != null)
+                {
+                    hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
+                }
+            }
+
+            yield return new WaitForSeconds(shootRate);
+            isShooting = false;
+        }
+
+    }
+
+    IEnumerator shootSpear()
     {
         if (isShooting == false && Input.GetButton("Shoot"))
         {
@@ -207,5 +233,10 @@ public class playerController : MonoBehaviour
         transform.position = gameManager.instance.spawnPos.transform.position;
         gameManager.instance.playerDeadMenu.SetActive(false);
         controller.enabled = true;
+    }
+
+    public void ResetWeapon()
+    {
+        weaponHave = true;
     }
 }
