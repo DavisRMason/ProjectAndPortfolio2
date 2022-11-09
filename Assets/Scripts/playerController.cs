@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class playerController : MonoBehaviour
 {
@@ -24,15 +25,16 @@ public class playerController : MonoBehaviour
 
     //DMason: adding player health functionallity
     public HealthBar hpBar;
-    [Header("----- Spear Stats -----")]
-    [SerializeField] GameObject spear;
-    [SerializeField] Transform shootPos;
+    public GameObject healthBar;
 
     [Header("----- Gun Stats -----")]
-    [SerializeField] float shootRate;
-    [SerializeField] int shootDist;
-    [SerializeField] int shootDamage;
-    [SerializeField] bool classWork;
+    [SerializeField] public float shootRate;
+    [SerializeField] public int shootDist;
+    [SerializeField] public int shootDamage;
+    [SerializeField] GameObject weaponModel;
+    [SerializeField] GameObject hitEffect;
+    [SerializeField] Shoot shootFunc;
+    [SerializeField] List<WeaponStats> weapons = new List<WeaponStats>();
 
     #endregion
 
@@ -45,9 +47,14 @@ public class playerController : MonoBehaviour
     int hpOrig;
     float playerOrigSpeed;
     bool isSprinting;
-    bool isShooting;
+    public bool isShooting;
     bool sprintEmtpy;
     bool weaponHave;
+    [SerializeField] int selectedWeapon = -1;
+    GameObject weaponModelOrig;
+    float shootRateOrig;
+    int shootDamageOrig;
+    int shootDistOrig;
 
     #endregion
 
@@ -59,6 +66,13 @@ public class playerController : MonoBehaviour
         playerOrigSpeed = playerSpeed;
         hpOrig = healthPoints;
         sprintCurr = sprintMax;
+        healthBar = GameObject.FindGameObjectWithTag("HealthBar");
+        hpBar = healthBar.GetComponent<HealthBar>();
+
+        weaponModelOrig = weaponModel;
+        shootRateOrig = shootRate;
+        shootDamageOrig = shootDamage;
+        shootDistOrig = shootDist;
 
         //DMason: setting slider max to player max hp
         hpBar.SetMaxHealth(hpOrig);
@@ -69,10 +83,11 @@ public class playerController : MonoBehaviour
     {
         movement();
         sprint();
-        if (!classWork)
-        StartCoroutine(shootSpear());
-        else
-        StartCoroutine(shootRay());
+        weaponSelect();
+        if(Input.GetButtonDown("Shoot"))
+        {
+            StartCoroutine(shootFunc.shootBullet());
+        }
     }
 
     void movement()
@@ -149,47 +164,6 @@ public class playerController : MonoBehaviour
         }
     }
 
-    IEnumerator shootRay()
-    {
-        if(isShooting = false && Input.GetButton("Shoot"))
-        {
-            isShooting=true;
-
-            RaycastHit hit;
-
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
-            {
-                if (hit.collider.GetComponent<IDamage>() != null)
-                {
-                    hit.collider.GetComponent<IDamage>().takeDamage(shootDamage);
-                }
-            }
-
-            yield return new WaitForSeconds(shootRate);
-            isShooting = false;
-        }
-
-    }
-
-    IEnumerator shootSpear()
-    {
-        if (isShooting == false && Input.GetButton("Shoot"))
-        {
-            isShooting = true;
-
-            Vector3 mousePos = Input.mousePosition;
-            mousePos.z = 2.0f;
-            Vector3 objectPos = Camera.main.ScreenToWorldPoint(mousePos);
-
-            Instantiate(spear, objectPos, Camera.main.transform.rotation);
-
-            yield return new WaitForSeconds(shootRate);
-        isShooting = false;
-    }
-
-
-}
-
     IEnumerator dashForwards()
     {
         playerSpeed *= dashMod;
@@ -235,8 +209,63 @@ public class playerController : MonoBehaviour
         controller.enabled = true;
     }
 
-    public void ResetWeapon()
+    public void weaponPickup(WeaponStats weaponStat)
     {
-        weaponHave = true;
+        weapons.Add(weaponStat);
+        selectedWeapon++;
+        changeWeapons();
+    }
+
+    void changeWeapons()
+    {
+        shootRate = weapons[selectedWeapon].shootRate;
+        shootDamage = weapons[selectedWeapon].shootDamage;
+        shootDist = weapons[selectedWeapon].shootDist;
+        shootFunc = weapons[selectedWeapon].shootScript;
+        shootFunc.Start();
+        weaponModel.GetComponent<MeshFilter>().sharedMesh = weapons[selectedWeapon].weaponModel.GetComponent<MeshFilter>().sharedMesh;
+        weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weapons[selectedWeapon].weaponModel.GetComponent<MeshRenderer>().sharedMaterial;
+        weaponModel.transform.localScale = weapons[selectedWeapon].weaponModel.transform.localScale;
+        weaponModel.transform.rotation = weapons[selectedWeapon].weaponModel.transform.rotation;
+
+    }
+
+    void weaponSelect()
+    {
+        if (weapons.Count > 1)
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedWeapon < weapons.Count - 1)
+            {
+                Debug.Log("Going Up");
+                selectedWeapon++;
+                changeWeapons();
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedWeapon > 0)
+            {
+                Debug.Log("Going Down");
+                selectedWeapon--;
+                changeWeapons();
+            }
+        }
+    }
+
+    public void RemoveWeapon()
+    {
+        weapons.Remove(weapons[selectedWeapon]);
+
+        selectedWeapon--;
+            if (selectedWeapon < 0)
+            {
+                weapons = new List<WeaponStats>();
+                weaponModel.GetComponent<MeshFilter>().sharedMesh = weaponModelOrig.GetComponent<MeshFilter>().sharedMesh;
+                weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weaponModelOrig.GetComponent<MeshRenderer>().sharedMaterial;
+                shootDamage = shootDamageOrig;
+                shootDist = shootDistOrig;
+                shootRate = shootRateOrig;
+                shootFunc = null;
+                selectedWeapon = -1;
+            }
+            else
+                changeWeapons();
     }
 }

@@ -11,11 +11,15 @@ public class SpearThrow : MonoBehaviour
     [Header("----- Components -----")]
     [SerializeField] Rigidbody rb;
     [SerializeField] GameObject spear;
+    [SerializeField] GameObject attackPos;
 
     [Header("----- Spear Stats -----")]
     [SerializeField] int damage;
     [SerializeField] int timer;
     [SerializeField] int speed;
+    [SerializeField] int attackAngle;
+    [SerializeField] int attackDist;
+
 
     #endregion
 
@@ -34,25 +38,36 @@ public class SpearThrow : MonoBehaviour
         rb.ResetCenterOfMass();
     }
 
+    private void Update()
+    {
+        AttackEnemy();
+    }
+
+    void AttackEnemy()
+    {
+        RaycastHit hit;
+
+        if(Physics.Raycast(attackPos.transform.position, transform.TransformDirection(Vector3.forward) , out hit, attackDist))
+        {
+            if(hit.collider.GetComponent<IDamage>() != null)
+            {
+                Debug.DrawRay(attackPos.transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
+                hit.collider.GetComponent<IDamage>().takeDamage(damage);
+            }
+            else
+            {
+                Debug.DrawRay(attackPos.transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.white);
+                Instantiate(spear, gameObject.transform.position, gameObject.transform.rotation);
+                Destroy(gameObject);
+            }
+        }
+    }
+
     private void FixedUpdate()
     {
         if (rb.velocity != Vector3.zero)
         {
             rb.rotation = Quaternion.LookRotation(rb.velocity.normalized);
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.GetComponent<IDamage>() != null)
-        {
-            other.GetComponent<IDamage>().takeDamage(damage);
-            gameManager.instance.playerScript.ResetWeapon();
-        }
-        else
-        {
-            Instantiate(spear, gameObject.transform.position, Camera.main.transform.rotation);
-            Destroy(gameObject);
         }
     }
 }
