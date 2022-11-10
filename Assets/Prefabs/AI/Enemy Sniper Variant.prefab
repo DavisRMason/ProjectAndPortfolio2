@@ -514,8 +514,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 3539168439169427793}
   agent: {fileID: 7396229020235470347}
+  anim: {fileID: 3577161131680317353}
   HP: 10
   playerBaseSpeed: 5
+  speedChase: 0
+  sightDist: 300
+  sightAngle: 45
+  roamDist: 0
+  animLerpSpeed: 3
+  headPos: {fileID: 3808689633286356130}
   bullet: {fileID: 2730952232407839821, guid: 1b7be6f0060601144a5be1b9d85c8f21, type: 3}
   shootPos: {fileID: 7122446131546099624}
   shootRate: 1
@@ -532,7 +539,7 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 0
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 600
   m_StoppingDistance: 4
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
