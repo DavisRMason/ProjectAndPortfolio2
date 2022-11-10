@@ -251,21 +251,31 @@ public class playerController : MonoBehaviour
 
     public void RemoveWeapon()
     {
-        weapons.Remove(weapons[selectedWeapon]);
+        if(selectedWeapon == 0)
+        {
+            weapons.Remove(weapons[selectedWeapon]);
 
-        selectedWeapon--;
-            if (selectedWeapon < 0)
-            {
-                weapons = new List<WeaponStats>();
-                weaponModel.GetComponent<MeshFilter>().sharedMesh = weaponModelOrig.GetComponent<MeshFilter>().sharedMesh;
-                weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weaponModelOrig.GetComponent<MeshRenderer>().sharedMaterial;
-                shootDamage = shootDamageOrig;
-                shootDist = shootDistOrig;
-                shootRate = shootRateOrig;
-                shootFunc = null;
-                selectedWeapon = -1;
-            }
-            else
-                changeWeapons();
+            changeWeapons();
+        }
+        else if (selectedWeapon <= weapons.Count)
+        {
+            weapons.Remove(weapons[selectedWeapon]);
+            selectedWeapon--;
+
+            changeWeapons();
+        }
+        else
+        {
+            weapons.Remove(weapons[selectedWeapon]);
+
+            weapons = new List<WeaponStats>();
+            weaponModel.GetComponent<MeshFilter>().sharedMesh = weaponModelOrig.GetComponent<MeshFilter>().sharedMesh;
+            weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weaponModelOrig.GetComponent<MeshRenderer>().sharedMaterial;
+            shootDamage = shootDamageOrig;
+            shootDist = shootDistOrig;
+            shootRate = shootRateOrig;
+            shootFunc = null;
+            selectedWeapon = -1;
+        }
     }
 }
