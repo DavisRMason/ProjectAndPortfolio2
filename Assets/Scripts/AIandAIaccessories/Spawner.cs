@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class spawner : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
     [Header("-----Components-----")]
     [SerializeField] GameObject enemy;

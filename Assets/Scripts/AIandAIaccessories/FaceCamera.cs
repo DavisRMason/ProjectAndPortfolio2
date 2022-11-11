@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class faceCamera : MonoBehaviour
+public class FaceCamera : MonoBehaviour
 {
     void Update()
     {

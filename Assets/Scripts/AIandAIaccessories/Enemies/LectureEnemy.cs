@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class LectureEnemy : MonoBehaviour, IDamage
 {
@@ -8,6 +9,8 @@ public class LectureEnemy : MonoBehaviour, IDamage
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
+    [SerializeField] GameObject UI;
+    [SerializeField] Image HPBar;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
@@ -27,18 +30,21 @@ public class LectureEnemy : MonoBehaviour, IDamage
     bool isShooting;
     bool playerInRange;
     Vector3 playerDirection;
+    Vector3 startingPos;
     float angleToPlayer;
     float stoppingDistOrig;
-    Vector3 startingPos;
     float agentSpeedOrig;
+    int hpOrig;
 
 
     void Start()
     {
+        hpOrig = HP;
         agentSpeedOrig = agent.speed;
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
         roam();
+        UpdateHPBar();
     }
 
 
@@ -105,6 +111,10 @@ public class LectureEnemy : MonoBehaviour, IDamage
     {
         HP -= dmg;
 
+        UI.SetActive(true);  
+        UpdateHPBar();
+        DisableUI();
+
         agent.stoppingDistance = 0;
         agent.SetDestination(gameManager.instance.player.transform.position);
 
@@ -113,8 +123,16 @@ public class LectureEnemy : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             gameManager.instance.updateEnemyNumber();
-            Destroy(gameObject);
+            anim.SetBool("Dead", true);
+            agent.enabled = false;
+            UI.SetActive(false);
+            GetComponent<Collider>().enabled = false;
         }
+    }
+
+    void UpdateHPBar()
+    {
+        HPBar.fillAmount = (float)HP / (float)hpOrig;
     }
 
     IEnumerator FlashDamage()
@@ -136,6 +154,13 @@ public class LectureEnemy : MonoBehaviour, IDamage
         yield return new WaitForSeconds(shootRate);
         agent.speed = agentSpeedOrig;
         isShooting = false;
+    }
+
+    IEnumerator DisableUI()
+    {
+        yield return new WaitForSeconds(7);
+        if (UI.activeInHierarchy)
+            UI.SetActive(false);
     }
 
     public void OnTriggerEnter(Collider other)
