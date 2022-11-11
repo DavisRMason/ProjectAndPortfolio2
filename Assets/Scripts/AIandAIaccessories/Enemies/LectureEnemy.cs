@@ -113,7 +113,7 @@ public class LectureEnemy : MonoBehaviour, IDamage
 
         UI.SetActive(true);  
         UpdateHPBar();
-        DisableUI();
+        StartCoroutine(DisableUI());
 
         agent.stoppingDistance = 0;
         agent.SetDestination(gameManager.instance.player.transform.position);
