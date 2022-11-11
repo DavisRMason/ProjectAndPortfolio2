@@ -73,16 +73,17 @@ public class gameManager : MonoBehaviour
     }
     public void updateEnemyNumber()
     {
-        enemiesToKill--;
-        updateUI();
+        updateUIEnemyCount(-1);
+
         if (enemiesToKill <= 0)
         {
             youWin();
         }
     }
 
-    public void updateUI()
+    public void updateUIEnemyCount(int amount)
     {
+        enemiesToKill += amount;
         enemiesLeft.text = enemiesToKill.ToString("F0");  //0 - 0 float (therefore an int), 1 - float...
 
     }

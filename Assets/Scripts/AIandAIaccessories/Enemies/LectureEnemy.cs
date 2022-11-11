@@ -38,8 +38,6 @@ public class LectureEnemy : MonoBehaviour, IDamage
         agentSpeedOrig = agent.speed;
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
-        gameManager.instance.enemiesToKill++;
-        gameManager.instance.updateUI();
         roam();
     }
 
