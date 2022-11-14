@@ -220,11 +220,11 @@ public class playerController : MonoBehaviour
      void updatePlayerHBar()
     {
         gameManager.instance.HPBar.fillAmount = (float)healthPoints / (float)hpOrig;
-        if (healthPoints < hpOrig * .3)
+        if (healthPoints < hpOrig * .6)
         {
             gameManager.instance.HPBar.color = Color.red;
         }
-        else if (healthPoints < hpOrig * .6)
+        else if (healthPoints < hpOrig * .3)
         {
             gameManager.instance.HPBar.color = Color.yellow;
         }
