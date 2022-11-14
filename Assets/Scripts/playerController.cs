@@ -243,8 +243,6 @@ public class playerController : MonoBehaviour
         shootAudioClip = weapons[selectedWeapon].weaponSound;
 
         weaponModel.transform.localScale = weapons[selectedWeapon].weaponModel.transform.localScale;
-        weaponModel.transform.rotation = weapons[selectedWeapon].weaponModel.transform.rotation;
-
     }
 
     void weaponSelect()
