@@ -76,8 +76,8 @@ public class playerController : MonoBehaviour
         playerOrigSpeed = playerSpeed;
         hpOrig = healthPoints;
         sprintCurr = sprintMax;
-        healthBar = GameObject.FindGameObjectWithTag("HealthBar");
-        hpBar = healthBar.GetComponent<HealthBar>();
+        //healthBar = GameObject.FindGameObjectWithTag("HealthBar");
+        //hpBar = healthBar.GetComponent<HealthBar>();
 
         weaponModelOrig = weaponModel;
         shootRateOrig = shootRate;
@@ -85,7 +85,7 @@ public class playerController : MonoBehaviour
         shootDistOrig = shootDist;
 
         //DMason: setting slider max to player max hp
-        hpBar.SetMaxHealth(hpOrig);
+       // hpBar.SetMaxHealth(hpOrig);
     }
 
     // Update is called once per frame
@@ -201,9 +201,11 @@ public class playerController : MonoBehaviour
     public void Damage(int dmg)
     {
         healthPoints -= dmg;
+        //DMason
+        updatePlayerHBar();
 
         //DMason: reducing slider when damaged
-        hpBar.SetHealth(healthPoints);
+        //hpBar.SetHealth(healthPoints);
 
         aud.PlayOneShot(hurtAudioClips[(Random.Range(0, hurtAudioClips.Count))], hurtAudioVolume);
 
@@ -214,10 +216,20 @@ public class playerController : MonoBehaviour
         }
     }
 
+    // DMason update Player HP from class
+     void updatePlayerHBar()
+    {
+        gameManager.instance.HPBar.fillAmount = (float)healthPoints / (float)hpOrig;
+        
+    }
+    
+
     public void respawn()
     {
         controller.enabled = false;
         healthPoints = hpOrig;
+        //DMason
+        updatePlayerHBar();
         transform.position = gameManager.instance.spawnPos.transform.position;
         gameManager.instance.playerDeadMenu.SetActive(false);
         controller.enabled = true;

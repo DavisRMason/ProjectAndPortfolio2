@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 
@@ -17,6 +18,7 @@ public class gameManager : MonoBehaviour
     public GameObject winMenu;
     public GameObject playerDamageScreen;
     public TextMeshProUGUI enemiesLeft;
+    public Image HPBar;
 
     public int enemiesToKill;
 
