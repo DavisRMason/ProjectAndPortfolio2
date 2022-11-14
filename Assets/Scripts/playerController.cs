@@ -16,9 +16,10 @@ public class playerController : MonoBehaviour
     [Range(1, 30)][SerializeField] int healthPoints;
     [SerializeField] float playerSpeed;
     [SerializeField] float playerMaxSpeed;
-    [Range(2.0f, 10.0f)][SerializeField] float dashMod;
-    [Range(0.1f, 1.0f)][SerializeField] float dashTime;
+    [SerializeField] float dashMod;
+    [SerializeField] float dashTime;
     [Range(1.5f, 5)][SerializeField] float sprintMod;
+    [Range(1.5f, 5)][SerializeField] float sprintMax;
     [Range(0, 20)][SerializeField] float jumpHeight;
     [Range(0, 40)][SerializeField] float gravityValue;
     [Range(1, 3)][SerializeField] int jumpMax;
@@ -35,16 +36,15 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject hitEffect;
     [SerializeField] Shoot shootFunc;
     [SerializeField] List<WeaponStats> weapons = new List<WeaponStats>();
-    [SerializeField] int selectedWeapon = -1;
 
     [Header("----- Audio -----")]
-    [SerializeField] List<AudioClip> jumpAudioClips = new List<AudioClip>();
+    [SerializeField] List <AudioClip> jumpAudioClips = new List<AudioClip>();
     [Range(0, 1)][SerializeField] float jumpAudioVolume;
     [SerializeField] List<AudioClip> hurtAudioClips = new List<AudioClip>();
     [Range(0, 1)][SerializeField] float hurtAudioVolume;
     [SerializeField] AudioClip shootAudioClip;
     [Range(0, 1)][SerializeField] float shootAudioVolume;
-
+    
 
     #endregion
 
@@ -52,6 +52,7 @@ public class playerController : MonoBehaviour
 
     Vector3 move;
     private Vector3 playerVelocity;
+    float sprintCurr;
     int jumpTimes;
     int hpOrig;
     float playerOrigSpeed;
@@ -59,6 +60,7 @@ public class playerController : MonoBehaviour
     public bool isShooting;
     bool sprintEmtpy;
     bool weaponHave;
+    [SerializeField] int selectedWeapon = -1;
     GameObject weaponModelOrig;
     float shootRateOrig;
     int shootDamageOrig;
@@ -73,6 +75,7 @@ public class playerController : MonoBehaviour
     {
         playerOrigSpeed = playerSpeed;
         hpOrig = healthPoints;
+        sprintCurr = sprintMax;
         healthBar = GameObject.FindGameObjectWithTag("HealthBar");
         hpBar = healthBar.GetComponent<HealthBar>();
 
@@ -91,7 +94,7 @@ public class playerController : MonoBehaviour
         movement();
         sprint();
         weaponSelect();
-        if (Input.GetButtonDown("Shoot"))
+        if(Input.GetButtonDown("Shoot"))
         {
             aud.PlayOneShot(shootAudioClip, shootAudioVolume);
             StartCoroutine(shootFunc.shootBullet());
@@ -131,7 +134,11 @@ public class playerController : MonoBehaviour
                 {
                     StartCoroutine(dashForwards());
                 }
-                else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
+                else if (Input.GetKey(KeyCode.D))
+                {
+                    StartCoroutine(dashSides());
+                }
+                else if (Input.GetKey(KeyCode.A))
                 {
                     StartCoroutine(dashSides());
                 }
@@ -143,11 +150,19 @@ public class playerController : MonoBehaviour
             }
             else
             {
-                if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
+                if (Input.GetKey(KeyCode.W))
                 {
                     StartCoroutine(dashForwards());
                 }
-                else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A))
+                else if (Input.GetKey(KeyCode.S))
+                {
+                    StartCoroutine(dashForwards());
+                }
+                else if (Input.GetKey(KeyCode.D))
+                {
+                    StartCoroutine(dashSides());
+                }
+                else if (Input.GetKey(KeyCode.A))
                 {
                     StartCoroutine(dashSides());
                 }
@@ -228,6 +243,8 @@ public class playerController : MonoBehaviour
         shootAudioClip = weapons[selectedWeapon].weaponSound;
 
         weaponModel.transform.localScale = weapons[selectedWeapon].weaponModel.transform.localScale;
+        weaponModel.transform.rotation = weapons[selectedWeapon].weaponModel.transform.rotation;
+
     }
 
     void weaponSelect()
@@ -251,7 +268,7 @@ public class playerController : MonoBehaviour
 
     public void RemoveWeapon()
     {
-        if (selectedWeapon == 0)
+        if(selectedWeapon == 0)
         {
             weapons.Remove(weapons[selectedWeapon]);
 
@@ -277,11 +294,5 @@ public class playerController : MonoBehaviour
             shootFunc = null;
             selectedWeapon = -1;
         }
-    }
-
-    public void HealPlayer(int heal)
-    {
-        healthPoints += heal;
-        hpBar.SetHealth(healthPoints);
     }
 }

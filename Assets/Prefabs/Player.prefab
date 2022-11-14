@@ -55,9 +55,10 @@ MonoBehaviour:
   healthPoints: 30
   playerSpeed: 10
   playerMaxSpeed: 40
-  dashMod: 10
-  dashTime: 0.1
+  dashMod: 1.15
+  dashTime: 0.3
   sprintMod: 5
+  sprintMax: 5
   jumpHeight: 20
   gravityValue: 40
   jumpMax: 2
@@ -70,7 +71,6 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   shootFunc: {fileID: 0}
   weapons: []
-  selectedWeapon: -1
   jumpAudioClips:
   - {fileID: 8300000, guid: 4e41bf8a5ad812842aceeb9726da1f39, type: 3}
   - {fileID: 8300000, guid: b30f4f849c19f1544913e6e5c4b39ac4, type: 3}
@@ -87,6 +87,7 @@ MonoBehaviour:
   shootAudioClip: {fileID: 0}
   shootAudioVolume: 1
   isShooting: 0
+  selectedWeapon: -1
 --- !u!33 &6332312677548483172
 MeshFilter:
   m_ObjectHideFlags: 0
