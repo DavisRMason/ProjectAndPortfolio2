@@ -35,6 +35,7 @@ public class LectureEnemy : MonoBehaviour, IDamage
     float stoppingDistOrig;
     float agentSpeedOrig;
     int hpOrig;
+    int idleTime;
 
 
     void Start()
@@ -50,6 +51,8 @@ public class LectureEnemy : MonoBehaviour, IDamage
 
     void Update()
     {
+        if (!playerInRange)
+            ++idleTime;
         anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animLerpSpeed));
         if (agent.enabled)
         {
