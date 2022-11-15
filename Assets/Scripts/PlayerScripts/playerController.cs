@@ -18,6 +18,8 @@ public class playerController : MonoBehaviour
     [SerializeField] float playerMaxSpeed;
     [SerializeField] float dashMod;
     [SerializeField] float dashTime;
+    [SerializeField] int dashCount;
+    [SerializeField] int dashCooldown;
     [Range(1.5f, 5)][SerializeField] float sprintMod;
     [Range(1.5f, 5)][SerializeField] float sprintMax;
     [Range(0, 20)][SerializeField] float jumpHeight;
@@ -65,6 +67,7 @@ public class playerController : MonoBehaviour
     float shootRateOrig;
     int shootDamageOrig;
     int shootDistOrig;
+    int dashCountOrig;
 
     #endregion
 
@@ -76,6 +79,7 @@ public class playerController : MonoBehaviour
         playerOrigSpeed = playerSpeed;
         hpOrig = healthPoints;
         sprintCurr = sprintMax;
+        dashCountOrig = dashCount;
         //healthBar = GameObject.FindGameObjectWithTag("HealthBar");
         //hpBar = healthBar.GetComponent<HealthBar>();
 
@@ -132,17 +136,20 @@ public class playerController : MonoBehaviour
         {
             if (controller.isGrounded)
             {
-                if (Input.GetKey(KeyCode.S))
+                if (dashCount > 0 && Input.GetKey(KeyCode.S))
                 {
                     StartCoroutine(dashForwards());
+                    StartCoroutine(dashCoolDown());
                 }
-                else if (Input.GetKey(KeyCode.D))
+                else if (dashCount > 0 && Input.GetKey(KeyCode.D))
                 {
                     StartCoroutine(dashSides());
+                    StartCoroutine(dashCoolDown());
                 }
-                else if (Input.GetKey(KeyCode.A))
+                else if (dashCount > 0 && Input.GetKey(KeyCode.A))
                 {
                     StartCoroutine(dashSides());
+                    StartCoroutine(dashCoolDown());
                 }
                 else
                 {
@@ -152,21 +159,25 @@ public class playerController : MonoBehaviour
             }
             else
             {
-                if (Input.GetKey(KeyCode.W))
+                if (dashCount > 0 && Input.GetKey(KeyCode.W))
                 {
                     StartCoroutine(dashForwards());
+                    StartCoroutine(dashCoolDown());
                 }
-                else if (Input.GetKey(KeyCode.S))
+                else if (dashCount > 0 && Input.GetKey(KeyCode.S))
                 {
                     StartCoroutine(dashForwards());
+                    StartCoroutine(dashCoolDown());
                 }
-                else if (Input.GetKey(KeyCode.D))
+                else if (dashCount > 0 && Input.GetKey(KeyCode.D))
                 {
                     StartCoroutine(dashSides());
+                    StartCoroutine(dashCoolDown());
                 }
-                else if (Input.GetKey(KeyCode.A))
+                else if (dashCount > 0 && Input.GetKey(KeyCode.A))
                 {
                     StartCoroutine(dashSides());
+                    StartCoroutine(dashCoolDown());
                 }
             }
 
@@ -186,6 +197,8 @@ public class playerController : MonoBehaviour
         controller.Move(move * playerSpeed * Time.deltaTime);
         yield return new WaitForSeconds(dashTime);
 
+        dashCount--;
+
         playerSpeed = playerOrigSpeed;
     }
 
@@ -197,7 +210,18 @@ public class playerController : MonoBehaviour
         controller.Move(move * playerSpeed * Time.deltaTime);
         yield return new WaitForSeconds(dashTime);
 
+        dashCount--;
+
         playerSpeed = playerOrigSpeed;
+    }
+
+    IEnumerator dashCoolDown()
+    {
+
+
+        yield return new WaitForSeconds(dashCooldown);
+
+        dashCount++;
     }
 
     public void Damage(int dmg)
