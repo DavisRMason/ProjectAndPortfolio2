@@ -12,6 +12,7 @@ public class ShootTest : Shoot
         mousePos.z = 2.0f;
         Vector3 objectPos = Camera.main.ScreenToWorldPoint(mousePos);
         Instantiate(obj, objectPos, Camera.main.transform.rotation);
+        gameManager.instance.playerScript.aud.PlayOneShot(gameManager.instance.playerScript.shootAudioClip, gameManager.instance.playerScript.shootAudioVolume);
         gameManager.instance.playerScript.RemoveWeapon();
         yield return new WaitForSeconds(0);
     }

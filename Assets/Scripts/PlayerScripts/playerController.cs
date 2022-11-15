@@ -10,7 +10,7 @@ public class playerController : MonoBehaviour
     #region Unity_Editor
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
-    [SerializeField] AudioSource aud;
+    [SerializeField] public AudioSource aud;
 
     [Header("----- Player Stats -----")]
     [Range(1, 30)][SerializeField] int healthPoints;
@@ -36,14 +36,15 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject hitEffect;
     [SerializeField] Shoot shootFunc;
     [SerializeField] List<WeaponStats> weapons = new List<WeaponStats>();
+    [SerializeField] int selectedWeapon = 0;
 
     [Header("----- Audio -----")]
     [SerializeField] List <AudioClip> jumpAudioClips = new List<AudioClip>();
     [Range(0, 1)][SerializeField] float jumpAudioVolume;
     [SerializeField] List<AudioClip> hurtAudioClips = new List<AudioClip>();
     [Range(0, 1)][SerializeField] float hurtAudioVolume;
-    [SerializeField] AudioClip shootAudioClip;
-    [Range(0, 1)][SerializeField] float shootAudioVolume;
+    [SerializeField] public AudioClip shootAudioClip;
+    [Range(0, 1)][SerializeField] public float shootAudioVolume;
     
 
     #endregion
@@ -60,7 +61,6 @@ public class playerController : MonoBehaviour
     public bool isShooting;
     bool sprintEmtpy;
     bool weaponHave;
-    [SerializeField] int selectedWeapon = -1;
     GameObject weaponModelOrig;
     float shootRateOrig;
     int shootDamageOrig;
@@ -84,6 +84,7 @@ public class playerController : MonoBehaviour
         shootDamageOrig = shootDamage;
         shootDistOrig = shootDist;
 
+        changeWeapons();
         //DMason: setting slider max to player max hp
        // hpBar.SetMaxHealth(hpOrig);
     }
@@ -93,8 +94,9 @@ public class playerController : MonoBehaviour
     {
         movement();
         sprint();
+        if(!gameManager.instance.isPaused)
         weaponSelect();
-        if(Input.GetButtonDown("Shoot"))
+        if(!isShooting && Input.GetButtonDown("Shoot") && !gameManager.instance.isPaused)
         {
             aud.PlayOneShot(shootAudioClip, shootAudioVolume);
             StartCoroutine(shootFunc.shootBullet());
@@ -255,7 +257,6 @@ public class playerController : MonoBehaviour
         shootDamage = weapons[selectedWeapon].shootDamage;
         shootDist = weapons[selectedWeapon].shootDist;
         shootFunc = weapons[selectedWeapon].shootScript;
-        shootFunc.Start();
         weaponModel.GetComponent<MeshFilter>().sharedMesh = weapons[selectedWeapon].weaponModel.GetComponent<MeshFilter>().sharedMesh;
         weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weapons[selectedWeapon].weaponModel.GetComponent<MeshRenderer>().sharedMaterial;
 
