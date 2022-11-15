@@ -35,7 +35,6 @@ public class LectureEnemy : MonoBehaviour, IDamage
     float stoppingDistOrig;
     float agentSpeedOrig;
     int hpOrig;
-    int idleTime;
 
 
     void Start()
@@ -51,8 +50,6 @@ public class LectureEnemy : MonoBehaviour, IDamage
 
     void Update()
     {
-        if (!playerInRange)
-            ++idleTime;
         anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animLerpSpeed));
         if (agent.enabled)
         {
@@ -166,6 +163,7 @@ public class LectureEnemy : MonoBehaviour, IDamage
         if (UI.activeInHierarchy)
             UI.SetActive(false);
     }
+
     IEnumerator MegaDeath()
     {
         yield return new WaitForSeconds(60);
@@ -183,5 +181,4 @@ public class LectureEnemy : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
             playerInRange = false;
     }
-
 }
