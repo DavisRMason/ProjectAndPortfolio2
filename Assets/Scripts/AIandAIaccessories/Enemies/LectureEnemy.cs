@@ -127,6 +127,7 @@ public class LectureEnemy : MonoBehaviour, IDamage
             agent.enabled = false;
             UI.SetActive(false);
             GetComponent<Collider>().enabled = false;
+            StartCoroutine(MegaDeath());
         }
     }
 
@@ -162,6 +163,11 @@ public class LectureEnemy : MonoBehaviour, IDamage
         if (UI.activeInHierarchy)
             UI.SetActive(false);
     }
+    IEnumerator MegaDeath()
+    {
+        yield return new WaitForSeconds(60);
+        Destroy(gameObject);
+    }
 
     public void OnTriggerEnter(Collider other)
     {
@@ -174,4 +180,5 @@ public class LectureEnemy : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
             playerInRange = false;
     }
+
 }
