@@ -77,7 +77,7 @@ public class LectureEnemy : MonoBehaviour, IDamage
                 agent.stoppingDistance = stoppingDistOrig;
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
-                if (agent.remainingDistance < agent.stoppingDistance)
+                //if (agent.remainingDistance < agent.stoppingDistance)
                     facePlayer();
 
                 if (!isShooting && playerInRange)

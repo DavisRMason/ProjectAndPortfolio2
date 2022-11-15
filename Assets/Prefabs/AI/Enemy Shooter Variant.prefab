@@ -761,7 +761,7 @@ MonoBehaviour:
   speedChase: 10
   sightDist: 20
   sightAngle: 45
-  roamDist: 20
+  roamDist: 200
   animLerpSpeed: 3
   headPos: {fileID: 9143617861890253123}
   bullet: {fileID: 2730952232407839821, guid: 1b7be6f0060601144a5be1b9d85c8f21, type: 3}
