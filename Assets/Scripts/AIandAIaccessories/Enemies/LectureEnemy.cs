@@ -109,27 +109,24 @@ public class LectureEnemy : MonoBehaviour, IDamage
 
     public void takeDamage(int dmg)
     {
-        if (agent.isActiveAndEnabled)
+        HP -= dmg;
+
+        UI.SetActive(true);
+        UpdateHPBar();
+        StartCoroutine(DisableUI());
+
+        agent.stoppingDistance = 0;
+        agent.SetDestination(gameManager.instance.player.transform.position);
+
+        StartCoroutine(FlashDamage());
+
+        if (HP <= 0)
         {
-            HP -= dmg;
-
-            UI.SetActive(true);
-            UpdateHPBar();
-            StartCoroutine(DisableUI());
-
-            agent.stoppingDistance = 0;
-            agent.SetDestination(gameManager.instance.player.transform.position);
-
-            StartCoroutine(FlashDamage());
-
-            if (HP <= 0)
-            {
-                gameManager.instance.updateEnemyNumber();
-                anim.SetBool("Dead", true);
-                agent.enabled = false;
-                UI.SetActive(false);
-                GetComponent<Collider>().enabled = false;
-            }
+            gameManager.instance.updateEnemyNumber();
+            anim.SetBool("Dead", true);
+            agent.enabled = false;
+            UI.SetActive(false);
+            GetComponent<Collider>().enabled = false;
         }
     }
 
