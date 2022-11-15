@@ -55,7 +55,7 @@ MonoBehaviour:
   timer: 0
   speed: 2500
   attackAngle: 20
-  attackDist: 1
+  attackDist: 2
 --- !u!54 &5979505231960983050
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -146,7 +146,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8533925518724877146}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.00901, z: 0}
+  m_LocalPosition: {x: -0, y: -0.01643, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
