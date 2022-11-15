@@ -209,6 +209,7 @@ public class playerController : MonoBehaviour
         //DMason: reducing slider when damaged
         //hpBar.SetHealth(healthPoints);
 
+        StartCoroutine(gameManager.instance.playerDamageFlash());
         aud.PlayOneShot(hurtAudioClips[(Random.Range(0, hurtAudioClips.Count))], hurtAudioVolume);
 
         if (healthPoints <= 0)
@@ -224,11 +225,15 @@ public class playerController : MonoBehaviour
         gameManager.instance.HPBar.fillAmount = (float)healthPoints / (float)hpOrig;
         if (healthPoints < hpOrig * .6)
         {
-            gameManager.instance.HPBar.color = Color.red;
+            gameManager.instance.HPBar.color = Color.yellow;
         }
         else if (healthPoints < hpOrig * .3)
         {
-            gameManager.instance.HPBar.color = Color.yellow;
+            gameManager.instance.HPBar.color = Color.red;
+        }
+        else
+        {
+            gameManager.instance.HPBar.color = Color.green;
         }
     }
     
