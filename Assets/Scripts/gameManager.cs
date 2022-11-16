@@ -19,6 +19,7 @@ public class gameManager : MonoBehaviour
     public GameObject playerDamageScreen;
     public TextMeshProUGUI enemiesLeft;
     public Image HPBar;
+    public Image DashBar;
 
     public int enemiesToKill;
 
