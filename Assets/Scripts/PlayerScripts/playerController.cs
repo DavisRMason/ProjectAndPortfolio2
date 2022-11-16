@@ -58,6 +58,7 @@ public class playerController : MonoBehaviour
     float sprintCurr;
     int jumpTimes;
     int hpOrig;
+    int DCOrig;
     float playerOrigSpeed;
     bool isSprinting;
     public bool isShooting;
@@ -80,8 +81,6 @@ public class playerController : MonoBehaviour
         hpOrig = healthPoints;
         sprintCurr = sprintMax;
         dashCountOrig = dashCount;
-        //healthBar = GameObject.FindGameObjectWithTag("HealthBar");
-        //hpBar = healthBar.GetComponent<HealthBar>();
 
         weaponModelOrig = weaponModel;
         shootRateOrig = shootRate;
@@ -89,8 +88,6 @@ public class playerController : MonoBehaviour
         shootDistOrig = shootDist;
 
         changeWeapons();
-        //DMason: setting slider max to player max hp
-       // hpBar.SetMaxHealth(hpOrig);
     }
 
     // Update is called once per frame
@@ -198,6 +195,7 @@ public class playerController : MonoBehaviour
         yield return new WaitForSeconds(dashTime);
 
         dashCount--;
+        updateDashMeter();
 
         playerSpeed = playerOrigSpeed;
     }
@@ -211,17 +209,22 @@ public class playerController : MonoBehaviour
         yield return new WaitForSeconds(dashTime);
 
         dashCount--;
+        updateDashMeter();
 
         playerSpeed = playerOrigSpeed;
     }
 
     IEnumerator dashCoolDown()
     {
-
-
         yield return new WaitForSeconds(dashCooldown);
 
         dashCount++;
+        updateDashMeter();
+    }
+
+    void updateDashMeter()
+    {
+        gameManager.instance.DashBar.fillAmount = (float)dashCount / (float)dashCountOrig;
     }
 
     public void Damage(int dmg)

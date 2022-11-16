@@ -234,9 +234,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6014251127580712179}
     - target: {fileID: 6332312677548483169, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
+      propertyPath: dashCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6332312677548483169, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1088081097}
+    - target: {fileID: 6332312677548483169, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
+      propertyPath: dashCooldown
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6332312677548483171, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -351,18 +359,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3291317984623493802, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
-      propertyPath: m_Value
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 5651834375404163770, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5651834375404163770, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6014251127044030904, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
       propertyPath: m_Name
       value: UI
@@ -451,14 +447,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6014251128449347917, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 6014251127580712180}
-    - target: {fileID: 6014251128449347917, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: respawn
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
 --- !u!114 &6014251127580712179 stripped
@@ -470,16 +458,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 616723339269e4743bff6cfae32eab30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6014251127580712180 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6014251128449347888, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
-  m_PrefabInstance: {fileID: 6014251127580712178}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 589238851e008864b9425dc729a43a19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
