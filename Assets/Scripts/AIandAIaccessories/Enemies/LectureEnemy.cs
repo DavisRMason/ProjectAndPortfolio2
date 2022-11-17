@@ -43,7 +43,6 @@ public class LectureEnemy : MonoBehaviour, IDamage
     {
         if (isSniper)
         {
-            ++gameManager.instance.enemiesToKill;
             gameManager.instance.updateUIEnemyCount(1);
         }
 
