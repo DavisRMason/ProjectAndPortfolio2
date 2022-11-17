@@ -778,6 +778,7 @@ MonoBehaviour:
   bullet: {fileID: 2730952232407839821, guid: 1b7be6f0060601144a5be1b9d85c8f21, type: 3}
   shootPos: {fileID: 7122446131546099624}
   shootRate: 1
+  isSniper: 1
 --- !u!195 &7396229020235470347
 NavMeshAgent:
   m_ObjectHideFlags: 0

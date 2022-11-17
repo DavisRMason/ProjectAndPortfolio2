@@ -27,6 +27,8 @@ public class LectureEnemy : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] float shootRate;
 
+    [SerializeField] bool isSniper;
+
     bool isShooting;
     bool playerInRange;
     Vector3 playerDirection;
@@ -39,6 +41,12 @@ public class LectureEnemy : MonoBehaviour, IDamage
 
     void Start()
     {
+        if (isSniper)
+        {
+            ++gameManager.instance.enemiesToKill;
+            gameManager.instance.updateUIEnemyCount(1);
+        }
+
         hpOrig = HP;
         agentSpeedOrig = agent.speed;
         startingPos = transform.position;
