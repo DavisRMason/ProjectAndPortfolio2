@@ -133,22 +133,22 @@ public class playerController : MonoBehaviour
         {
             if (controller.isGrounded)
             {
-                if (dashCount > 0 && Input.GetKey(KeyCode.S))
+                if (dashCount != 0 && Input.GetKey(KeyCode.S))
                 {
                     StartCoroutine(dashForwards());
                     StartCoroutine(dashCoolDown());
                 }
-                else if (dashCount > 0 && Input.GetKey(KeyCode.D))
+                else if (dashCount != 0 && Input.GetKey(KeyCode.D))
                 {
                     StartCoroutine(dashSides());
                     StartCoroutine(dashCoolDown());
                 }
-                else if (dashCount > 0 && Input.GetKey(KeyCode.A))
+                else if (dashCount != 0 && Input.GetKey(KeyCode.A))
                 {
                     StartCoroutine(dashSides());
                     StartCoroutine(dashCoolDown());
                 }
-                else
+                else if (Input.GetKey(KeyCode.W))
                 {
                     playerSpeed *= sprintMod;
                     isSprinting = true;
