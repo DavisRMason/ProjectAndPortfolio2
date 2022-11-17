@@ -765,7 +765,7 @@ MonoBehaviour:
   anim: {fileID: 9179741064534418095}
   UI: {fileID: 206103161}
   HPBar: {fileID: 1643397188}
-  HP: 10
+  HP: 20
   playerBaseSpeed: 5
   speedChase: 0
   sightDist: 10

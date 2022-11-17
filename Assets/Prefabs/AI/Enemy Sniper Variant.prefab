@@ -767,12 +767,12 @@ MonoBehaviour:
   anim: {fileID: 3577161131680317353}
   UI: {fileID: 785288608}
   HPBar: {fileID: 1051776343}
-  HP: 10
+  HP: 7
   playerBaseSpeed: 5
-  speedChase: 0
+  speedChase: 1
   sightDist: 400
-  sightAngle: 100
-  roamDist: 0
+  sightAngle: 150
+  roamDist: 20
   animLerpSpeed: 3
   headPos: {fileID: 3808689633286356130}
   bullet: {fileID: 2730952232407839821, guid: 1b7be6f0060601144a5be1b9d85c8f21, type: 3}

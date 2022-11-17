@@ -55,8 +55,8 @@ MonoBehaviour:
   healthPoints: 30
   playerSpeed: 10
   playerMaxSpeed: 40
-  dashMod: 10
-  dashTime: 0.3
+  dashMod: 7
+  dashTime: 0.1
   dashCount: 3
   dashCooldown: 5
   sprintMod: 5
@@ -316,8 +316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6831b4cbcdf5cb44db47c51d6db66580, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensHorz: 280
-  sensVert: 280
+  sensHorz: 200
+  sensVert: 200
   lockVertMin: -80
   lockVertMax: 80
   invertY: 0
