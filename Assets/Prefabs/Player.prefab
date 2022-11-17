@@ -57,6 +57,8 @@ MonoBehaviour:
   playerMaxSpeed: 40
   dashMod: 10
   dashTime: 0.3
+  dashCount: 3
+  dashCooldown: 5
   sprintMod: 5
   sprintMax: 5
   jumpHeight: 20
