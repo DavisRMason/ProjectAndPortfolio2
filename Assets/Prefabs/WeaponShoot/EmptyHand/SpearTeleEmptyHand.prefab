@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6937735971258914685
+--- !u!1 &1104803404685340620
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,43 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6300780926791424383}
-  - component: {fileID: 5625090566304572607}
+  - component: {fileID: 8643943505745538183}
+  - component: {fileID: 78090838082316245}
   m_Layer: 0
-  m_Name: Shoot
+  m_Name: SpearTeleEmptyHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6300780926791424383
+--- !u!4 &8643943505745538183
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6937735971258914685}
+  m_GameObject: {fileID: 1104803404685340620}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.901795, y: 2.561582, z: -12.166704}
+  m_LocalPosition: {x: 12.691699, y: -3.6767344, z: 1.9277997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5625090566304572607
+--- !u!114 &78090838082316245
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6937735971258914685}
+  m_GameObject: {fileID: 1104803404685340620}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71b9896481e81a74d88e736adde32bc1, type: 3}
+  m_Script: {fileID: 11500000, guid: c27450875b7cd6b4b9fcb83a55b8a223, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isShooting: 0
-  shootDist: 0
-  shootDamage: 0
-  shootRate: 0

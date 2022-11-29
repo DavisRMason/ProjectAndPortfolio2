@@ -14,16 +14,14 @@ public class SpearThrow : MonoBehaviour
     [SerializeField] GameObject attackPos;
 
     [Header("----- Spear Stats -----")]
-    [SerializeField] int damage;
-    [SerializeField] int timer;
-    [SerializeField] int speed;
-    [SerializeField] int attackAngle;
     [SerializeField] int attackDist;
 
 
     #endregion
 
     #region Bools_&_Statics
+
+    Vector3 move;
 
     #endregion
 
@@ -33,7 +31,7 @@ public class SpearThrow : MonoBehaviour
     void Start()
     {
         rb.useGravity = true;
-        rb.AddForce(gameObject.transform.forward * speed);
+        rb.AddForce(gameObject.transform.forward * 1500);
         Vector3.Slerp(gameObject.transform.forward, rb.velocity.normalized, Time.deltaTime * 2);
         rb.ResetCenterOfMass();
     }
@@ -41,6 +39,10 @@ public class SpearThrow : MonoBehaviour
     private void Update()
     {
         AttackEnemy();
+
+        //move = gameObject.transform.forward * 10000.0f + gameObject.transform.up / 1;
+
+        //rb.AddForce(move * Time.deltaTime);
     }
 
     void AttackEnemy()
@@ -52,7 +54,7 @@ public class SpearThrow : MonoBehaviour
             if(hit.collider.GetComponent<IDamage>() != null)
             {
                 Debug.DrawRay(attackPos.transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
-                hit.collider.GetComponent<IDamage>().takeDamage(damage);
+                hit.collider.GetComponent<IDamage>().takeDamage(gameManager.instance.playerScript.shootDamage);
             }
             else
             {

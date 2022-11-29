@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5979505231960983050}
   - component: {fileID: -649989849789417311}
   - component: {fileID: 1616031934}
+  - component: {fileID: 5552505611393319135}
   m_Layer: 0
   m_Name: HalberdThrow
   m_TagString: Untagged
@@ -49,12 +50,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5979505231960983050}
+  controller: {fileID: 5552505611393319135}
   spear: {fileID: 7422979033230652129, guid: c0bfded6f9a67a2448ba07b16d3a35cf, type: 3}
   attackPos: {fileID: 8533925518724877146}
-  damage: 2
-  timer: 0
-  speed: 2500
-  attackAngle: 20
   attackDist: 2
 --- !u!54 &5979505231960983050
 Rigidbody:
@@ -122,6 +120,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!143 &5552505611393319135
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 61182198983505267}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 0.000001
+  m_Radius: 0.000001
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8533925518724877146
 GameObject:
   m_ObjectHideFlags: 0

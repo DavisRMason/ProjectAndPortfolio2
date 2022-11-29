@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class WeaponPickup : MonoBehaviour
 {
-    [SerializeField] WeaponStats weaponstat;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            gameManager.instance.playerScript.weaponPickup(weaponstat);
+            gameManager.instance.playerScript.changeWeapons();
             Destroy(gameObject);
+            gameManager.instance.playerScript.weaponHave = true;
         }
     }
 }

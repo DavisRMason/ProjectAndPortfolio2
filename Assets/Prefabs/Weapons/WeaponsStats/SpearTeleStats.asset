@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 155158d37b3db7446bc3388992a81590, type: 3}
-  m_Name: SpearStats
+  m_Name: SpearTeleStats
   m_EditorClassIdentifier: 
   shootRate: 1
   shootDist: 1000
@@ -19,5 +19,5 @@ MonoBehaviour:
   weaponModel: {fileID: 4177302529621290040, guid: 3e41b1a1d6e092d49bc5434114855acf, type: 3}
   hitEffect: {fileID: 7226583673155636401, guid: a2ab56839e1c9504ea9d141e95d0b16b, type: 3}
   muzzleFlash: {fileID: 5024009746357069194, guid: ec3f674830402cc45bce805cf6493db7, type: 3}
-  weaponSound: {fileID: 8300000, guid: e87fb2e782bcac14d82191fa02c2c841, type: 3}
+  weaponSound: {fileID: 0}
   shootScript: {fileID: 7077792707903276085, guid: a140ba533b3b90d4593cecf1d5f72ced, type: 3}

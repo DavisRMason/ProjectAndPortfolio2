@@ -9,10 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 231184707790847137}
-  - component: {fileID: 231184707791331456}
   - component: {fileID: 231184707790077057}
   - component: {fileID: 231184707789078081}
-  - component: {fileID: 231184707791331459}
   m_Layer: 0
   m_Name: HalberdPickup
   m_TagString: Untagged
@@ -35,19 +33,6 @@ Transform:
   m_Father: {fileID: 3801294995109861702}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: -90}
---- !u!114 &231184707791331456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 231184707791331457}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45dcf76d36ab82349a221a46662e5633, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponstat: {fileID: 11400000, guid: e00e4edf88bae524d800cf862cfffdd9, type: 2}
 --- !u!33 &231184707790077057
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -98,20 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &231184707791331459
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 231184707791331457}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.008
-  m_Height: 0.08070725
-  m_Direction: 1
-  m_Center: {x: 0.0017542102, y: -0.000870589, z: 0}
 --- !u!1 &7422979033230652129
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,9 +92,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3801294995109861702}
+  - component: {fileID: 2192682649927858078}
+  - component: {fileID: 5790593515205171586}
   m_Layer: 0
   m_Name: HalberdPickup
-  m_TagString: Untagged
+  m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,3 +117,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2192682649927858078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7422979033230652129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45dcf76d36ab82349a221a46662e5633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!136 &5790593515205171586
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7422979033230652129}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.29
+  m_Height: 4.23
+  m_Direction: 2
+  m_Center: {x: 0.0017542102, y: -0.06, z: -0.05}

@@ -1,5 +1,7 @@
+using Newtonsoft.Json.Converters;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,36 +10,38 @@ public class playerController : MonoBehaviour
     #region Variables
 
     #region Unity_Editor
+
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] Collider playerCollider;
     [SerializeField] public AudioSource aud;
 
     [Header("----- Player Stats -----")]
     [Range(1, 30)][SerializeField] int healthPoints;
     [SerializeField] float playerSpeed;
-    [SerializeField] float playerMaxSpeed;
     [SerializeField] float dashMod;
     [SerializeField] float dashTime;
     [SerializeField] int dashCount;
+    [SerializeField] int dashWait;
     [SerializeField] int dashCooldown;
+    [SerializeField] bool isDashing;
     [Range(1.5f, 5)][SerializeField] float sprintMod;
     [Range(1.5f, 5)][SerializeField] float sprintMax;
     [Range(0, 20)][SerializeField] float jumpHeight;
     [Range(0, 40)][SerializeField] float gravityValue;
     [Range(1, 3)][SerializeField] int jumpMax;
+    [SerializeField] public bool onWall = false;
+    [SerializeField] bool isJumping = false;
+    [SerializeField] int wallJumpMax;
 
-    //DMason: adding player health functionallity
-    public HealthBar hpBar;
-    public GameObject healthBar;
-
-    [Header("----- Gun Stats -----")]
+    [Header("----- Weapon Stats -----")]
     [SerializeField] public float shootRate;
     [SerializeField] public int shootDist;
     [SerializeField] public int shootDamage;
     [SerializeField] GameObject weaponModel;
     [SerializeField] GameObject hitEffect;
     [SerializeField] Shoot shootFunc;
-    [SerializeField] List<WeaponStats> weapons = new List<WeaponStats>();
+    [SerializeField] Weapon weaponFunc;
     [SerializeField] int selectedWeapon = 0;
 
     [Header("----- Audio -----")]
@@ -48,27 +52,37 @@ public class playerController : MonoBehaviour
     [SerializeField] public AudioClip shootAudioClip;
     [Range(0, 1)][SerializeField] public float shootAudioVolume;
     
-
     #endregion
 
     #region Bools_&_Statics
 
+    //Player Movement
     Vector3 move;
     private Vector3 playerVelocity;
     float sprintCurr;
     int jumpTimes;
-    int hpOrig;
-    int DCOrig;
+    float gravityValueOrig;
     float playerOrigSpeed;
     bool isSprinting;
+    int dashCountOrig;
+    int wallJumpTimes;
+    
+
+    //Weapon Stuff
     public bool isShooting;
-    bool sprintEmtpy;
-    bool weaponHave;
+    public bool weaponHave;
     GameObject weaponModelOrig;
     float shootRateOrig;
     int shootDamageOrig;
     int shootDistOrig;
-    int dashCountOrig;
+    public float weaponFlyDist;
+
+
+    //DMason: adding player health functionallity
+    //Health Stuff
+    public HealthBar hpBar;
+    public GameObject healthBar;
+    int hpOrig;
 
     #endregion
 
@@ -81,11 +95,14 @@ public class playerController : MonoBehaviour
         hpOrig = healthPoints;
         sprintCurr = sprintMax;
         dashCountOrig = dashCount;
+        gravityValueOrig = gravityValue;
 
         weaponModelOrig = weaponModel;
         shootRateOrig = shootRate;
         shootDamageOrig = shootDamage;
         shootDistOrig = shootDist;
+
+        weaponHave = true;
 
         changeWeapons();
     }
@@ -95,12 +112,36 @@ public class playerController : MonoBehaviour
     {
         movement();
         sprint();
-        if(!gameManager.instance.isPaused)
-        weaponSelect();
-        if(!isShooting && Input.GetButtonDown("Shoot") && !gameManager.instance.isPaused)
+
+        //Dash
+        if (dashCount > 0 && !isDashing && Input.GetButtonDown("Dash"))
         {
-            aud.PlayOneShot(shootAudioClip, shootAudioVolume);
-            StartCoroutine(shootFunc.shootBullet());
+            StartCoroutine(Dash());
+            StartCoroutine(DashCoolDown());
+        }
+        else if (Input.GetButtonUp("Dash"))
+        {
+            isDashing = false;
+        }
+
+        //Shoot
+        if (weaponHave && !isShooting && Input.GetButtonDown("Shoot") && !gameManager.instance.isPaused)
+        {
+            //aud.PlayOneShot(shootAudioClip, shootAudioVolume);
+            weaponFunc.weaponStats.shootScript.shootBullet();
+        }
+
+        if (!weaponHave)
+        {
+            if(Input.GetKey(KeyCode.R))
+            {
+                weaponFunc.emptyHandScript.emptyHandScript.rButtonFunction();
+            }
+
+            if(Input.GetButtonDown("Right Mouse"))
+            {
+                weaponFunc.emptyHandScript.emptyHandScript.RightClick();
+            }
         }
     }
 
@@ -109,6 +150,7 @@ public class playerController : MonoBehaviour
         if (controller.isGrounded && playerVelocity.y < 0)
         {
             jumpTimes = 0;
+            wallJumpTimes = 0;
             playerVelocity.y = 0;
         }
 
@@ -118,66 +160,60 @@ public class playerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && jumpTimes < jumpMax)
         {
+            isJumping = true;
             aud.PlayOneShot(jumpAudioClips[Random.Range(0, jumpAudioClips.Count)], jumpAudioVolume);
             ++jumpTimes;
             playerVelocity.y = jumpHeight;
         }
-
+        else if (Input.GetButtonUp("Jump"))
+        {
+            isJumping = false;
+        }
+        
         playerVelocity.y -= gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //Solve infinite upwards momentum while jumping on wall
+        if (wallJumpTimes < wallJumpMax && !isJumping && other.CompareTag("Wall"))
+        {
+            gravityValue = 0;
+            if (!onWall)
+            {
+                playerVelocity.y = 0;
+            }
+            onWall = true;
+            jumpTimes = 0;
+            wallJumpTimes++;
+        }
+        else
+        {
+            gravityValue = gravityValueOrig;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (isJumping || other.CompareTag("Wall"))
+        {
+            ResetGravity();
+        }
+    }
+
+    public void ResetGravity()
+    {
+        onWall = false;
+        gravityValue = gravityValueOrig;
     }
 
     void sprint()
     {
         if (Input.GetButtonDown("Sprint"))
-        {
-            if (controller.isGrounded)
-            {
-                if (dashCount != 0 && Input.GetKey(KeyCode.S))
-                {
-                    StartCoroutine(dashForwards());
-                    StartCoroutine(dashCoolDown());
-                }
-                else if (dashCount != 0 && Input.GetKey(KeyCode.D))
-                {
-                    StartCoroutine(dashSides());
-                    StartCoroutine(dashCoolDown());
-                }
-                else if (dashCount != 0 && Input.GetKey(KeyCode.A))
-                {
-                    StartCoroutine(dashSides());
-                    StartCoroutine(dashCoolDown());
-                }
-                else if (Input.GetKey(KeyCode.W))
-                {
-                    playerSpeed *= sprintMod;
-                    isSprinting = true;
-                }
-            }
-            else
-            {
-                if (dashCount > 0 && Input.GetKey(KeyCode.W))
-                {
-                    StartCoroutine(dashForwards());
-                    StartCoroutine(dashCoolDown());
-                }
-                else if (dashCount > 0 && Input.GetKey(KeyCode.S))
-                {
-                    StartCoroutine(dashForwards());
-                    StartCoroutine(dashCoolDown());
-                }
-                else if (dashCount > 0 && Input.GetKey(KeyCode.D))
-                {
-                    StartCoroutine(dashSides());
-                    StartCoroutine(dashCoolDown());
-                }
-                else if (dashCount > 0 && Input.GetKey(KeyCode.A))
-                {
-                    StartCoroutine(dashSides());
-                    StartCoroutine(dashCoolDown());
-                }
-            }
-
+        {   
+            playerSpeed *= sprintMod;
+            isSprinting = true;
         }
         else if (Input.GetButtonUp("Sprint") && isSprinting)
         {
@@ -186,12 +222,15 @@ public class playerController : MonoBehaviour
         }
     }
 
-    IEnumerator dashForwards()
+    IEnumerator Dash()
     {
+        isDashing = true;
+
         playerSpeed *= dashMod;
 
-        move = transform.forward * (Input.GetAxis("Vertical"));
+        move = transform.forward * (Input.GetAxis("Vertical")) + transform.right * (Input.GetAxis("Horizontal"));
         controller.Move(move * playerSpeed * Time.deltaTime);
+
         yield return new WaitForSeconds(dashTime);
 
         dashCount--;
@@ -200,21 +239,7 @@ public class playerController : MonoBehaviour
         playerSpeed = playerOrigSpeed;
     }
 
-    IEnumerator dashSides()
-    {
-        playerSpeed *= dashMod;
-
-        move = transform.right * (Input.GetAxis("Horizontal"));
-        controller.Move(move * playerSpeed * Time.deltaTime);
-        yield return new WaitForSeconds(dashTime);
-
-        dashCount--;
-        updateDashMeter();
-
-        playerSpeed = playerOrigSpeed;
-    }
-
-    IEnumerator dashCoolDown()
+    IEnumerator DashCoolDown()
     {
         yield return new WaitForSeconds(dashCooldown);
 
@@ -225,6 +250,15 @@ public class playerController : MonoBehaviour
     void updateDashMeter()
     {
         gameManager.instance.DashBar.fillAmount = (float)dashCount / (float)dashCountOrig;
+    }
+
+    public void Teleport(Vector3 newPos)
+    {
+        controller.enabled = false;
+
+        gameObject.transform.position = newPos;
+
+        controller.enabled = true;
     }
 
     public void Damage(int dmg)
@@ -276,73 +310,29 @@ public class playerController : MonoBehaviour
         controller.enabled = true;
     }
 
-    public void weaponPickup(WeaponStats weaponStat)
+    public void changeWeapons()
     {
-        weapons.Add(weaponStat);
-        selectedWeapon++;
-        changeWeapons();
+        shootRate = weaponFunc.weaponStats.shootRate;
+        shootDamage = weaponFunc.weaponStats.shootDamage;
+        shootDist = weaponFunc.weaponStats.shootDist;
+
+        weaponModel.GetComponent<MeshFilter>().sharedMesh = weaponFunc.weaponStats.weaponModel.GetComponent<MeshFilter>().sharedMesh;
+        weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weaponFunc.weaponStats.weaponModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+        shootAudioClip = weaponFunc.weaponStats.weaponSound;
+
+        weaponModel.transform.localScale = weaponFunc.weaponStats.weaponModel.transform.localScale;
     }
 
-    void changeWeapons()
+    public void changeHand()
     {
-        shootRate = weapons[selectedWeapon].shootRate;
-        shootDamage = weapons[selectedWeapon].shootDamage;
-        shootDist = weapons[selectedWeapon].shootDist;
-        shootFunc = weapons[selectedWeapon].shootScript;
-        weaponModel.GetComponent<MeshFilter>().sharedMesh = weapons[selectedWeapon].weaponModel.GetComponent<MeshFilter>().sharedMesh;
-        weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weapons[selectedWeapon].weaponModel.GetComponent<MeshRenderer>().sharedMaterial;
+        shootRate = 0;
+        shootDamage = 0;
+        shootDist = 0;
 
-        shootAudioClip = weapons[selectedWeapon].weaponSound;
+        weaponModel.GetComponent<MeshFilter>().sharedMesh = weaponFunc.emptyHandScript.emptyHandModel.GetComponent<MeshFilter>().sharedMesh;
+        weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weaponFunc.emptyHandScript.emptyHandModel.GetComponent<MeshRenderer>().sharedMaterial;
 
-        weaponModel.transform.localScale = weapons[selectedWeapon].weaponModel.transform.localScale;
-    }
-
-    void weaponSelect()
-    {
-        if (weapons.Count > 1)
-        {
-            if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedWeapon < weapons.Count - 1)
-            {
-                Debug.Log("Going Up");
-                selectedWeapon++;
-                changeWeapons();
-            }
-            else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedWeapon > 0)
-            {
-                Debug.Log("Going Down");
-                selectedWeapon--;
-                changeWeapons();
-            }
-        }
-    }
-
-    public void RemoveWeapon()
-    {
-        if(selectedWeapon == 0)
-        {
-            weapons.Remove(weapons[selectedWeapon]);
-
-            changeWeapons();
-        }
-        else if (selectedWeapon <= weapons.Count)
-        {
-            weapons.Remove(weapons[selectedWeapon]);
-            selectedWeapon--;
-
-            changeWeapons();
-        }
-        else
-        {
-            weapons.Remove(weapons[selectedWeapon]);
-
-            weapons = new List<WeaponStats>();
-            weaponModel.GetComponent<MeshFilter>().sharedMesh = weaponModelOrig.GetComponent<MeshFilter>().sharedMesh;
-            weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weaponModelOrig.GetComponent<MeshRenderer>().sharedMaterial;
-            shootDamage = shootDamageOrig;
-            shootDist = shootDistOrig;
-            shootRate = shootRateOrig;
-            shootFunc = null;
-            selectedWeapon = -1;
-        }
+        weaponModel.transform.localScale = weaponFunc.emptyHandScript.emptyHandModel.transform.localScale;
     }
 }
