@@ -65,7 +65,9 @@ public class playerController : MonoBehaviour
     int jumpTimes;
     bool jumpKeyHeld;
     float gravityValueOrig;
-    float playerOrigSpeed;
+    //I touch
+    public float playerOrigSpeed;
+    //
     bool isSprinting;
     int dashCountOrig;
     bool wallRunning;

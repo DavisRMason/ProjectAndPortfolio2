@@ -27,7 +27,7 @@ public class LectureEnemy : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] float shootRate;
 
-    [SerializeField] bool isSniper;
+    [SerializeField] bool SpawnerAlt;
 
     bool isShooting;
     bool playerInRange;
@@ -41,7 +41,7 @@ public class LectureEnemy : MonoBehaviour, IDamage
 
     void Start()
     {
-        if (isSniper)
+        if (SpawnerAlt)
         {
             gameManager.instance.updateUIEnemyCount(1);
         }
