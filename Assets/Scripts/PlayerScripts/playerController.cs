@@ -1,6 +1,7 @@
 using Newtonsoft.Json.Converters;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -67,8 +68,7 @@ public class playerController : MonoBehaviour
     float playerOrigSpeed;
     bool isSprinting;
     int dashCountOrig;
-    int wallJumpTimes;
-    
+    bool wallRunning;
 
     //Weapon Stuff
     public bool isShooting;
@@ -114,7 +114,8 @@ public class playerController : MonoBehaviour
     {
         movement();
         sprint();
-
+        WallJump();
+        WallRun();
         //Dash
         if (dashCount > 0 && !isDashing && Input.GetButtonDown("Dash"))
         {
@@ -163,12 +164,14 @@ public class playerController : MonoBehaviour
         if (controller.isGrounded && playerVelocity.y < 0)
         {
             jumpTimes = 0;
-            wallJumpTimes = 0;
             playerVelocity.y = 0;
         }
 
-        move = transform.right * Input.GetAxis("Horizontal")
-            + transform.forward * Input.GetAxis("Vertical");
+        if (!wallRunning)
+        {
+            move = transform.right * Input.GetAxis("Horizontal")
+                + transform.forward * Input.GetAxis("Vertical");
+        }
         controller.Move(move * Time.deltaTime * playerSpeed);
 
         if (Input.GetButtonDown("Jump") && jumpTimes < jumpMax)
@@ -183,39 +186,68 @@ public class playerController : MonoBehaviour
         }
         else if (Input.GetButtonUp("Jump"))
         {
-            jumpKeyHeld = false;
-            
+            jumpKeyHeld = false;           
         }
         
         playerVelocity.y -= gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider other)
+    void WallJump()
     {
-        //Solve infinite upwards momentum while jumping on wall
-        if (wallJumpTimes < wallJumpMax && !isJumping && other.CompareTag("Wall"))
+        RaycastHit hit;
+        
+        if(Physics.Raycast(gameObject.transform.position, gameObject.transform.forward, out hit, 1))
         {
-            gravityValue = 1;
-            if (!onWall)
+            if (hit.collider.gameObject.CompareTag("Wall"))
             {
+                if (!onWall)
+                {
+                    gravityValue = 1;
+                    onWall = true;
+                }
+                
                 playerVelocity.y = 0;
+                wallRunning = true;
             }
-            onWall = true;
-            jumpTimes = 0;
-            wallJumpTimes++;
         }
         else
         {
-            gravityValue = gravityValueOrig;
+            ResetGravity();
+            onWall = false;
+            wallRunning = false;
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    void WallRun()
     {
-        if (isJumping || other.CompareTag("Wall"))
+        RaycastHit hit;
+        var left = transform.TransformDirection (Vector3.left);
+        var right = transform.TransformDirection(Vector3.right);
+
+
+        if (Physics.Raycast(gameObject.transform.position, left, out hit, 1) || Physics.Raycast(gameObject.transform.position, right, out hit, 1))
+        {
+            if (hit.collider.gameObject.CompareTag("Wall"))
+            {
+                Debug.Log("Hit Wall");
+                if (!onWall)
+                {
+                    gravityValue = 1;
+                    onWall = true;
+                }
+
+                playerVelocity.y = 0;
+
+                move = transform.forward * (Input.GetAxis("Vertical") + 1);
+
+                controller.Move(move * Time.deltaTime * playerSpeed);
+            }
+        }
+        else
         {
             ResetGravity();
+            onWall = false;
         }
     }
 
