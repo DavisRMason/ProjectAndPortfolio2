@@ -23,6 +23,8 @@ public class AOEEnemy : MonoBehaviour, IDamage
     [SerializeField] int damageToDeal;
     [SerializeField] float dealDamageInterval;
 
+    [SerializeField] bool SpawnerAlt;
+
     bool dealingDamage;
     bool isDead;
     bool playerInRange;
@@ -34,6 +36,10 @@ public class AOEEnemy : MonoBehaviour, IDamage
 
     void Start()
     {
+        if (SpawnerAlt)
+        {
+            gameManager.instance.updateUIEnemyCount(1);
+        }
         hpOrig = HP;
         stoppingDistOrig = agent.stoppingDistance;
         UpdateHPBar();
@@ -147,6 +153,7 @@ public class AOEEnemy : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
             if (!dealingDamage && playerInRange && !isDead)
             {
+                gameManager.instance.playerScript.playerSpeed /= 1.2f;
                 StartCoroutine(DealFrost());
             }
     }
@@ -154,6 +161,9 @@ public class AOEEnemy : MonoBehaviour, IDamage
     public void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
+            gameManager.instance.playerScript.playerSpeed = gameManager.instance.playerScript.playerOrigSpeed;
             playerInRange = false;
+        }
     }
 }

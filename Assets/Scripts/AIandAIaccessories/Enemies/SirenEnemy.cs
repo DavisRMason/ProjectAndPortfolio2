@@ -22,6 +22,8 @@ public class SirenEnemy : MonoBehaviour, IDamage
     [Header("-----Angle Flip-----")]
     [SerializeField] int flipIt;
 
+    [SerializeField] bool SpawnerAlt;
+
     bool isDead;
     bool playerInRange;
     Vector3 playerDirection;
@@ -32,6 +34,10 @@ public class SirenEnemy : MonoBehaviour, IDamage
 
     void Start()
     {
+        if (SpawnerAlt)
+        {
+            gameManager.instance.updateUIEnemyCount(1);
+        }
         hpOrig = HP;
         stoppingDistOrig = agent.stoppingDistance;
         UpdateHPBar();
@@ -131,7 +137,7 @@ public class SirenEnemy : MonoBehaviour, IDamage
         if (other.CompareTag("Player") && !isDead)
         {
             playerInRange = true;
-            //gameManager.instance.player.transform.rotation.z += flipIt;
+            gameManager.instance.playerScript.transform.Rotate(0, flipIt, 0);
         }
     }
 
