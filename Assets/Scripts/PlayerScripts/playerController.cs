@@ -19,7 +19,7 @@ public class playerController : MonoBehaviour
 
     [Header("----- Player Stats -----")]
     [Range(1, 30)][SerializeField] int healthPoints;
-    [SerializeField] float playerSpeed;
+    [SerializeField] public float playerSpeed;
     [SerializeField] float dashMod;
     [SerializeField] float dashTime;
     [SerializeField] int dashCount;
