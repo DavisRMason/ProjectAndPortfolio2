@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class LectureEnemy : MonoBehaviour, IDamage
+public class AOEEnemy : MonoBehaviour, IDamage
 {
     [Header("-----Components-----")]
     [SerializeField] Renderer model;
@@ -15,38 +15,26 @@ public class LectureEnemy : MonoBehaviour, IDamage
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
     [SerializeField] int playerBaseSpeed;
-    [SerializeField] int speedChase;
     [SerializeField] int sightDist;
     [SerializeField] int sightAngle;
-    [SerializeField] int roamDist;
-    [SerializeField] int animLerpSpeed;
     [SerializeField] GameObject headPos;
 
-    [Header("-----Gun Stats-----")]
-    [SerializeField] GameObject bullet;
-    [SerializeField] Transform shootPos;
-    [SerializeField] float shootRate;
+    [Header("-----Deal Damage-----")]
+    [SerializeField] int damageToDeal;
+    [SerializeField] float dealDamageInterval;
 
-    [SerializeField] bool SpawnerAlt;
-
-    bool isShooting;
+    bool dealingDamage;
+    bool isDead;
     bool playerInRange;
     Vector3 playerDirection;
     float angleToPlayer;
     float stoppingDistOrig;
-    float agentSpeedOrig;
     int hpOrig;
 
 
     void Start()
     {
-        if (SpawnerAlt)
-        {
-            gameManager.instance.updateUIEnemyCount(1);
-        }
-
         hpOrig = HP;
-        agentSpeedOrig = agent.speed;
         stoppingDistOrig = agent.stoppingDistance;
         UpdateHPBar();
     }
@@ -54,7 +42,6 @@ public class LectureEnemy : MonoBehaviour, IDamage
 
     void Update()
     {
-        anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animLerpSpeed));
         if (agent.enabled)
         {
             if (playerInRange)
@@ -79,16 +66,12 @@ public class LectureEnemy : MonoBehaviour, IDamage
                 agent.stoppingDistance = stoppingDistOrig;
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
-                //if (agent.remainingDistance < agent.stoppingDistance)
-                    facePlayer();
-
-                if (!isShooting  && playerInRange)
-                    StartCoroutine(Shoot());
+                FacePlayer();
             }
         }
     }
 
-    void facePlayer()
+    void FacePlayer()
     {
         playerDirection.y = 0;
         Quaternion rotation = Quaternion.LookRotation(playerDirection);
@@ -110,6 +93,7 @@ public class LectureEnemy : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
+            isDead = true;
             gameManager.instance.updateEnemyNumber();
             anim.SetBool("Dead", true);
             agent.enabled = false;
@@ -124,25 +108,19 @@ public class LectureEnemy : MonoBehaviour, IDamage
         HPBar.fillAmount = (float)HP / (float)hpOrig;
     }
 
+    IEnumerator DealFrost()
+    {
+        dealingDamage = true;
+        yield return new WaitForSeconds(dealDamageInterval);
+        gameManager.instance.playerScript.Damage(damageToDeal);
+        dealingDamage = false;
+    }
+
     IEnumerator FlashDamage()
     {
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.3F);
         model.material.color = Color.white;
-    }
-
-    IEnumerator Shoot()
-    {
-        isShooting = true;
-        agent.speed = 0;
-
-        anim.SetTrigger("Shoot");
-
-        Instantiate(bullet, shootPos.position, transform.rotation);
-
-        yield return new WaitForSeconds(shootRate);
-        agent.speed = agentSpeedOrig;
-        isShooting = false;
     }
 
     IEnumerator DisableUI()
@@ -162,6 +140,15 @@ public class LectureEnemy : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
             playerInRange = true;
+    }
+
+    public void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+            if (!dealingDamage && playerInRange && !isDead)
+            {
+                StartCoroutine(DealFrost());
+            }
     }
 
     public void OnTriggerExit(Collider other)
