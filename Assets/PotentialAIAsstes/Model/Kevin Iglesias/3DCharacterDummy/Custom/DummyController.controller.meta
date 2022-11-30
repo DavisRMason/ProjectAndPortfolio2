@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/PlayerScripts/ShootFunctions.meta
+guid: d112677e774200043b945fc7a2ac1fce
+folderAsset: yes
+DefaultImporter:
+========
 guid: 8764208331d0e5748bfc26eda86182ad
 NativeFormatImporter:
+>>>>>>>> 0ee3170 (Updated folders and created enemy):Assets/PotentialAIAsstes/Model/Kevin Iglesias/3DCharacterDummy/Custom/MaleDummyController.controller.meta
   externalObjects: {}
   mainObjectFileID: 9100000
   userData: 
