@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Spawn Pos
   - HealthBar
+  - PlayerWeapon
+  - Wall
   layers:
   - Default
   - TransparentFX

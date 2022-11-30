@@ -27,11 +27,12 @@ public class LectureEnemy : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] float shootRate;
 
-    [SerializeField] bool SpawnerAlt;
+    [SerializeField] bool isSniper;
 
     bool isShooting;
     bool playerInRange;
     Vector3 playerDirection;
+    Vector3 startingPos;
     float angleToPlayer;
     float stoppingDistOrig;
     float agentSpeedOrig;
@@ -40,14 +41,16 @@ public class LectureEnemy : MonoBehaviour, IDamage
 
     void Start()
     {
-        if (SpawnerAlt)
+        if (isSniper)
         {
             gameManager.instance.updateUIEnemyCount(1);
         }
 
         hpOrig = HP;
         agentSpeedOrig = agent.speed;
+        startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
+        roam();
         UpdateHPBar();
     }
 
@@ -61,6 +64,8 @@ public class LectureEnemy : MonoBehaviour, IDamage
             {
                 canSeePlayer();
             }
+            else if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position)
+                roam();
         }
     }
 
@@ -82,10 +87,24 @@ public class LectureEnemy : MonoBehaviour, IDamage
                 //if (agent.remainingDistance < agent.stoppingDistance)
                     facePlayer();
 
-                if (!isShooting  && playerInRange)
+                if (!isShooting && playerInRange)
                     StartCoroutine(Shoot());
             }
         }
+    }
+
+    void roam()
+    {
+        agent.stoppingDistance = 0;
+
+        Vector3 randomDir = Random.insideUnitSphere * roamDist;
+        randomDir += startingPos;
+
+        NavMeshHit hit;
+        NavMesh.SamplePosition(new Vector3(randomDir.x, 0, randomDir.z), out hit, 1, 1);
+        NavMeshPath path = new NavMeshPath();
+        agent.CalculatePath(hit.position, path);
+        agent.SetPath(path);
     }
 
     void facePlayer()
