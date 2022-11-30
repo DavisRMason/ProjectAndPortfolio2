@@ -28,6 +28,7 @@ public class playerController : MonoBehaviour
     [Range(1.5f, 5)][SerializeField] float sprintMod;
     [Range(1.5f, 5)][SerializeField] float sprintMax;
     [Range(0, 20)][SerializeField] float jumpHeight;
+    [Range(0, 20)][SerializeField] float jumpHeightMax;
     [Range(0, 40)][SerializeField] float gravityValue;
     [Range(1, 3)][SerializeField] int jumpMax;
     [SerializeField] public bool onWall = false;
@@ -61,6 +62,7 @@ public class playerController : MonoBehaviour
     private Vector3 playerVelocity;
     float sprintCurr;
     int jumpTimes;
+    bool jumpKeyHeld;
     float gravityValueOrig;
     float playerOrigSpeed;
     bool isSprinting;
@@ -145,6 +147,17 @@ public class playerController : MonoBehaviour
         }
     }
 
+    private void FixedUpdate()
+    {
+        if(isJumping)
+        {
+            if (!jumpKeyHeld)
+            {
+                playerVelocity.y -= gravityValue * Time.deltaTime;
+            }
+        }
+    }
+
     void movement()
     {
         if (controller.isGrounded && playerVelocity.y < 0)
@@ -160,14 +173,18 @@ public class playerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && jumpTimes < jumpMax)
         {
+            jumpKeyHeld = true;
             isJumping = true;
+            ResetGravity();
             aud.PlayOneShot(jumpAudioClips[Random.Range(0, jumpAudioClips.Count)], jumpAudioVolume);
             ++jumpTimes;
+
             playerVelocity.y = jumpHeight;
         }
         else if (Input.GetButtonUp("Jump"))
         {
-            isJumping = false;
+            jumpKeyHeld = false;
+            
         }
         
         playerVelocity.y -= gravityValue * Time.deltaTime;
@@ -179,7 +196,7 @@ public class playerController : MonoBehaviour
         //Solve infinite upwards momentum while jumping on wall
         if (wallJumpTimes < wallJumpMax && !isJumping && other.CompareTag("Wall"))
         {
-            gravityValue = 0;
+            gravityValue = 1;
             if (!onWall)
             {
                 playerVelocity.y = 0;
