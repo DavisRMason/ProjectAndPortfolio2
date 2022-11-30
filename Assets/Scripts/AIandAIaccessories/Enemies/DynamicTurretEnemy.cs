@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class AOEEnemy : MonoBehaviour, IDamage
+public class DynamicTurretEnemy : MonoBehaviour, IDamage
 {
     [Header("-----Components-----")]
     [SerializeField] Renderer model;
@@ -19,22 +19,31 @@ public class AOEEnemy : MonoBehaviour, IDamage
     [SerializeField] int sightAngle;
     [SerializeField] GameObject headPos;
 
-    [Header("-----Deal Damage-----")]
-    [SerializeField] int damageToDeal;
-    [SerializeField] float dealDamageInterval;
+    [Header("-----Gun Stats-----")]
+    [SerializeField] GameObject bullet;
+    [SerializeField] Transform shootPos;
+    [SerializeField] float shootRate;
 
-    bool dealingDamage;
-    bool isDead;
+    [SerializeField] bool SpawnerAlt;
+
+    bool isShooting;
     bool playerInRange;
     Vector3 playerDirection;
     float angleToPlayer;
     float stoppingDistOrig;
+    float agentSpeedOrig;
     int hpOrig;
 
 
     void Start()
     {
+        if (SpawnerAlt)
+        {
+            gameManager.instance.updateUIEnemyCount(1);
+        }
+
         hpOrig = HP;
+        agentSpeedOrig = agent.speed;
         stoppingDistOrig = agent.stoppingDistance;
         UpdateHPBar();
     }
@@ -66,7 +75,11 @@ public class AOEEnemy : MonoBehaviour, IDamage
                 agent.stoppingDistance = stoppingDistOrig;
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
-                FacePlayer();
+                //if (agent.remainingDistance < agent.stoppingDistance)
+                    FacePlayer();
+
+                if (!isShooting  && playerInRange)
+                    StartCoroutine(Shoot());
             }
         }
     }
@@ -93,7 +106,6 @@ public class AOEEnemy : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            isDead = true;
             gameManager.instance.updateEnemyNumber();
             anim.SetBool("Dead", true);
             agent.enabled = false;
@@ -108,19 +120,25 @@ public class AOEEnemy : MonoBehaviour, IDamage
         HPBar.fillAmount = (float)HP / (float)hpOrig;
     }
 
-    IEnumerator DealFrost()
-    {
-        dealingDamage = true;
-        yield return new WaitForSeconds(dealDamageInterval);
-        gameManager.instance.playerScript.Damage(damageToDeal);
-        dealingDamage = false;
-    }
-
     IEnumerator FlashDamage()
     {
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.3F);
         model.material.color = Color.white;
+    }
+
+    IEnumerator Shoot()
+    {
+        isShooting = true;
+        agent.speed = 0;
+
+        anim.SetTrigger("Shoot");
+
+        Instantiate(bullet, shootPos.position, transform.rotation);
+
+        yield return new WaitForSeconds(shootRate);
+        agent.speed = agentSpeedOrig;
+        isShooting = false;
     }
 
     IEnumerator DisableUI()
@@ -140,15 +158,6 @@ public class AOEEnemy : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
             playerInRange = true;
-    }
-
-    public void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
-            if (!dealingDamage && playerInRange && !isDead)
-            {
-                StartCoroutine(DealFrost());
-            }
     }
 
     public void OnTriggerExit(Collider other)
