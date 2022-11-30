@@ -1,12 +1,6 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/Scripts/PlayerScripts/EmptyHandFunctions.meta
-guid: 9eca14c38ddf5294bac044a5bdd9de54
-folderAsset: yes
-DefaultImporter:
-========
 guid: 3612585bcce8d95419dcd0aaf6e24c8c
 PrefabImporter:
->>>>>>>> 0ee3170 (Updated folders and created enemy):Assets/Prefabs/AI/WIP/Frost Giant.prefab.meta
   externalObjects: {}
   userData: 
   assetBundleName: 
