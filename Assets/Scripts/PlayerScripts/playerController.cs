@@ -14,6 +14,7 @@ public class playerController : MonoBehaviour
 
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] public GameObject shootPoint;
     [SerializeField] Collider playerCollider;
     [SerializeField] public AudioSource aud;
 
@@ -27,9 +28,7 @@ public class playerController : MonoBehaviour
     [SerializeField] int dashCooldown;
     [SerializeField] bool isDashing;
     [Range(1.5f, 5)][SerializeField] float sprintMod;
-    [Range(1.5f, 5)][SerializeField] float sprintMax;
     [Range(0, 20)][SerializeField] float jumpHeight;
-    [Range(0, 20)][SerializeField] float jumpHeightMax;
     [Range(0, 40)][SerializeField] float gravityValue;
     [Range(1, 3)][SerializeField] int jumpMax;
     [SerializeField] public bool onWall = false;
@@ -42,9 +41,7 @@ public class playerController : MonoBehaviour
     [SerializeField] public int shootDamage;
     [SerializeField] GameObject weaponModel;
     [SerializeField] GameObject hitEffect;
-    [SerializeField] Shoot shootFunc;
     [SerializeField] Weapon weaponFunc;
-    [SerializeField] int selectedWeapon = 0;
 
     [Header("----- Audio -----")]
     [SerializeField] List <AudioClip> jumpAudioClips = new List<AudioClip>();
@@ -61,7 +58,6 @@ public class playerController : MonoBehaviour
     //Player Movement
     Vector3 move;
     private Vector3 playerVelocity;
-    float sprintCurr;
     int jumpTimes;
     bool jumpKeyHeld;
     float gravityValueOrig;
@@ -97,7 +93,6 @@ public class playerController : MonoBehaviour
     {
         playerOrigSpeed = playerSpeed;
         hpOrig = healthPoints;
-        sprintCurr = sprintMax;
         dashCountOrig = dashCount;
         gravityValueOrig = gravityValue;
 
@@ -134,9 +129,14 @@ public class playerController : MonoBehaviour
         {
             //aud.PlayOneShot(shootAudioClip, shootAudioVolume);
             weaponFunc.weaponStats.shootScript.shootBullet();
+
+            if(weaponFunc.Melee)
+            {
+                StartCoroutine(CoolDown());
+            }
         }
 
-        if (!weaponHave)
+        if (!weaponHave || weaponFunc.Melee)
         {
             if(Input.GetKey(KeyCode.R))
             {
@@ -232,7 +232,6 @@ public class playerController : MonoBehaviour
         {
             if (hit.collider.gameObject.CompareTag("Wall"))
             {
-                Debug.Log("Hit Wall");
                 if (!onWall)
                 {
                     gravityValue = 1;
@@ -278,6 +277,8 @@ public class playerController : MonoBehaviour
         isDashing = true;
 
         playerSpeed *= dashMod;
+        gameObject.GetComponent<Collider>().enabled = false;
+
 
         move = transform.forward * (Input.GetAxis("Vertical")) + transform.right * (Input.GetAxis("Horizontal"));
         controller.Move(move * playerSpeed * Time.deltaTime);
@@ -287,6 +288,7 @@ public class playerController : MonoBehaviour
         dashCount--;
         updateDashMeter();
 
+        gameObject.GetComponent<Collider>().enabled = true;
         playerSpeed = playerOrigSpeed;
     }
 
@@ -385,5 +387,15 @@ public class playerController : MonoBehaviour
         weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weaponFunc.emptyHandScript.emptyHandModel.GetComponent<MeshRenderer>().sharedMaterial;
 
         weaponModel.transform.localScale = weaponFunc.emptyHandScript.emptyHandModel.transform.localScale;
+    }
+
+
+    public IEnumerator CoolDown()
+    {
+        isShooting = true;
+
+        yield return new WaitForSeconds(gameManager.instance.playerScript.shootRate);
+
+        isShooting = false;
     }
 }

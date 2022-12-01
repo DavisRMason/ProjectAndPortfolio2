@@ -8,4 +8,5 @@ public class Weapon : ScriptableObject
 {
     public WeaponStats weaponStats;
     public EmptyHandStats emptyHandScript;
+    public bool Melee;
 }
