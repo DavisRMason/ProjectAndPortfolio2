@@ -51,29 +51,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 6332312677548483170}
+  playerCollider: {fileID: 0}
   aud: {fileID: 246757356}
   healthPoints: 30
   playerSpeed: 10
-  playerMaxSpeed: 40
   dashMod: 7
   dashTime: 0.1
   dashCount: 3
-  dashCooldown: 5
+  dashWait: 0
+  dashCooldown: 7
+  isDashing: 0
   sprintMod: 5
   sprintMax: 5
   jumpHeight: 20
-  gravityValue: 40
+  jumpHeightMax: 20
+  gravityValue: 30
   jumpMax: 2
-  hpBar: {fileID: 0}
-  healthBar: {fileID: 0}
+  onWall: 0
+  isJumping: 0
+  wallJumpMax: 3
   shootRate: 1
   shootDist: 30
   shootDamage: 5
   weaponModel: {fileID: 7719723525216577327}
   hitEffect: {fileID: 0}
   shootFunc: {fileID: 0}
-  weapons:
-  - {fileID: 11400000, guid: 72d1333e266a92c42a41597839133c25, type: 2}
+  weaponFunc: {fileID: 11400000, guid: 83adc6bad65b7f844a36e1600aaba3d3, type: 2}
   selectedWeapon: 0
   jumpAudioClips:
   - {fileID: 8300000, guid: 4e41bf8a5ad812842aceeb9726da1f39, type: 3}
@@ -90,7 +93,12 @@ MonoBehaviour:
   hurtAudioVolume: 1
   shootAudioClip: {fileID: 0}
   shootAudioVolume: 0.1
+  playerOrigSpeed: 0
   isShooting: 0
+  weaponHave: 0
+  weaponFlyDist: 0
+  hpBar: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!33 &6332312677548483172
 MeshFilter:
   m_ObjectHideFlags: 0
