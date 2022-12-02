@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4291242845610567994}
-  - component: {fileID: 6345694280119053775}
+  - component: {fileID: 3763812324975071279}
   m_Layer: 0
   m_Name: LonginousShoot
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6345694280119053775
+--- !u!114 &3763812324975071279
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

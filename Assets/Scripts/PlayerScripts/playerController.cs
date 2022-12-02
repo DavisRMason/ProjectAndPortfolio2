@@ -129,11 +129,11 @@ public class playerController : MonoBehaviour
         }
 
         //Shoot
-        if (weaponHave && !isShooting && Input.GetButtonDown("Shoot") && !gameManager.instance.isPaused)
+        if (Input.GetButtonDown("Shoot") && weaponHave && !isShooting && !gameManager.instance.isPaused)
         {
             //aud.PlayOneShot(shootAudioClip, shootAudioVolume);
             weaponFunc.weaponStats.shootScript.shootBullet();
-
+            Debug.Log("Shoot button pressed");
             if (weaponFunc.Melee)
             {
                 StartCoroutine(CoolDown(shootRate));
@@ -173,15 +173,21 @@ public class playerController : MonoBehaviour
             playerVelocity.y = 0;
         }
 
-        if (!wallRunning)
+        if (!wallRunning && !spearMove)
         {
             move = transform.right * Input.GetAxis("Horizontal")
                 + transform.forward * Input.GetAxis("Vertical");
         }
 
-        if()
-
-        controller.Move(move + pushForward * Time.deltaTime * playerSpeed);
+        if (spearMove)
+        {
+            controller.Move(pushForward * Time.deltaTime * (playerSpeed * calculateCharge()));
+            spearMove = false;
+        }
+        else
+        {
+            controller.Move(move * Time.deltaTime * playerSpeed);
+        }
 
         if (Input.GetButtonDown("Jump") && jumpTimes < jumpMax)
         {
