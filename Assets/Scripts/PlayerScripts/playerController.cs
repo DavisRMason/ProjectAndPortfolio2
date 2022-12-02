@@ -51,7 +51,7 @@ public class playerController : MonoBehaviour
     [Range(0, 1)][SerializeField] float jumpAudioVolume;
     [SerializeField] List<AudioClip> hurtAudioClips = new List<AudioClip>();
     [Range(0, 1)][SerializeField] float hurtAudioVolume;
-    [SerializeField] public AudioClip shootAudioClip;
+    [SerializeField] public List <AudioClip> shootAudioClip = new List<AudioClip>();
     [Range(0, 1)][SerializeField] public float shootAudioVolume;
 
     #endregion
@@ -399,10 +399,6 @@ public class playerController : MonoBehaviour
 
     public void changeHand()
     {
-        shootRate = 0;
-        shootDamage = 0;
-        shootDist = 0;
-
         weaponModel.GetComponent<MeshFilter>().sharedMesh = weaponFunc.emptyHandScript.emptyHandModel.GetComponent<MeshFilter>().sharedMesh;
         weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weaponFunc.emptyHandScript.emptyHandModel.GetComponent<MeshRenderer>().sharedMaterial;
 

@@ -19,5 +19,10 @@ MonoBehaviour:
   weaponModel: {fileID: 3418011884731919454, guid: 29b475577bd142043a2ccad80f84455f, type: 3}
   hitEffect: {fileID: 0}
   muzzleFlash: {fileID: 0}
-  weaponSound: {fileID: 0}
+  weaponSound:
+  - {fileID: 8300000, guid: 8b18bbf4f9dd1ea4ca93333d18aaa5c1, type: 3}
+  - {fileID: 8300000, guid: 99b68d3e2a2ae6e458cc93187a4f1653, type: 3}
+  - {fileID: 8300000, guid: 410c8c7cfd5fa47479d5047452f10289, type: 3}
+  - {fileID: 8300000, guid: cef151578ce5ab44ab2d46066944e9ba, type: 3}
+  - {fileID: 8300000, guid: 16bf6c12a92934447a812ce063942ae1, type: 3}
   shootScript: {fileID: 3234122017393308037, guid: cd0bf420c3a4c564fba416e87730ef2f, type: 3}

@@ -13,6 +13,6 @@ public class WeaponStats : ScriptableObject
     public GameObject weaponModel;
     public GameObject hitEffect;
     public GameObject muzzleFlash;
-    public AudioClip weaponSound;
+    public List <AudioClip> weaponSound = new List<AudioClip>();
     public Shoot shootScript;
 }
