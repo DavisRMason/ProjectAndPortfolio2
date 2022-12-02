@@ -48,7 +48,10 @@ public class gameManager : MonoBehaviour
                 pause();
             }
             else
+            {
                 unPause();
+                optionsMenu.SetActive(isPaused);
+            }
         }
     }
     public void pause()
