@@ -502,8 +502,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mixer: {fileID: 24100000, guid: f11337388da676444807ef045605a189, type: 2}
   cam: {fileID: 0}
-  volumeslider: {fileID: 0}
-  fovSlider: {fileID: 0}
+  volumeslider: {fileID: 1458830375}
 --- !u!1 &435309525
 GameObject:
   m_ObjectHideFlags: 0
@@ -1366,8 +1365,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mixer: {fileID: 24100000, guid: f11337388da676444807ef045605a189, type: 2}
   cam: {fileID: 0}
-  volumeslider: {fileID: 0}
-  fovSlider: {fileID: 0}
+  volumeslider: {fileID: 1458830375}
 --- !u!1 &790043933
 GameObject:
   m_ObjectHideFlags: 0
@@ -1984,7 +1982,6 @@ MonoBehaviour:
   Mixer: {fileID: 24100000, guid: f11337388da676444807ef045605a189, type: 2}
   cam: {fileID: 0}
   volumeslider: {fileID: 1458830375}
-  fovSlider: {fileID: 0}
 --- !u!1 &1611635501
 GameObject:
   m_ObjectHideFlags: 0
@@ -4089,7 +4086,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6014251127405134139
 RectTransform:
   m_ObjectHideFlags: 0
