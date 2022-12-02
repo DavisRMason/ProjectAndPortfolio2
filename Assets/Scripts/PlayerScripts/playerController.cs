@@ -41,6 +41,7 @@ public class playerController : MonoBehaviour
     [SerializeField] public int shootDist;
     [SerializeField] public int shootDamage;
     [SerializeField] public int charge;
+    [SerializeField] int chargeMax;
     [SerializeField] GameObject weaponModel;
     [SerializeField] GameObject hitEffect;
     [SerializeField] Weapon weaponFunc;
@@ -80,6 +81,7 @@ public class playerController : MonoBehaviour
     int shootDistOrig;
     public float weaponFlyDist;
     public bool spearMove;
+    public bool chargeCool;
 
 
     //DMason: adding player health functionallity
@@ -136,7 +138,7 @@ public class playerController : MonoBehaviour
             Debug.Log("Shoot button pressed");
             if (weaponFunc.Melee)
             {
-                StartCoroutine(CoolDown(shootRate));
+                StartCoroutine(CoolDown(shootRate, isShooting));
             }
         }
 
@@ -184,7 +186,7 @@ public class playerController : MonoBehaviour
             Vector3 cameraPos = Input.mousePosition;
             cameraPos.z = 2.0f;
             Vector3 objectPos = Camera.main.ScreenToWorldPoint(cameraPos);
-
+            MakeRaySphere(5, 2, shootDamage);
             pushForward = Camera.main.transform.forward * (Input.GetAxis("Vertical") + 5);
             controller.Move(pushForward * Time.deltaTime * playerSpeed);
             StartCoroutine(ForceMove());
@@ -408,13 +410,13 @@ public class playerController : MonoBehaviour
     }
 
 
-    public IEnumerator CoolDown(float timer)
+    public IEnumerator CoolDown(float timer, bool changeBool)
     {
-        isShooting = true;
+        changeBool = true;
 
         yield return new WaitForSeconds(timer);
 
-        isShooting = false;
+        changeBool = false;
     }
 
     IEnumerator ForceMove()
@@ -427,7 +429,11 @@ public class playerController : MonoBehaviour
 
     public void changeCharge()
     {
-        charge++;
+        if (!chargeCool && charge < chargeMax)
+            charge++;
+        StartCoroutine(CoolDown(.5f, chargeCool));
+
+        Debug.Log("Charge is" + charge);
     }
 
     public float calculateCharge()
@@ -453,8 +459,22 @@ public class playerController : MonoBehaviour
                 break;
         }
 
-
         return chargeMod;
+    }
+
+    public void MakeRaySphere(float radius, float distance, int damage)
+    {
+
+        RaycastHit hit;
+
+        if (Physics.SphereCast(shootPoint.transform.position, radius, shootPoint.transform.forward, out hit, distance))
+        {
+            if (hit.collider.GetComponent<IDamage>() != null)
+            {
+                Debug.DrawRay(hit.transform.forward, transform.forward, color: Color.red);
+                hit.collider.GetComponent<IDamage>().takeDamage(damage);
+            }
+        }
     }
 }
  
