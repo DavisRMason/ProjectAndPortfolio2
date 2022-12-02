@@ -351,6 +351,14 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1926379311}
+    - target: {fileID: 947551103, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
+      propertyPath: m_fontSize
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 947551103, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 48
+      objectReference: {fileID: 0}
     - target: {fileID: 1458830374, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
       propertyPath: cam
       value: 

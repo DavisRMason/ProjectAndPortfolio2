@@ -51,6 +51,7 @@ MonoBehaviour:
   rb: {fileID: 5979505231960983050}
   spear: {fileID: 7422979033230652129, guid: c0bfded6f9a67a2448ba07b16d3a35cf, type: 3}
   attackPos: {fileID: 8533925518724877146}
+  effect: {fileID: 8552349641483143502, guid: ab1d6cf4079a3c14f8b0ed8cb3b3e744, type: 3}
   attackDist: 2
 --- !u!54 &5979505231960983050
 Rigidbody:
