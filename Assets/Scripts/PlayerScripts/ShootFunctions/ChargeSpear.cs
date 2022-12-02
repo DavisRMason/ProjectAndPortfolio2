@@ -6,17 +6,16 @@ public class ChargeSpear : Shoot
 {
     public override void shootBullet()
     {
-        RaycastHit hit;
-        Debug.Log("Shootbullet Accessed");
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = 2.0f;
-        Vector3 objectPos = Camera.main.ScreenToWorldPoint(mousePos);
+        gameManager.instance.playerScript.spearMove = true;
 
-        if (Physics.Raycast(gameManager.instance.playerScript.shootPoint.transform.position, objectPos, out hit, 15))
+        RaycastHit hit;
+
+        if (Physics.SphereCast(gameManager.instance.playerScript.shootPoint.transform.position, 5, gameManager.instance.playerScript.shootPoint.transform.forward, out hit, 10))
         {
-            gameManager.instance.playerScript.spearMove = true;
-            Debug.Log(hit.point);
-            gameManager.instance.playerScript.pushForward = hit.point;
-         }
+            if (hit.collider.GetComponent<IDamage>() != null)
+            {
+                hit.collider.GetComponent<IDamage>().takeDamage(gameManager.instance.playerScript.shootDamage);
+            }
+        }
     }
 }

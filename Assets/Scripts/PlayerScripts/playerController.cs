@@ -181,8 +181,13 @@ public class playerController : MonoBehaviour
 
         if (spearMove)
         {
-            controller.Move(pushForward * Time.deltaTime * (playerSpeed * calculateCharge()));
-            spearMove = false;
+            Vector3 cameraPos = Input.mousePosition;
+            cameraPos.z = 2.0f;
+            Vector3 objectPos = Camera.main.ScreenToWorldPoint(cameraPos);
+
+            pushForward = Camera.main.transform.forward * (Input.GetAxis("Vertical") + 5);
+            controller.Move(pushForward * Time.deltaTime * playerSpeed);
+            StartCoroutine(ForceMove());
         }
         else
         {
@@ -412,6 +417,14 @@ public class playerController : MonoBehaviour
         isShooting = false;
     }
 
+    IEnumerator ForceMove()
+    {
+
+        yield return new WaitForSeconds(calculateCharge());
+
+        spearMove = false;
+    }
+
     public void changeCharge()
     {
         charge++;
@@ -424,19 +437,19 @@ public class playerController : MonoBehaviour
         switch(charge)
         {
             case 0:
-                chargeMod = 1;
+                chargeMod = .5f;
                 break;
             case 1:
-                chargeMod = 1.25f;
+                chargeMod = .75f;
                 break;
             case 2:
-                chargeMod = 1.5f;
+                chargeMod = 1f;
                 break;
             case 3:
-                chargeMod = 1.75f;
+                chargeMod = 1.25f;
                 break;
             case 4:
-                chargeMod = 2;
+                chargeMod = 1.5f;
                 break;
         }
 
