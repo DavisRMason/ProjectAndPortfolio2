@@ -28,8 +28,19 @@ public class buttonFunc : MonoBehaviour
     {
         gameManager.instance.unPause();
         gameManager.instance.playerScript.respawn();
-        //needs implemented in player control
 
+    }
+
+    public void options()
+    {
+        gameManager.instance.pauseMenu.SetActive(false);
+        gameManager.instance.optionsMenu.SetActive(true);
+    }
+
+    public void back()
+    {
+        gameManager.instance.optionsMenu.SetActive(false);
+        gameManager.instance.pauseMenu.SetActive(true);
     }
 
 }

@@ -14,6 +14,7 @@ public class gameManager : MonoBehaviour
 
     [Header("-----UI-----")]
     public GameObject pauseMenu;
+    public GameObject optionsMenu;
     public GameObject playerDeadMenu;
     public GameObject winMenu;
     public GameObject playerDamageScreen;
