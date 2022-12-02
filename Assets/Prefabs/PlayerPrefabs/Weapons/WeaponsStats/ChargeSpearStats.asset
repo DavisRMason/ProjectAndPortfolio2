@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ChargeSpearStats
   m_EditorClassIdentifier: 
   shootRate: 2
-  shootDist: 4
-  shootDamage: 5
+  shootDist: 7
+  shootDamage: 2
   ammoCount: 0
   weaponModel: {fileID: 1808643412322928, guid: 0d82a6c22a77d4a68a39ae50b24d3299, type: 3}
   hitEffect: {fileID: 0}
