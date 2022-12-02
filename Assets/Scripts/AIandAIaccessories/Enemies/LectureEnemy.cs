@@ -15,11 +15,11 @@ public class LectureEnemy : MonoBehaviour, IDamage
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
     [SerializeField] int playerBaseSpeed;
-    [SerializeField] int speedChase;
+    //[SerializeField] int speedChase;
     [SerializeField] int sightDist;
     [SerializeField] int sightAngle;
-    [SerializeField] int roamDist;
-    [SerializeField] int animLerpSpeed;
+    //[SerializeField] int roamDist;
+    //[SerializeField] int animLerpSpeed;
     [SerializeField] GameObject headPos;
 
     [Header("-----Gun Stats-----")]
@@ -50,26 +50,26 @@ public class LectureEnemy : MonoBehaviour, IDamage
         agentSpeedOrig = agent.speed;
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
-        roam();
+        //roam();
         UpdateHPBar();
     }
 
 
     void Update()
     {
-        anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animLerpSpeed));
+        //anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animLerpSpeed));
         if (agent.enabled)
         {
             if (playerInRange)
             {
-                canSeePlayer();
+                CanSeePlayer();
             }
-            else if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position)
-                roam();
+            //else if (agent.remainingDistance < 0.1f && agent.destination != gameManager.instance.player.transform.position)
+            //    roam();
         }
     }
 
-    void canSeePlayer()
+    void CanSeePlayer()
     {
         playerDirection = (gameManager.instance.player.transform.position - headPos.transform.position);
 
@@ -85,7 +85,7 @@ public class LectureEnemy : MonoBehaviour, IDamage
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
                 //if (agent.remainingDistance < agent.stoppingDistance)
-                    facePlayer();
+                    FacePlayer();
 
                 if (!isShooting && playerInRange)
                     StartCoroutine(Shoot());
@@ -93,21 +93,21 @@ public class LectureEnemy : MonoBehaviour, IDamage
         }
     }
 
-    void roam()
-    {
-        agent.stoppingDistance = 0;
+    //void roam()
+    //{
+    //    agent.stoppingDistance = 0;
 
-        Vector3 randomDir = Random.insideUnitSphere * roamDist;
-        randomDir += startingPos;
+    //    Vector3 randomDir = Random.insideUnitSphere * roamDist;
+    //    randomDir += startingPos;
 
-        NavMeshHit hit;
-        NavMesh.SamplePosition(new Vector3(randomDir.x, 0, randomDir.z), out hit, 1, 1);
-        NavMeshPath path = new NavMeshPath();
-        agent.CalculatePath(hit.position, path);
-        agent.SetPath(path);
-    }
+    //    NavMeshHit hit;
+    //    NavMesh.SamplePosition(new Vector3(randomDir.x, 0, randomDir.z), out hit, 1, 1);
+    //    NavMeshPath path = new NavMeshPath();
+    //    agent.CalculatePath(hit.position, path);
+    //    agent.SetPath(path);
+    //}
 
-    void facePlayer()
+    void FacePlayer()
     {
         playerDirection.y = 0;
         Quaternion rotation = Quaternion.LookRotation(playerDirection);
