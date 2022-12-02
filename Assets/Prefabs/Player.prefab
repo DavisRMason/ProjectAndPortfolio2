@@ -114,7 +114,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 507816328048796808}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &6332312677548483175
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,23 +188,25 @@ MonoBehaviour:
   shootDist: 30
   shootDamage: 5
   charge: 0
+  chargeMax: 4
   weaponModel: {fileID: 7719723525216577327}
   hitEffect: {fileID: 0}
-  weaponFunc: {fileID: 11400000, guid: fd4e2b78a91838241abbf46d960a683c, type: 2}
+  weaponFunc: {fileID: 11400000, guid: 83adc6bad65b7f844a36e1600aaba3d3, type: 2}
   jumpAudioClips:
-  - {fileID: 8300000, guid: 4e41bf8a5ad812842aceeb9726da1f39, type: 3}
-  - {fileID: 8300000, guid: b30f4f849c19f1544913e6e5c4b39ac4, type: 3}
-  - {fileID: 8300000, guid: e3d1425c5e10d9c46b65dbb649cabd8c, type: 3}
+  - {fileID: 8300000, guid: 7c93ebc421e8ad74891a9c54c9dd2ae7, type: 3}
+  - {fileID: 8300000, guid: 824fadb00d18b8e46bf50ca1d383ce50, type: 3}
+  - {fileID: 8300000, guid: a2698d91d44fa4a48afbbba23991eb93, type: 3}
   jumpAudioVolume: 1
   hurtAudioClips:
-  - {fileID: 8300000, guid: 13bf8c26130146c46bc7688457d611c6, type: 3}
-  - {fileID: 8300000, guid: 6cc461ccb7c15d94a916497ce9700d12, type: 3}
-  - {fileID: 8300000, guid: 0f1f68f03b2013b40b24e7d33e5a352f, type: 3}
-  - {fileID: 8300000, guid: b4aa97ceb5eedd74381e4ddda650704a, type: 3}
-  - {fileID: 8300000, guid: 37d7a47e1494b834d8bcea5170990091, type: 3}
-  - {fileID: 8300000, guid: 41c526ab5df46574c872170700d1c6fb, type: 3}
+  - {fileID: 8300000, guid: bba450913d8ccef45b66b7c1de3516ca, type: 3}
+  - {fileID: 8300000, guid: 898f4e89437080c4085c7ca3729784ff, type: 3}
+  - {fileID: 8300000, guid: 1b0a412192a13374481b94fa4426fdb3, type: 3}
+  - {fileID: 8300000, guid: 9a97536c952d0f840b5d77e4be69a742, type: 3}
+  - {fileID: 8300000, guid: 046aef64d47be894ba90a628c5cb7205, type: 3}
+  - {fileID: 8300000, guid: d82f4db26ee0ba0448d2fb62ad23d383, type: 3}
   hurtAudioVolume: 1
-  shootAudioClip: {fileID: 0}
+  shootAudioClip:
+  - {fileID: 0}
   shootAudioVolume: 0.1
   move: {x: 0, y: 0, z: 0}
   playerOrigSpeed: 0
@@ -213,6 +215,7 @@ MonoBehaviour:
   weaponHave: 0
   weaponFlyDist: 0
   spearMove: 0
+  chargeCool: 0
   hpBar: {fileID: 0}
   healthBar: {fileID: 0}
 --- !u!33 &6332312677548483172

@@ -770,14 +770,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6332312677548483169, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
-      propertyPath: chargeMax
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6332312677548483169, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
-      propertyPath: weaponFunc
-      value: 
-      objectReference: {fileID: 11400000, guid: 5b0b3bc591953c3489a75a849de99685, type: 2}
     - target: {fileID: 6332312677548483171, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -825,10 +817,6 @@ PrefabInstance:
     - target: {fileID: 6332312677548483175, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8934564554116629281, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
