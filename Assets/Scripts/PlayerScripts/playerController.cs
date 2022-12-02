@@ -44,6 +44,7 @@ public class playerController : MonoBehaviour
     [SerializeField] int chargeMax;
     [SerializeField] GameObject weaponModel;
     [SerializeField] GameObject hitEffect;
+    [SerializeField] public GameObject hitEffectTwo;
     [SerializeField] Weapon weaponFunc;
 
     [Header("----- Audio -----")]
@@ -138,6 +139,7 @@ public class playerController : MonoBehaviour
             Debug.Log("Shoot button pressed");
             if (weaponFunc.Melee)
             {
+                hitEffect.GetComponent<ParticleSystem>().Play();
                 StartCoroutine(CoolDown(shootRate, isShooting));
             }
         }
@@ -393,6 +395,8 @@ public class playerController : MonoBehaviour
         weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weaponFunc.weaponStats.weaponModel.GetComponent<MeshRenderer>().sharedMaterial;
 
         shootAudioClip = weaponFunc.weaponStats.weaponSound;
+        hitEffect = weaponFunc.weaponStats.hitEffect;
+        hitEffectTwo = weaponFunc.weaponStats.muzzleFlash;
 
         weaponModel.transform.localScale = weaponFunc.weaponStats.weaponModel.transform.localScale;
     }
@@ -469,8 +473,13 @@ public class playerController : MonoBehaviour
             {
                 Debug.DrawRay(hit.transform.forward, transform.forward, color: Color.red);
                 hit.collider.GetComponent<IDamage>().takeDamage(damage);
+                hitEffect.GetComponent<ParticleSystem>().Play();
             }
         }
     }
+
+    public void PlayEffect(GameObject effect)
+    {
+        effect.GetComponent<ParticleSystem>().Play();
+    }
 }
- 
