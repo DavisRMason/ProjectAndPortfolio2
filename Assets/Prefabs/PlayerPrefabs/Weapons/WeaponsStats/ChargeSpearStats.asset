@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 155158d37b3db7446bc3388992a81590, type: 3}
-  m_Name: LonginousStats
+  m_Name: ChargeSpearStats
   m_EditorClassIdentifier: 
-  shootRate: 1
-  shootDist: 3
-  shootDamage: 3
+  shootRate: 2
+  shootDist: 4
+  shootDamage: 5
   ammoCount: 0
-  weaponModel: {fileID: 3418011884731919454, guid: 29b475577bd142043a2ccad80f84455f, type: 3}
+  weaponModel: {fileID: 1808643412322928, guid: 0d82a6c22a77d4a68a39ae50b24d3299, type: 3}
   hitEffect: {fileID: 0}
   muzzleFlash: {fileID: 0}
   weaponSound: {fileID: 0}
-  shootScript: {fileID: 6345694280119053775, guid: cd0bf420c3a4c564fba416e87730ef2f, type: 3}
+  shootScript: {fileID: 5532594020715884518, guid: fcc29ea3892fc2b4297f3c3fc82bd3c5, type: 3}

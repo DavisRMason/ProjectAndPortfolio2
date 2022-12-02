@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +14,7 @@ public class playerController : MonoBehaviour
     #region Unity_Editor
 
     [Header("----- Components -----")]
-    [SerializeField] CharacterController controller;
+    [SerializeField] public CharacterController controller;
     [SerializeField] public GameObject shootPoint;
     [SerializeField] Collider playerCollider;
     [SerializeField] public AudioSource aud;
@@ -39,24 +40,25 @@ public class playerController : MonoBehaviour
     [SerializeField] public float shootRate;
     [SerializeField] public int shootDist;
     [SerializeField] public int shootDamage;
+    [SerializeField] public int charge;
     [SerializeField] GameObject weaponModel;
     [SerializeField] GameObject hitEffect;
     [SerializeField] Weapon weaponFunc;
 
     [Header("----- Audio -----")]
-    [SerializeField] List <AudioClip> jumpAudioClips = new List<AudioClip>();
+    [SerializeField] List<AudioClip> jumpAudioClips = new List<AudioClip>();
     [Range(0, 1)][SerializeField] float jumpAudioVolume;
     [SerializeField] List<AudioClip> hurtAudioClips = new List<AudioClip>();
     [Range(0, 1)][SerializeField] float hurtAudioVolume;
     [SerializeField] public AudioClip shootAudioClip;
     [Range(0, 1)][SerializeField] public float shootAudioVolume;
-    
+
     #endregion
 
     #region Bools_&_Statics
 
     //Player Movement
-    Vector3 move;
+    public Vector3 move;
     private Vector3 playerVelocity;
     int jumpTimes;
     bool jumpKeyHeld;
@@ -67,6 +69,7 @@ public class playerController : MonoBehaviour
     bool isSprinting;
     int dashCountOrig;
     bool wallRunning;
+    public Vector3 pushForward;
 
     //Weapon Stuff
     public bool isShooting;
@@ -76,6 +79,7 @@ public class playerController : MonoBehaviour
     int shootDamageOrig;
     int shootDistOrig;
     public float weaponFlyDist;
+    public bool spearMove;
 
 
     //DMason: adding player health functionallity
@@ -130,20 +134,20 @@ public class playerController : MonoBehaviour
             //aud.PlayOneShot(shootAudioClip, shootAudioVolume);
             weaponFunc.weaponStats.shootScript.shootBullet();
 
-            if(weaponFunc.Melee)
+            if (weaponFunc.Melee)
             {
-                StartCoroutine(CoolDown());
+                StartCoroutine(CoolDown(shootRate));
             }
         }
 
         if (!weaponHave || weaponFunc.Melee)
         {
-            if(Input.GetKey(KeyCode.R))
+            if (Input.GetKey(KeyCode.R))
             {
                 weaponFunc.emptyHandScript.emptyHandScript.rButtonFunction();
             }
 
-            if(Input.GetButtonDown("Right Mouse"))
+            if (Input.GetButtonDown("Right Mouse"))
             {
                 weaponFunc.emptyHandScript.emptyHandScript.RightClick();
             }
@@ -152,7 +156,7 @@ public class playerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(isJumping)
+        if (isJumping)
         {
             if (!jumpKeyHeld)
             {
@@ -174,7 +178,10 @@ public class playerController : MonoBehaviour
             move = transform.right * Input.GetAxis("Horizontal")
                 + transform.forward * Input.GetAxis("Vertical");
         }
-        controller.Move(move * Time.deltaTime * playerSpeed);
+
+        if()
+
+        controller.Move(move + pushForward * Time.deltaTime * playerSpeed);
 
         if (Input.GetButtonDown("Jump") && jumpTimes < jumpMax)
         {
@@ -188,9 +195,9 @@ public class playerController : MonoBehaviour
         }
         else if (Input.GetButtonUp("Jump"))
         {
-            jumpKeyHeld = false;           
+            jumpKeyHeld = false;
         }
-        
+
         playerVelocity.y -= gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
     }
@@ -198,8 +205,8 @@ public class playerController : MonoBehaviour
     void WallJump()
     {
         RaycastHit hit;
-        
-        if(Physics.Raycast(gameObject.transform.position, gameObject.transform.forward, out hit, 1))
+
+        if (Physics.Raycast(gameObject.transform.position, gameObject.transform.forward, out hit, 1))
         {
             if (hit.collider.gameObject.CompareTag("Wall"))
             {
@@ -208,7 +215,7 @@ public class playerController : MonoBehaviour
                     gravityValue = 1;
                     onWall = true;
                 }
-                
+
                 playerVelocity.y = 0;
                 wallRunning = true;
             }
@@ -224,7 +231,7 @@ public class playerController : MonoBehaviour
     void WallRun()
     {
         RaycastHit hit;
-        var left = transform.TransformDirection (Vector3.left);
+        var left = transform.TransformDirection(Vector3.left);
         var right = transform.TransformDirection(Vector3.right);
 
 
@@ -261,7 +268,7 @@ public class playerController : MonoBehaviour
     void sprint()
     {
         if (Input.GetButtonDown("Sprint"))
-        {   
+        {
             playerSpeed *= sprintMod;
             isSprinting = true;
         }
@@ -390,12 +397,45 @@ public class playerController : MonoBehaviour
     }
 
 
-    public IEnumerator CoolDown()
+    public IEnumerator CoolDown(float timer)
     {
         isShooting = true;
 
-        yield return new WaitForSeconds(gameManager.instance.playerScript.shootRate);
+        yield return new WaitForSeconds(timer);
 
         isShooting = false;
     }
+
+    public void changeCharge()
+    {
+        charge++;
+    }
+
+    public float calculateCharge()
+    {
+        float chargeMod = 0;
+
+        switch(charge)
+        {
+            case 0:
+                chargeMod = 1;
+                break;
+            case 1:
+                chargeMod = 1.25f;
+                break;
+            case 2:
+                chargeMod = 1.5f;
+                break;
+            case 3:
+                chargeMod = 1.75f;
+                break;
+            case 4:
+                chargeMod = 2;
+                break;
+        }
+
+
+        return chargeMod;
+    }
 }
+ 

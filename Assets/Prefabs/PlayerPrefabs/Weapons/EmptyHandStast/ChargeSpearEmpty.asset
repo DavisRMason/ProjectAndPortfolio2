@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a162c5f94520524c853c26ccf084575, type: 3}
-  m_Name: LonginousEmptyHand
+  m_Name: ChargeSpearEmpty
   m_EditorClassIdentifier: 
-  emptyHandModel: {fileID: 919132149155446097, guid: ffb3f5f9531da764c906b0baf3285c62, type: 3}
-  emptyHandScript: {fileID: 9121561042242038562, guid: 54dbd3dd3bcb8f3469232e642a17fdb7, type: 3}
+  emptyHandModel: {fileID: 0}
+  emptyHandScript: {fileID: 6386591377928055541, guid: 9fd40d1aebef0c547b48c5e6873db45b, type: 3}

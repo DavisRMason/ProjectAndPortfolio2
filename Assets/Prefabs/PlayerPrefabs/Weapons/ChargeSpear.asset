@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 20006a58b57c42d409a928bd72778df9, type: 3}
-  m_Name: LonginousSpear
+  m_Name: ChargeSpear
   m_EditorClassIdentifier: 
-  weaponStats: {fileID: 11400000, guid: fad0d2ac11438b347a6e96cd16811fc9, type: 2}
-  emptyHandScript: {fileID: 11400000, guid: 45bd90f9834f2624184197e65b1f66a5, type: 2}
+  weaponStats: {fileID: 11400000, guid: b8ba85e449d0e65468bb57bc73c9103c, type: 2}
+  emptyHandScript: {fileID: 11400000, guid: 739704603e85c9f449d3c36cc7b69437, type: 2}
   Melee: 1
