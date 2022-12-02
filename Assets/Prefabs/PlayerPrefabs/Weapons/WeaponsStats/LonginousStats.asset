@@ -20,4 +20,4 @@ MonoBehaviour:
   hitEffect: {fileID: 0}
   muzzleFlash: {fileID: 0}
   weaponSound: {fileID: 0}
-  shootScript: {fileID: 3763812324975071279, guid: cd0bf420c3a4c564fba416e87730ef2f, type: 3}
+  shootScript: {fileID: 3234122017393308037, guid: cd0bf420c3a4c564fba416e87730ef2f, type: 3}

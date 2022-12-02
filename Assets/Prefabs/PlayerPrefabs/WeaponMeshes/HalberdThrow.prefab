@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5979505231960983050}
   - component: {fileID: -649989849789417311}
   - component: {fileID: 1616031934}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HalberdThrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

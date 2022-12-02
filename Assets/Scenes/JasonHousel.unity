@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 137781981}
   - component: {fileID: 137781980}
   - component: {fileID: 137781979}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Cube
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 163361045}
   - component: {fileID: 163361044}
   - component: {fileID: 163361043}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Cube (1)
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 225910689}
   - component: {fileID: 225910688}
   - component: {fileID: 225910687}
-  m_Layer: 0
+  m_Layer: 4
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -773,7 +773,7 @@ PrefabInstance:
     - target: {fileID: 6332312677548483169, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
       propertyPath: weaponFunc
       value: 
-      objectReference: {fileID: 11400000, guid: fd4e2b78a91838241abbf46d960a683c, type: 2}
+      objectReference: {fileID: 11400000, guid: 5b0b3bc591953c3489a75a849de99685, type: 2}
     - target: {fileID: 6332312677548483171, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
       propertyPath: m_RootOrder
       value: 4
