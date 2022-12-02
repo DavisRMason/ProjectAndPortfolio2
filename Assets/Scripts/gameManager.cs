@@ -13,16 +13,23 @@ public class gameManager : MonoBehaviour
     public playerController playerScript;
 
     [Header("-----UI-----")]
+    [Header("--menus--")]
     public GameObject pauseMenu;
     public GameObject optionsMenu;
     public GameObject playerDeadMenu;
     public GameObject winMenu;
     public GameObject playerDamageScreen;
-    public TextMeshProUGUI enemiesLeft;
+    [Header("---meters---")]
     public Image HPBar;
     public Image DashBar;
+    public TextMeshProUGUI enemiesLeft;
+    [Header("---timer---")]
+    public TextMeshProUGUI timer;
+    [SerializeField] float maxTime = 1000f;
+    [Header("--TBS--")]
 
     public int enemiesToKill;
+    float currTime = 0f;
 
     public GameObject spawnPos;
 
@@ -34,6 +41,8 @@ public class gameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         spawnPos = GameObject.FindGameObjectWithTag("Spawn Pos");
+
+        currTime = maxTime;
     }
    
     void Update()
@@ -53,6 +62,9 @@ public class gameManager : MonoBehaviour
                 optionsMenu.SetActive(isPaused);
             }
         }
+
+        currTime -= 1 * Time.deltaTime;
+        timer.text = currTime.ToString("000");
     }
     public void pause()
     {
