@@ -191,12 +191,12 @@ MonoBehaviour:
   chargeMax: 4
   weaponModel: {fileID: 7719723525216577327}
   hitEffect: {fileID: 0}
+  hitEffectTwo: {fileID: 0}
   weaponFunc: {fileID: 11400000, guid: 83adc6bad65b7f844a36e1600aaba3d3, type: 2}
   jumpAudioClips:
   - {fileID: 8300000, guid: 7c93ebc421e8ad74891a9c54c9dd2ae7, type: 3}
   - {fileID: 8300000, guid: 824fadb00d18b8e46bf50ca1d383ce50, type: 3}
   - {fileID: 8300000, guid: a2698d91d44fa4a48afbbba23991eb93, type: 3}
-  jumpAudioVolume: 1
   hurtAudioClips:
   - {fileID: 8300000, guid: bba450913d8ccef45b66b7c1de3516ca, type: 3}
   - {fileID: 8300000, guid: 898f4e89437080c4085c7ca3729784ff, type: 3}
@@ -204,10 +204,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9a97536c952d0f840b5d77e4be69a742, type: 3}
   - {fileID: 8300000, guid: 046aef64d47be894ba90a628c5cb7205, type: 3}
   - {fileID: 8300000, guid: d82f4db26ee0ba0448d2fb62ad23d383, type: 3}
-  hurtAudioVolume: 1
   shootAudioClip:
   - {fileID: 0}
-  shootAudioVolume: 0.1
   move: {x: 0, y: 0, z: 0}
   playerOrigSpeed: 0
   pushForward: {x: 0, y: 0, z: 0}
@@ -309,7 +307,7 @@ AudioSource:
   m_GameObject: {fileID: 6332312677548483175}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: f11337388da676444807ef045605a189, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
