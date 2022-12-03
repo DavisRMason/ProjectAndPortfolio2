@@ -43,4 +43,14 @@ public class buttonFunc : MonoBehaviour
         gameManager.instance.pauseMenu.SetActive(true);
     }
 
+    public void returntoMain()
+    {
+        SceneManager.LoadScene("TitleScreen");
+    }
+
+    public void startGame()
+    {
+        SceneManager.LoadScene("CumulativeScene");
+    }
+
 }
