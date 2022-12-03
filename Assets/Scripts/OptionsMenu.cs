@@ -10,6 +10,7 @@ public class OptionsMenu : MonoBehaviour
     public AudioMixer Mixer;
     public Camera cam;
 
+    /*
     private float volumeVal;
     public Slider volumeslider;
 
@@ -22,10 +23,10 @@ public class OptionsMenu : MonoBehaviour
         Mixer.SetFloat("MainVolume", volumeVal);
         PlayerPrefs.SetFloat("MainVolume", volumeVal);
     }
-
+    */
     public void SetVolume(float vol)
     {
-        volumeVal = vol;
+        Mixer.SetFloat("MainVolume", vol);
     }
 
     public void SetFoV (float fov)

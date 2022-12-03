@@ -65,6 +65,12 @@ public class gameManager : MonoBehaviour
 
         currTime -= 1 * Time.deltaTime;
         timer.text = currTime.ToString("000");
+
+        if (currTime <= 0)
+        {
+            gameManager.instance.playerDeadMenu.SetActive(true);
+            gameManager.instance.pause();
+        }
     }
     public void pause()
     {
@@ -105,5 +111,10 @@ public class gameManager : MonoBehaviour
         enemiesToKill += amount;
         enemiesLeft.text = enemiesToKill.ToString("F0");  //0 - 0 float (therefore an int), 1 - float...
 
+    }
+
+    public void resetTimer()
+    {
+        currTime = maxTime;
     }
 }

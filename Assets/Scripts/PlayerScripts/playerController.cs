@@ -49,11 +49,11 @@ public class playerController : MonoBehaviour
 
     [Header("----- Audio -----")]
     [SerializeField] List<AudioClip> jumpAudioClips = new List<AudioClip>();
-    [Range(0, 1)][SerializeField] float jumpAudioVolume;
+    //[Range(0, 1)][SerializeField] float jumpAudioVolume;
     [SerializeField] List<AudioClip> hurtAudioClips = new List<AudioClip>();
-    [Range(0, 1)][SerializeField] float hurtAudioVolume;
+    //[Range(0, 1)][SerializeField] float hurtAudioVolume;
     [SerializeField] public List <AudioClip> shootAudioClip = new List<AudioClip>();
-    [Range(0, 1)][SerializeField] public float shootAudioVolume;
+    //[Range(0, 1)][SerializeField] public float shootAudioVolume;
 
     #endregion
 
@@ -203,7 +203,7 @@ public class playerController : MonoBehaviour
             jumpKeyHeld = true;
             isJumping = true;
             ResetGravity();
-            aud.PlayOneShot(jumpAudioClips[Random.Range(0, jumpAudioClips.Count)], jumpAudioVolume);
+            aud.PlayOneShot(jumpAudioClips[Random.Range(0, jumpAudioClips.Count)]/*, jumpAudioVolume*/);
             ++jumpTimes;
 
             playerVelocity.y = jumpHeight;
@@ -346,7 +346,7 @@ public class playerController : MonoBehaviour
         //hpBar.SetHealth(healthPoints);
 
         StartCoroutine(gameManager.instance.playerDamageFlash());
-        aud.PlayOneShot(hurtAudioClips[(Random.Range(0, hurtAudioClips.Count))], hurtAudioVolume);
+        aud.PlayOneShot(hurtAudioClips[(Random.Range(0, hurtAudioClips.Count))]/*, hurtAudioVolume*/);
 
         if (healthPoints <= 0)
         {
@@ -378,6 +378,7 @@ public class playerController : MonoBehaviour
     {
         controller.enabled = false;
         healthPoints = hpOrig;
+        gameManager.instance.resetTimer();
         //DMason
         updatePlayerHBar();
         transform.position = gameManager.instance.spawnPos.transform.position;
