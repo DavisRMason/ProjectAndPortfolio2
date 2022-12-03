@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class SpearThrow : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class SpearThrow : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] GameObject spear;
     [SerializeField] GameObject attackPos;
+    [SerializeField] ParticleSystem effect;
 
     [Header("----- Spear Stats -----")]
     [SerializeField] int attackDist;
@@ -39,10 +41,6 @@ public class SpearThrow : MonoBehaviour
     private void Update()
     {
         AttackEnemy();
-
-        //move = gameObject.transform.forward * 10000.0f + gameObject.transform.up / 1;
-
-        //rb.AddForce(move * Time.deltaTime);
     }
 
     void AttackEnemy()
@@ -55,6 +53,7 @@ public class SpearThrow : MonoBehaviour
             {
                 Debug.DrawRay(attackPos.transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
                 hit.collider.GetComponent<IDamage>().takeDamage(gameManager.instance.playerScript.shootDamage);
+                effect.Play();
             }
             else
             {

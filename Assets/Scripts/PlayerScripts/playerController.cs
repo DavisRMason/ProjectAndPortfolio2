@@ -41,8 +41,10 @@ public class playerController : MonoBehaviour
     [SerializeField] public int shootDist;
     [SerializeField] public int shootDamage;
     [SerializeField] public int charge;
+    [SerializeField] int chargeMax;
     [SerializeField] GameObject weaponModel;
     [SerializeField] GameObject hitEffect;
+    [SerializeField] public GameObject hitEffectTwo;
     [SerializeField] Weapon weaponFunc;
 
     [Header("----- Audio -----")]
@@ -50,7 +52,7 @@ public class playerController : MonoBehaviour
     [Range(0, 1)][SerializeField] float jumpAudioVolume;
     [SerializeField] List<AudioClip> hurtAudioClips = new List<AudioClip>();
     [Range(0, 1)][SerializeField] float hurtAudioVolume;
-    [SerializeField] public AudioClip shootAudioClip;
+    [SerializeField] public List <AudioClip> shootAudioClip = new List<AudioClip>();
     [Range(0, 1)][SerializeField] public float shootAudioVolume;
 
     #endregion
@@ -80,6 +82,7 @@ public class playerController : MonoBehaviour
     int shootDistOrig;
     public float weaponFlyDist;
     public bool spearMove;
+    public bool chargeCool;
 
 
     //DMason: adding player health functionallity
@@ -136,7 +139,8 @@ public class playerController : MonoBehaviour
             Debug.Log("Shoot button pressed");
             if (weaponFunc.Melee)
             {
-                StartCoroutine(CoolDown(shootRate));
+                hitEffect.GetComponent<ParticleSystem>().Play();
+                StartCoroutine(CoolDown(shootRate, isShooting));
             }
         }
 
@@ -181,8 +185,13 @@ public class playerController : MonoBehaviour
 
         if (spearMove)
         {
-            controller.Move(pushForward * Time.deltaTime * (playerSpeed * calculateCharge()));
-            spearMove = false;
+            Vector3 cameraPos = Input.mousePosition;
+            cameraPos.z = 2.0f;
+            Vector3 objectPos = Camera.main.ScreenToWorldPoint(cameraPos);
+            MakeRaySphere(5, 2, shootDamage);
+            pushForward = Camera.main.transform.forward * (Input.GetAxis("Vertical") + 5);
+            controller.Move(pushForward * Time.deltaTime * playerSpeed);
+            StartCoroutine(ForceMove());
         }
         else
         {
@@ -386,16 +395,14 @@ public class playerController : MonoBehaviour
         weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weaponFunc.weaponStats.weaponModel.GetComponent<MeshRenderer>().sharedMaterial;
 
         shootAudioClip = weaponFunc.weaponStats.weaponSound;
+        hitEffect = weaponFunc.weaponStats.hitEffect;
+        hitEffectTwo = weaponFunc.weaponStats.muzzleFlash;
 
         weaponModel.transform.localScale = weaponFunc.weaponStats.weaponModel.transform.localScale;
     }
 
     public void changeHand()
     {
-        shootRate = 0;
-        shootDamage = 0;
-        shootDist = 0;
-
         weaponModel.GetComponent<MeshFilter>().sharedMesh = weaponFunc.emptyHandScript.emptyHandModel.GetComponent<MeshFilter>().sharedMesh;
         weaponModel.GetComponent<MeshRenderer>().sharedMaterial = weaponFunc.emptyHandScript.emptyHandModel.GetComponent<MeshRenderer>().sharedMaterial;
 
@@ -403,18 +410,30 @@ public class playerController : MonoBehaviour
     }
 
 
-    public IEnumerator CoolDown(float timer)
+    public IEnumerator CoolDown(float timer, bool changeBool)
     {
-        isShooting = true;
+        changeBool = true;
 
         yield return new WaitForSeconds(timer);
 
-        isShooting = false;
+        changeBool = false;
+    }
+
+    IEnumerator ForceMove()
+    {
+
+        yield return new WaitForSeconds(calculateCharge());
+
+        spearMove = false;
     }
 
     public void changeCharge()
     {
-        charge++;
+        if (!chargeCool && charge < chargeMax)
+            charge++;
+        StartCoroutine(CoolDown(.5f, chargeCool));
+
+        Debug.Log("Charge is" + charge);
     }
 
     public float calculateCharge()
@@ -424,24 +443,43 @@ public class playerController : MonoBehaviour
         switch(charge)
         {
             case 0:
-                chargeMod = 1;
+                chargeMod = .5f;
                 break;
             case 1:
-                chargeMod = 1.25f;
+                chargeMod = .75f;
                 break;
             case 2:
-                chargeMod = 1.5f;
+                chargeMod = 1f;
                 break;
             case 3:
-                chargeMod = 1.75f;
+                chargeMod = 1.25f;
                 break;
             case 4:
-                chargeMod = 2;
+                chargeMod = 1.5f;
                 break;
         }
 
-
         return chargeMod;
     }
+
+    public void MakeRaySphere(float radius, float distance, int damage)
+    {
+
+        RaycastHit hit;
+
+        if (Physics.SphereCast(shootPoint.transform.position, radius, shootPoint.transform.forward, out hit, distance))
+        {
+            if (hit.collider.GetComponent<IDamage>() != null)
+            {
+                Debug.DrawRay(hit.transform.forward, transform.forward, color: Color.red);
+                hit.collider.GetComponent<IDamage>().takeDamage(damage);
+                hitEffect.GetComponent<ParticleSystem>().Play();
+            }
+        }
+    }
+
+    public void PlayEffect(GameObject effect)
+    {
+        effect.GetComponent<ParticleSystem>().Play();
+    }
 }
- 
