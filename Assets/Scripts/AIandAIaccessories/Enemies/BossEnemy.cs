@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class BossEnemy : MonoBehaviour, IDamage
 {
     [Header("-----Components-----")]
-    [SerializeField] Renderer model;
+    [SerializeField] Renderer[] model;
+    [SerializeField] BoxCollider[] hurtBox;
     [SerializeField] NavMeshAgent agent;
-    [SerializeField] Animator anim;
     [SerializeField] GameObject UI;
     [SerializeField] Image HPBar;
 
@@ -97,10 +97,10 @@ public class BossEnemy : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             gameManager.instance.updateEnemyNumber();
-            anim.SetBool("Dead", true);
             agent.enabled = false;
             UI.SetActive(false);
-            GetComponent<Collider>().enabled = false;
+            for (int i = 0; i < hurtBox.Length; ++i)
+                hurtBox[i].enabled = false;
             StartCoroutine(MegaDeath());
         }
     }
@@ -112,9 +112,11 @@ public class BossEnemy : MonoBehaviour, IDamage
 
     IEnumerator FlashDamage()
     {
-        model.material.color = Color.red;
+        for (int i = 0; i < model.Length; i++)
+            model[i].material.color = Color.red;
         yield return new WaitForSeconds(0.3F);
-        model.material.color = Color.white;
+        for (int i = 0; i < model.Length; i++)
+            model[i].material.color = Color.white;
     }
 
     IEnumerator Shoot()
@@ -122,9 +124,7 @@ public class BossEnemy : MonoBehaviour, IDamage
         isShooting = true;
         agent.speed = 0;
 
-        anim.SetTrigger("Shoot");
-
-        for (int i = 0; i < shootPos.Length; ++i) 
+        for (int i = 0; i < shootPos.Length; ++i)
             Instantiate(bullet, shootPos[i].position, transform.rotation);
 
         yield return new WaitForSeconds(shootRate);
