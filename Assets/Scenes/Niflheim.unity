@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 3c36c9c59148aaa45a4e4bc25e658b45, type: 2}
 --- !u!1001 &8971952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -180,6 +180,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f45916abc43e6341844e8358463a00a, type: 3}
+--- !u!1 &8971953 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5798877417480804578, guid: 6f45916abc43e6341844e8358463a00a, type: 3}
+  m_PrefabInstance: {fileID: 8971952}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &491542980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -543,7 +548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3838516168066619977, guid: e3d45672c2e5ebe47b5c14b726bf197c, type: 3}
       propertyPath: m_TagString
-      value: PlayerWeapon
+      value: Wall
       objectReference: {fileID: 0}
     - target: {fileID: 3838516168066619981, guid: e3d45672c2e5ebe47b5c14b726bf197c, type: 3}
       propertyPath: m_RootOrder
@@ -859,6 +864,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 1241020141}
+    - target: {fileID: 2913072928136357084, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6014251127044030904, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
       propertyPath: m_Name
       value: UI
@@ -947,6 +956,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8266993519322358712, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
+      propertyPath: maxTime
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 8266993519322358712, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
+      propertyPath: spawnPos
+      value: 
+      objectReference: {fileID: 8971953}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
 --- !u!1001 &3838516169646497945
@@ -962,15 +979,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3838516168066619981, guid: e3d45672c2e5ebe47b5c14b726bf197c, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3838516168066619981, guid: e3d45672c2e5ebe47b5c14b726bf197c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 20
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 3838516168066619981, guid: e3d45672c2e5ebe47b5c14b726bf197c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3838516168066619981, guid: e3d45672c2e5ebe47b5c14b726bf197c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -978,7 +995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3838516168066619981, guid: e3d45672c2e5ebe47b5c14b726bf197c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.24
+      value: 11.2
       objectReference: {fileID: 0}
     - target: {fileID: 3838516168066619981, guid: e3d45672c2e5ebe47b5c14b726bf197c, type: 3}
       propertyPath: m_LocalPosition.z

@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Bala.unity
     guid: 99dcafc95368712418438a148d4cc745
+  - enabled: 1
+    path: Assets/Scenes/Niflheim.unity
+    guid: 5c264cf79ddd2cc48b0d81e2b12722e9
   m_configObjects: {}

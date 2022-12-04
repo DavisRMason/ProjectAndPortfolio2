@@ -2481,7 +2481,7 @@ MonoBehaviour:
   bullet: {fileID: 7477582710434310770, guid: 7c313484d4d5a114bb760c21e392b26b, type: 3}
   shootPos: {fileID: 3745422030441871206}
   shootRate: 5
-  SpawnerAlt: 1
+  SpawnerAlt: 0
 --- !u!95 &3745422030451644582
 Animator:
   serializedVersion: 4
