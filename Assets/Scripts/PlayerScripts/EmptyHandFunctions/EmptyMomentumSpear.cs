@@ -7,17 +7,23 @@ public class EmptyMomentumSpear : EmptyHand
     [SerializeField] GameObject obj;
     public override void rButtonFunction()
     {
-        Instantiate(obj, GameObject.FindGameObjectWithTag("PlayerWeapon").transform.position, Quaternion.FromToRotation(gameManager.instance.player.transform.position, GameObject.FindGameObjectWithTag("PlayerWeapon").transform.position));
+        if (GameObject.FindGameObjectWithTag("PlayerWeapon") != null)
+        {
+            Instantiate(obj, GameObject.FindGameObjectWithTag("PlayerWeapon").transform.position, Quaternion.LookRotation(gameManager.instance.player.transform.position - GameObject.FindGameObjectWithTag("PlayerWeapon").transform.position));
 
-        GameObject.FindGameObjectWithTag("ThrownWeapon").GetComponent<Collider>().enabled = true;
+            GameObject.FindGameObjectWithTag("ThrownWeapon").GetComponent<Collider>().enabled = true;
 
-        Destroy(GameObject.FindGameObjectWithTag("PlayerWeapon"));
+            Destroy(GameObject.FindGameObjectWithTag("PlayerWeapon"));
+        }
     }
 
     public override void RightClick()
     {
-        gameManager.instance.playerScript.spearMove = true;
+        if (GameObject.FindGameObjectWithTag("PlayerWeapon") != null)
+        {
+            gameManager.instance.playerScript.spearMove = true;
 
-        gameManager.instance.playerScript.pushForward = GameObject.FindGameObjectWithTag("PlayerWeapon").transform.position;
+            gameManager.instance.playerScript.pushForward = GameObject.FindGameObjectWithTag("PlayerWeapon").transform.position;
+        }
     }
 }

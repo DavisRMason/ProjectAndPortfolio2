@@ -55,6 +55,9 @@ public class playerController : MonoBehaviour
     [SerializeField] public List <AudioClip> shootAudioClip = new List<AudioClip>();
     //[Range(0, 1)][SerializeField] public float shootAudioVolume;
 
+    [Header("For Demonstration")]
+    [SerializeField] List<Weapon> weapons = new List<Weapon>();
+
     #endregion
 
     #region Bools_&_Statics
@@ -120,6 +123,8 @@ public class playerController : MonoBehaviour
         sprint();
         WallJump();
         WallRun();
+        WeaponChanger();
+
         //Dash
         if (dashCount > 0 && !isDashing && Input.GetButtonDown("Dash"))
         {
@@ -495,4 +500,28 @@ public class playerController : MonoBehaviour
     {
         effect.GetComponent<ParticleSystem>().Play();
     }
+
+    void WeaponChanger()
+    {
+        if(Input.GetKey(KeyCode.Alpha1))
+        {
+            weaponFunc = weapons[0];
+        }
+        if (Input.GetKey(KeyCode.Alpha2))
+        {
+            weaponFunc = weapons[1];
+        }
+        if (Input.GetKey(KeyCode.Alpha3))
+        {
+            weaponFunc = weapons[2];
+        }
+        if (Input.GetKey(KeyCode.Alpha4))
+        {
+            weaponFunc = weapons[3];
+        }
+
+        changeWeapons();
+    }
+
+
 }

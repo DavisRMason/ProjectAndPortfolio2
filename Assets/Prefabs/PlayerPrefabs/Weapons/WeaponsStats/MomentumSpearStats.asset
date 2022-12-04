@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootRate: 0
   shootDist: 0
-  shootDamage: 0
+  shootDamage: 2
   ammoCount: 0
-  weaponModel: {fileID: 8753878702062529946, guid: 058c0056a51aa48468b8831a6485fdce, type: 3}
-  hitEffect: {fileID: 0}
+  weaponModel: {fileID: 8753878702062529946, guid: aa9fec5003756d64894365fe83cb3fd3, type: 3}
+  hitEffect: {fileID: 4581609976367723591, guid: 033bd505696417b4c98bafde13b1c69e, type: 3}
   muzzleFlash: {fileID: 0}
-  weaponSound: []
+  weaponSound:
+  - {fileID: 8300000, guid: 177c52877f30c4644b80d5bc874d3994, type: 3}
   shootScript: {fileID: 7077792707903276085, guid: ee81a96e152b3dd4b8464b80960a53d2, type: 3}

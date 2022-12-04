@@ -1,9 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.VFX;
 
-public class SpearThrow : MonoBehaviour
+public class MomentumThrow : MonoBehaviour
 {
     #region Variables
 
@@ -33,24 +33,45 @@ public class SpearThrow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb.useGravity = true;
-        rb.AddForce(gameObject.transform.forward * 1500);
-        Vector3.Slerp(gameObject.transform.forward, rb.velocity.normalized, Time.deltaTime * 2);
-        rb.ResetCenterOfMass();
+        if (gameObject.GetComponent<Collider>().enabled == false)
+        {
+            rb.useGravity = true;
+            rb.AddForce(gameObject.transform.forward * 1500);
+            Vector3.Slerp(gameObject.transform.forward, rb.velocity.normalized, Time.deltaTime * 2);
+            rb.ResetCenterOfMass();
+        }
+        else
+        {
+            Vector3 temp = rb.position;
+            temp.y += 1;
+            rb.position = temp;
+            rb.useGravity = false;
+            rb.AddForce(gameObject.transform.forward * 1500);
+            Vector3.Slerp(gameObject.transform.forward, rb.velocity.normalized, Time.deltaTime * 2);
+            StartCoroutine(TurnOnGravity());
+        }
     }
 
     private void Update()
     {
         AttackEnemy();
+        BelowValueReturn();
+
+
+        if(gameObject.GetComponent<Collider>().enabled == true)
+        {
+            rb.AddForce(gameObject.transform.forward * 200);
+            rb.transform.rotation = Quaternion.LookRotation(gameManager.instance.player.transform.position - rb.transform.position);
+        }
     }
 
     void AttackEnemy()
     {
         RaycastHit hit;
 
-        if(Physics.Raycast(attackPos.transform.position, transform.TransformDirection(Vector3.forward) , out hit, attackDist))
+        if (Physics.Raycast(attackPos.transform.position, transform.TransformDirection(Vector3.forward), out hit, attackDist))
         {
-            if(hit.collider.GetComponent<IDamage>() != null)
+            if (hit.collider.GetComponent<IDamage>() != null)
             {
                 Debug.DrawRay(attackPos.transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
                 hit.collider.GetComponent<IDamage>().takeDamage(gameManager.instance.playerScript.shootDamage);
@@ -73,9 +94,16 @@ public class SpearThrow : MonoBehaviour
         }
     }
 
+    IEnumerator TurnOnGravity()
+    {
+        yield return new WaitForSeconds(1);
+
+        rb.useGravity = true;
+    }
+
     void BelowValueReturn()
     {
-        if (rb.transform.position.y < -lowestValue)
+        if(rb.transform.position.y < -lowestValue)
         {
             gameManager.instance.playerScript.changeWeapons();
             gameManager.instance.playerScript.weaponHave = true;

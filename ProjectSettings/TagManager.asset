@@ -9,6 +9,7 @@ TagManager:
   - HealthBar
   - PlayerWeapon
   - Wall
+  - ThrownWeapon
   layers:
   - Default
   - TransparentFX
