@@ -10406,7 +10406,7 @@ PrefabInstance:
     - target: {fileID: 6332312677548483169, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
       propertyPath: weaponFunc
       value: 
-      objectReference: {fileID: 11400000, guid: fd4e2b78a91838241abbf46d960a683c, type: 2}
+      objectReference: {fileID: 11400000, guid: e0fe7a9683ed9bd48b669049f8e040ed, type: 2}
     - target: {fileID: 6332312677548483169, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
       propertyPath: hitEffectTwo
       value: 

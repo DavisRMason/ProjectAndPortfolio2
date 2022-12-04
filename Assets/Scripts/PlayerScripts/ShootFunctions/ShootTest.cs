@@ -18,7 +18,7 @@ public class ShootTest : Shoot
         //Vector3 rot = new Vector3(x, y, z);
 
         Instantiate(obj, objectPos, Camera.main.transform.rotation);
-        gameManager.instance.playerScript.aud.PlayOneShot(gameManager.instance.playerScript.shootAudioClip[Random.Range(0, gameManager.instance.playerScript.shootAudioClip.Count)]/*, gameManager.instance.playerScript.shootAudioVolume*/);
+        gameManager.instance.playerScript.aud.PlayOneShot(gameManager.instance.playerScript.shootAudioClip[Random.Range(0, gameManager.instance.playerScript.shootAudioClip.Count)], .5f);
         gameManager.instance.playerScript.weaponHave = false;
         gameManager.instance.playerScript.changeHand();
     }

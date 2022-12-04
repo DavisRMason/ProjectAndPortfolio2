@@ -183,7 +183,7 @@ public class playerController : MonoBehaviour
                 + transform.forward * Input.GetAxis("Vertical");
         }
 
-        if (spearMove)
+        if (spearMove && weaponFunc.Melee)
         {
             Vector3 cameraPos = Input.mousePosition;
             cameraPos.z = 2.0f;
@@ -192,6 +192,18 @@ public class playerController : MonoBehaviour
             pushForward = Camera.main.transform.forward * (Input.GetAxis("Vertical") + 5);
             controller.Move(pushForward * Time.deltaTime * playerSpeed);
             StartCoroutine(ForceMove());
+        }
+        else if (spearMove && !weaponFunc.Melee)
+        {
+            move = pushForward - gameObject.transform.position;
+
+            controller.Move(move * Time.deltaTime * playerSpeed);
+
+            if(Input.GetButtonUp("Right Mouse"))
+            {
+                spearMove = false;
+                controller.enabled = true;
+            }
         }
         else
         {
