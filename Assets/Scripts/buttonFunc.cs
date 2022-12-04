@@ -50,7 +50,7 @@ public class buttonFunc : MonoBehaviour
 
     public void startGame()
     {
-        SceneManager.LoadScene("Bala");
+        SceneManager.LoadScene("CumulativeScene");
     }
 
 }

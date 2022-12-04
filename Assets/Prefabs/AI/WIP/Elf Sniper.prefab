@@ -2430,9 +2430,9 @@ GameObject:
   - component: {fileID: 3745422030451644587}
   - component: {fileID: 3745422030451644580}
   - component: {fileID: 3745422030451644581}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Elf Sniper
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2444,9 +2444,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3745422030442294068}
-  m_LocalRotation: {x: -0, y: 0.73243934, z: -0, w: 0.68083227}
+  m_LocalRotation: {x: 0, y: 0.7324419, z: 0, w: 0.6808296}
   m_LocalPosition: {x: -1.5499291, y: -0.0000009536743, z: 4.958072}
-  m_LocalScale: {x: 2.1579, y: 2.1579, z: 2.1579}
+  m_LocalScale: {x: 1.4004625, y: 1.4004625, z: 1.4004625}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3745422030441871122}
@@ -2481,7 +2481,7 @@ MonoBehaviour:
   bullet: {fileID: 7477582710434310770, guid: 7c313484d4d5a114bb760c21e392b26b, type: 3}
   shootPos: {fileID: 3745422030441871206}
   shootRate: 5
-  SpawnerAlt: 0
+  SpawnerAlt: 1
 --- !u!95 &3745422030451644582
 Animator:
   serializedVersion: 4
