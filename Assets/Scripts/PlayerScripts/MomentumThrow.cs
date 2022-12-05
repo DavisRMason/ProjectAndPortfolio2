@@ -36,17 +36,17 @@ public class MomentumThrow : MonoBehaviour
         if (gameObject.GetComponent<Collider>().enabled == false)
         {
             rb.useGravity = true;
-            rb.AddForce(gameObject.transform.forward * 1500);
+            rb.AddForce(gameObject.transform.forward * 2500);
             Vector3.Slerp(gameObject.transform.forward, rb.velocity.normalized, Time.deltaTime * 2);
             rb.ResetCenterOfMass();
         }
         else
         {
             Vector3 temp = rb.position;
-            temp.y += 1;
+            temp.y += .75f;
             rb.position = temp;
             rb.useGravity = false;
-            rb.AddForce(gameObject.transform.forward * 1500);
+            rb.AddForce(gameObject.transform.forward * 2500);
             Vector3.Slerp(gameObject.transform.forward, rb.velocity.normalized, Time.deltaTime * 2);
             StartCoroutine(TurnOnGravity());
         }
