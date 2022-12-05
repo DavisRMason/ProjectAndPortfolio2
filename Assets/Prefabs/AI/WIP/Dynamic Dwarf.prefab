@@ -1364,7 +1364,7 @@ MonoBehaviour:
   headPos: {fileID: 8513399247257121438}
   bullet: {fileID: 7477582710434310770, guid: 7c313484d4d5a114bb760c21e392b26b, type: 3}
   shootPos: {fileID: 8513399247256759998}
-  shootRate: 0.5
+  shootRate: 1.25
   SpawnerAlt: 1
 --- !u!95 &8513399247247753484
 Animator:
