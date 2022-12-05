@@ -95,7 +95,7 @@ MonoBehaviour:
   sightAngle: 150
   headPos: {fileID: 2192752403288731201}
   bullet: {fileID: 2730952232407839821, guid: 1b7be6f0060601144a5be1b9d85c8f21, type: 3}
-  shootPos: {fileID: 2192752403289158235}
+  shootPos: {fileID: 2192752403289158241}
   shootRate: 0.2
   SpawnerAlt: 1
 --- !u!95 &2192752403298246095

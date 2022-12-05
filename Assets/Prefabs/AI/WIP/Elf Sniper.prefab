@@ -2473,15 +2473,15 @@ MonoBehaviour:
   anim: {fileID: 3745422030451644582}
   UI: {fileID: 5787927670235137431}
   HPBar: {fileID: 5787927669630838170}
-  HP: 10
+  HP: 3
   playerBaseSpeed: 10
   sightDist: 500
-  sightAngle: 50
+  sightAngle: 180
   headPos: {fileID: 3745422030442294022}
   bullet: {fileID: 7477582710434310770, guid: 7c313484d4d5a114bb760c21e392b26b, type: 3}
   shootPos: {fileID: 3745422030441871206}
   shootRate: 5
-  SpawnerAlt: 0
+  SpawnerAlt: 1
 --- !u!95 &3745422030451644582
 Animator:
   serializedVersion: 4
