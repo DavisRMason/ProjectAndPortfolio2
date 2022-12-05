@@ -89,15 +89,15 @@ MonoBehaviour:
   anim: {fileID: 2192752403298246095}
   UI: {fileID: 7311136535637703361}
   HPBar: {fileID: 7311136534008619571}
-  HP: 10
+  HP: 3
   playerBaseSpeed: 10
   sightDist: 200
   sightAngle: 150
   headPos: {fileID: 2192752403288731201}
   bullet: {fileID: 2730952232407839821, guid: 1b7be6f0060601144a5be1b9d85c8f21, type: 3}
   shootPos: {fileID: 2192752403289158235}
-  shootRate: 0.5
-  SpawnerAlt: 0
+  shootRate: 0.2
+  SpawnerAlt: 1
 --- !u!95 &2192752403298246095
 Animator:
   serializedVersion: 4
@@ -165,7 +165,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 20
+  m_Radius: 400
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2192752403288731141
 GameObject:

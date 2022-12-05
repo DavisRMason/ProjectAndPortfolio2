@@ -2327,13 +2327,13 @@ MonoBehaviour:
   anim: {fileID: 8383637905936546735}
   UI: {fileID: 2526606948905223575}
   HPBar: {fileID: 1914268648014225558}
-  HP: 10
+  HP: 3
   playerBaseSpeed: 10
   sightDist: 40
   sightAngle: 50
   headPos: {fileID: 8383637905927145489}
   flipIt: 90
-  SpawnerAlt: 0
+  SpawnerAlt: 1
 --- !u!95 &8383637905936546735
 Animator:
   serializedVersion: 4

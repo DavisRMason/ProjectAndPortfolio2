@@ -2198,14 +2198,14 @@ MonoBehaviour:
   anim: {fileID: 6948388120827491005}
   UI: {fileID: 1763072407625714228}
   HPBar: {fileID: 1763072406473473745}
-  HP: 10
+  HP: 3
   playerBaseSpeed: 10
   sightDist: 300
   sightAngle: 50
   headPos: {fileID: 6948388120834736387}
   damageToDeal: 1
   dealDamageInterval: 1
-  SpawnerAlt: 0
+  SpawnerAlt: 1
 --- !u!95 &6948388120827491005
 Animator:
   serializedVersion: 4
@@ -2273,7 +2273,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 4
+  m_Radius: 5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6948388120834736331
 GameObject:
