@@ -75,7 +75,7 @@ public class SpearThrow : MonoBehaviour
 
     void BelowValueReturn()
     {
-        if (rb.transform.position.y < -lowestValue)
+        if (rb.transform.position.y < 0)
         {
             gameManager.instance.playerScript.changeWeapons();
             gameManager.instance.playerScript.weaponHave = true;

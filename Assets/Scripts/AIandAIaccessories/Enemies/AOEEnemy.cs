@@ -99,6 +99,7 @@ public class AOEEnemy : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
+            gameManager.instance.playerScript.playerSpeed = gameManager.instance.playerScript.playerOrigSpeed;
             isDead = true;
             gameManager.instance.updateEnemyNumber();
             anim.SetBool("Dead", true);
