@@ -15,6 +15,8 @@ public class SpearThrow : MonoBehaviour
     [SerializeField] GameObject attackPos;
     [SerializeField] ParticleSystem effect;
     [SerializeField] int lowestValue;
+    [SerializeField] AudioSource spearAudioSource;
+    [SerializeField] AudioClip spearAudioClip;
 
     [Header("----- Spear Stats -----")]
     [SerializeField] int attackDist;
@@ -25,6 +27,7 @@ public class SpearThrow : MonoBehaviour
     #region Bools_&_Statics
 
     Vector3 move;
+    float audioLevel = .25f;
 
     #endregion
 
@@ -55,6 +58,7 @@ public class SpearThrow : MonoBehaviour
                 Debug.DrawRay(attackPos.transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
                 hit.collider.GetComponent<IDamage>().takeDamage(gameManager.instance.playerScript.shootDamage);
                 Instantiate(gameManager.instance.playerScript.hitEffectTwo, attackPos.transform.position, gameObject.transform.rotation);
+                spearAudioSource.PlayOneShot(spearAudioClip, Random.Range(.5f, 1.0f) + audioLevel);
             }
             else
             {

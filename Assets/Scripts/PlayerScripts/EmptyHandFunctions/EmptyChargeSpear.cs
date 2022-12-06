@@ -12,7 +12,6 @@ public class EmptyChargeSpear : EmptyHand
         Debug.Log("Charge Dispel");
         gameManager.instance.playerScript.MakeRaySphere(gameManager.instance.playerScript.shootDist * gameManager.instance.playerScript.charge, 5, (int)(gameManager.instance.playerScript.shootDamage * gameManager.instance.playerScript.calculateCharge()));
         gameManager.instance.playerScript.charge = 0;
-       gameManager.instance.playerScript.PlayEffect(gameManager.instance.playerScript.hitEffectTwo);
     }
 
     public override void RightClick()

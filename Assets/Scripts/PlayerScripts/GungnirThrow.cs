@@ -15,6 +15,8 @@ public class GungnirThrow : MonoBehaviour
     [SerializeField] GameObject attackPos;
     [SerializeField] ParticleSystem effect;
     [SerializeField] int lowestValue;
+    [SerializeField] AudioSource spearAudioSource;
+    [SerializeField] AudioClip spearAudioClip;
 
     [Header("----- Spear Stats -----")]
     [SerializeField] int attackDist;
@@ -28,6 +30,7 @@ public class GungnirThrow : MonoBehaviour
     Vector3 enemyPos;
     bool enemyDetected;
     bool once;
+    float audioLevel = .25f;
 
     #endregion
 
@@ -85,6 +88,7 @@ public class GungnirThrow : MonoBehaviour
                 Debug.DrawRay(attackPos.transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
                 hit.collider.GetComponent<IDamage>().takeDamage(gameManager.instance.playerScript.shootDamage);
                 Instantiate(gameManager.instance.playerScript.hitEffectTwo, attackPos.transform.position, gameObject.transform.rotation);
+                spearAudioSource.PlayOneShot(spearAudioClip, Random.Range(0.5f, 1f) + audioLevel);
             }
             else
             {

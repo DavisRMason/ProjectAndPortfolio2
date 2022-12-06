@@ -26,3 +26,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cef151578ce5ab44ab2d46066944e9ba, type: 3}
   - {fileID: 8300000, guid: 16bf6c12a92934447a812ce063942ae1, type: 3}
   shootScript: {fileID: 3234122017393308037, guid: cd0bf420c3a4c564fba416e87730ef2f, type: 3}
+  attackSound: {fileID: 8300000, guid: 78e1b3143541fd04a8f895a0d8a81f61, type: 3}

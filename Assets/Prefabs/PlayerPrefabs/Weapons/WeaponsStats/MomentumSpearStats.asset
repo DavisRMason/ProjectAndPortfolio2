@@ -22,3 +22,4 @@ MonoBehaviour:
   weaponSound:
   - {fileID: 8300000, guid: 177c52877f30c4644b80d5bc874d3994, type: 3}
   shootScript: {fileID: 7077792707903276085, guid: ee81a96e152b3dd4b8464b80960a53d2, type: 3}
+  attackSound: {fileID: 8300000, guid: 623e3b7136c162e4ba8c643da161cee0, type: 3}

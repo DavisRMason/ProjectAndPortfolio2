@@ -53,6 +53,9 @@ public class playerController : MonoBehaviour
     [SerializeField] List<AudioClip> hurtAudioClips = new List<AudioClip>();
     //[Range(0, 1)][SerializeField] float hurtAudioVolume;
     [SerializeField] public List <AudioClip> shootAudioClip = new List<AudioClip>();
+    [SerializeField] AudioClip dashAudioClip;
+    [SerializeField] AudioClip walkAudioClip;
+    [SerializeField] AudioClip wallRunAudioClip;
     //[Range(0, 1)][SerializeField] public float shootAudioVolume;
 
     [Header("For Demonstration")]
@@ -128,6 +131,7 @@ public class playerController : MonoBehaviour
         //Dash
         if (dashCount > 0 && !isDashing && Input.GetButtonDown("Dash"))
         {
+            aud.PlayOneShot(dashAudioClip, Random.Range(0.5f, 1.0f));
             StartCoroutine(Dash());
             StartCoroutine(DashCoolDown());
         }
@@ -493,13 +497,14 @@ public class playerController : MonoBehaviour
                 hit.collider.GetComponent<IDamage>().takeDamage(damage);
                 hitEffect.GetComponent<ParticleSystem>().Play();
                 Instantiate(hitEffectTwo, hit.transform.position, hit.transform.rotation);
+                aud.PlayOneShot(weaponFunc.weaponStats.attackSound, volumeScale: 1);
             }
         }
     }
 
-    public void PlayEffect(GameObject effect)
+    public void PlayEffect(AudioClip effect)
     {
-        effect.GetComponent<ParticleSystem>().Play();
+        aud.PlayOneShot(effect, Random.Range(0.5f, 1.0f));
     }
 
     void WeaponChanger()
