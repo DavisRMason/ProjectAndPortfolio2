@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 155158d37b3db7446bc3388992a81590, type: 3}
+  m_Name: Gungnir
+  m_EditorClassIdentifier: 
+  shootRate: 0
+  shootDist: 0
+  shootDamage: 10
+  ammoCount: 0
+  weaponModel: {fileID: 4418862449169947311, guid: 9f9a6f83fde942346922df657d504009, type: 3}
+  hitEffect: {fileID: 3450625882284143201, guid: 8c9fddd8ae210c6449ca5e9f9f6d4dcf, type: 3}
+  muzzleFlash: {fileID: 237513704313585156, guid: 4c5da2954592a514ebec42179f845e5f, type: 3}
+  weaponSound:
+  - {fileID: 8300000, guid: 2b21ef916f6943c439b71a7c74568878, type: 3}
+  shootScript: {fileID: 7077792707903276085, guid: 5ceb7fa77fd1757429c05ede544e2137, type: 3}

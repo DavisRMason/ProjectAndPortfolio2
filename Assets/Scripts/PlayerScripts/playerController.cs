@@ -492,6 +492,7 @@ public class playerController : MonoBehaviour
                 Debug.DrawRay(hit.transform.forward, transform.forward, color: Color.red);
                 hit.collider.GetComponent<IDamage>().takeDamage(damage);
                 hitEffect.GetComponent<ParticleSystem>().Play();
+                Instantiate(hitEffectTwo, hit.transform.position, hit.transform.rotation);
             }
         }
     }
@@ -506,21 +507,28 @@ public class playerController : MonoBehaviour
         if(Input.GetKey(KeyCode.Alpha1))
         {
             weaponFunc = weapons[0];
+            changeWeapons();
         }
         if (Input.GetKey(KeyCode.Alpha2))
         {
             weaponFunc = weapons[1];
+            changeWeapons();
         }
         if (Input.GetKey(KeyCode.Alpha3))
         {
             weaponFunc = weapons[2];
+            changeWeapons();
         }
         if (Input.GetKey(KeyCode.Alpha4))
         {
             weaponFunc = weapons[3];
+            changeWeapons();
         }
-
-        changeWeapons();
+        if(Input.GetKey(KeyCode.Alpha5))
+        {
+            weaponFunc = weapons[4];
+            changeWeapons();
+        }
     }
 
 

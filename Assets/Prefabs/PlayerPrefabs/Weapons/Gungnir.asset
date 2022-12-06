@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20006a58b57c42d409a928bd72778df9, type: 3}
+  m_Name: Gungnir
+  m_EditorClassIdentifier: 
+  weaponStats: {fileID: 11400000, guid: 9cbddd102d0053f4d9bcd98ed2b39e46, type: 2}
+  emptyHandScript: {fileID: 11400000, guid: 8cb81a11d4bcf8e49accaf19d98ae845, type: 2}
+  Melee: 0
