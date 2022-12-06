@@ -783,6 +783,10 @@ PrefabInstance:
       value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 6332312677548483169, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
+      propertyPath: dashAudioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: b0e62ed71b1538648b719821f4f63b4c, type: 3}
+    - target: {fileID: 6332312677548483169, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
       propertyPath: weapons.Array.size
       value: 5
       objectReference: {fileID: 0}
