@@ -1742,7 +1742,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 245427320981823539, guid: d92ae718e0e5c44328f5e6948f08d460, type: 3}
       propertyPath: s
-      value: Bala
+      value: Midgard
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d92ae718e0e5c44328f5e6948f08d460, type: 3}
@@ -2146,7 +2146,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6440763846677319752, guid: 9d1e59d88336c1747ac247a25ad007d1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.01
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 6440763846677319752, guid: 9d1e59d88336c1747ac247a25ad007d1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3167,7 +3167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1721319145926359191, guid: 4343974fdcfc0cc49a66508cd0c799fe, type: 3}
       propertyPath: ShapeModule.radiusThickness
-      value: 1.0000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1729965879263731550, guid: 4343974fdcfc0cc49a66508cd0c799fe, type: 3}
       propertyPath: m_Materials.Array.size
