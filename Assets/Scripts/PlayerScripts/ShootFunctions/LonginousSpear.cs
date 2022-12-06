@@ -20,6 +20,7 @@ public class LonginousSpear : Shoot
             {
                 Debug.Log("Ray Hit");
                 hit.collider.GetComponent<IDamage>().takeDamage(gameManager.instance.playerScript.shootDamage);
+                Instantiate(gameManager.instance.playerScript.hitEffectTwo, hit.transform.position, gameObject.transform.rotation);
             }
         }
         else

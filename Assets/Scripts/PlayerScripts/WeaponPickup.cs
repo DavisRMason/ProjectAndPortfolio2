@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class WeaponPickup : MonoBehaviour
 {
-    [SerializeField] string scene;
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

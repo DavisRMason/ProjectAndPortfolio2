@@ -52,7 +52,7 @@ MonoBehaviour:
   rb: {fileID: 5979505231960983050}
   spear: {fileID: 7422979033230652129, guid: c0bfded6f9a67a2448ba07b16d3a35cf, type: 3}
   attackPos: {fileID: 8533925518724877146}
-  effect: {fileID: 5606837263642308158}
+  effect: {fileID: 65090633150269453, guid: eb926b1dbd0069e4f86c33acb79ca453, type: 3}
   lowestValue: 0
   attackDist: 2
 --- !u!54 &5979505231960983050
