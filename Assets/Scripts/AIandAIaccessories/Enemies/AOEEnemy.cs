@@ -11,6 +11,7 @@ public class AOEEnemy : MonoBehaviour, IDamage
     [SerializeField] Animator anim;
     [SerializeField] GameObject UI;
     [SerializeField] Image HPBar;
+    [SerializeField] AudioSource aud;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
@@ -23,6 +24,11 @@ public class AOEEnemy : MonoBehaviour, IDamage
     [SerializeField] int damageToDeal;
     [SerializeField] float dealDamageInterval;
 
+    [Header("----- Audio -----")]
+    [SerializeField] AudioClip[] audShoot;
+    [SerializeField] AudioClip[] audDeath;
+
+    [Header("----- Alt -----")]
     [SerializeField] bool SpawnerAlt;
 
     bool dealingDamage;
@@ -99,6 +105,7 @@ public class AOEEnemy : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
+            aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)]);
             gameManager.instance.playerScript.playerSpeed = gameManager.instance.playerScript.playerOrigSpeed;
             isDead = true;
             gameManager.instance.updateEnemyNumber();
@@ -156,6 +163,7 @@ public class AOEEnemy : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
             if (!dealingDamage && playerInRange && !isDead)
             {
+                aud.PlayOneShot(audShoot[Random.Range(0, audShoot.Length)]);
                 gameManager.instance.playerScript.playerSpeed /= 1.2f;
                 StartCoroutine(DealFrost());
             }

@@ -11,6 +11,7 @@ public class SirenEnemy : MonoBehaviour, IDamage
     [SerializeField] Animator anim;
     [SerializeField] GameObject UI;
     [SerializeField] Image HPBar;
+    [SerializeField] AudioSource aud;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
@@ -22,6 +23,11 @@ public class SirenEnemy : MonoBehaviour, IDamage
     [Header("-----Angle Flip-----")]
     [SerializeField] int flipIt;
 
+    [Header("----- Audio -----")]
+    [SerializeField] AudioClip[] audShoot;
+    [SerializeField] AudioClip[] audDeath;
+
+    [Header("----- Alt -----")]
     [SerializeField] bool SpawnerAlt;
 
     bool isDead;
@@ -98,6 +104,7 @@ public class SirenEnemy : MonoBehaviour, IDamage
         if (HP <= 0)
         {
             isDead = true;
+            aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)]);
             gameManager.instance.updateEnemyNumber();
             anim.SetBool("Dead", true);
             agent.enabled = false;
@@ -139,6 +146,7 @@ public class SirenEnemy : MonoBehaviour, IDamage
         if (other.CompareTag("Player") && !isDead)
         {
             playerInRange = true;
+            aud.PlayOneShot(audShoot[Random.Range(0, audShoot.Length)]);
             anim.SetTrigger("Sing");
             gameManager.instance.playerScript.transform.Rotate(0, flipIt, 0);
         }

@@ -11,6 +11,7 @@ public class DynamicTurretEnemy : MonoBehaviour, IDamage
     [SerializeField] Animator anim;
     [SerializeField] GameObject UI;
     [SerializeField] Image HPBar;
+    [SerializeField] AudioSource aud;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
@@ -25,6 +26,11 @@ public class DynamicTurretEnemy : MonoBehaviour, IDamage
     [SerializeField] Transform shootPos;
     [SerializeField] float shootRate;
 
+    [Header("----- Audio -----")]
+    [SerializeField] AudioClip[] audShoot;
+    [SerializeField] AudioClip[] audDeath;
+
+    [Header("----- Alt -----")]
     [SerializeField] bool SpawnerAlt;
 
     bool isShooting;
@@ -107,6 +113,7 @@ public class DynamicTurretEnemy : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
+            aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)]);
             gameManager.instance.updateEnemyNumber();
             anim.SetBool("Dead", true);
             agent.enabled = false;
@@ -135,6 +142,7 @@ public class DynamicTurretEnemy : MonoBehaviour, IDamage
 
         anim.SetTrigger("Shoot");
 
+        aud.PlayOneShot(audShoot[Random.Range(0, audShoot.Length)]);
         Instantiate(hitEffect, shootPos.position, hitEffect.transform.rotation);
         Instantiate(bullet, shootPos.position, transform.rotation);
 

@@ -442,18 +442,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2192752403298246092, guid: 828017041649cde4cae95cadc0d5796b, type: 3}
-      propertyPath: m_Radius
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5242245757220307279, guid: 828017041649cde4cae95cadc0d5796b, type: 3}
-      propertyPath: shootRate
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5242245757220307279, guid: 828017041649cde4cae95cadc0d5796b, type: 3}
-      propertyPath: SpawnerAlt
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 828017041649cde4cae95cadc0d5796b, type: 3}
 --- !u!1001 &577804000
@@ -614,14 +602,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1531386797499435072, guid: 3f35412790897bd4583d7663776e0684, type: 3}
-      propertyPath: hitEffect
-      value: 
-      objectReference: {fileID: 1297937073129364672, guid: 69418da21aaf4054dab4d022a61e1bd3, type: 3}
-    - target: {fileID: 1531386797499435072, guid: 3f35412790897bd4583d7663776e0684, type: 3}
-      propertyPath: SpawnerAlt
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8513399247256760034, guid: 3f35412790897bd4583d7663776e0684, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -850,10 +830,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2547775192232630298, guid: b915a4ebf0b16464fad333f972e97497, type: 3}
-      propertyPath: SpawnerAlt
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4154610960272283887, guid: b915a4ebf0b16464fad333f972e97497, type: 3}
       propertyPath: m_Name
       value: Elf Archer
