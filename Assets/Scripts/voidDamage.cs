@@ -1,18 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class voidDamage : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject reSpawnPos;
+    [SerializeField] int damage;  
+
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            gameManager.instance.playerScript.controller.enabled = false;
+            gameManager.instance.playerScript.Damage(damage) ;
+            gameManager.instance.player.transform.position = reSpawnPos.transform.position;
+            gameManager.instance.playerScript.controller.enabled = true;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
