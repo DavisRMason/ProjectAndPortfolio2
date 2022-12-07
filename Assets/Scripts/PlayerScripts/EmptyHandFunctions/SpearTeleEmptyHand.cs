@@ -20,7 +20,7 @@ public class SpearTeleEmptyHand : EmptyHand
 
     public override void rButtonFunction()
     {
-        if (GameObject.FindGameObjectsWithTag("PlayerWeapon").Length == 1)
+        if (GameObject.FindGameObjectsWithTag("PlayerWeapon").Length > 0)
         {
             Destroy(GameObject.FindGameObjectWithTag("PlayerWeapon"));
             gameManager.instance.playerScript.weaponHave = true;

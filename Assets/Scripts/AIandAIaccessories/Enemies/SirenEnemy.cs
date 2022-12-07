@@ -18,6 +18,7 @@ public class SirenEnemy : MonoBehaviour, IDamage
     [SerializeField] int playerBaseSpeed;
     [SerializeField] int sightDist;
     [SerializeField] int sightAngle;
+    [SerializeField] float funnyWait;
     [SerializeField] GameObject headPos;
 
     [Header("-----Angle Flip-----")]
@@ -35,6 +36,7 @@ public class SirenEnemy : MonoBehaviour, IDamage
     Vector3 playerDirection;
     float angleToPlayer;
     float stoppingDistOrig;
+    float idleTime = 0;
     int hpOrig;
 
 
@@ -54,6 +56,7 @@ public class SirenEnemy : MonoBehaviour, IDamage
     {
         if (agent.enabled)
         {
+            IdleTime();
             if (playerInRange)
             {
                 CanSeePlayer();
@@ -121,6 +124,19 @@ public class SirenEnemy : MonoBehaviour, IDamage
         HPBar.fillAmount = (float)HP / (float)hpOrig;
     }
 
+    void IdleTime()
+    {
+        if (!playerInRange)
+            idleTime += Time.deltaTime;
+        else
+            idleTime = 0;
+        if (idleTime >= funnyWait)
+        {
+            anim.SetTrigger("Taunt");
+            idleTime= -2.6f;
+        }
+    }
+
     IEnumerator FlashDamage()
     {
         model.material.color = Color.red;
@@ -134,6 +150,7 @@ public class SirenEnemy : MonoBehaviour, IDamage
         if (UI.activeInHierarchy)
             UI.SetActive(false);
     }
+
 
     IEnumerator MegaDeath()
     {

@@ -404,6 +404,11 @@ public class playerController : MonoBehaviour
         updatePlayerHBar();
         transform.position = gameManager.instance.spawnPos.transform.position;
         gameManager.instance.playerDeadMenu.SetActive(false);
+
+        Destroy(GameObject.FindGameObjectWithTag("PlayerWeapon"));
+        gameManager.instance.playerScript.weaponHave = true;
+        gameManager.instance.playerScript.changeWeapons();
+
         controller.enabled = true;
     }
 

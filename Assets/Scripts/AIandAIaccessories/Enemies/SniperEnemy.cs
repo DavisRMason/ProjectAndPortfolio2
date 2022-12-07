@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class FixedRotateEnemy : MonoBehaviour, IDamage
+public class SniperEnemy : MonoBehaviour, IDamage
 {
     [Header("-----Components-----")]
     [SerializeField] Renderer model;
@@ -11,6 +11,7 @@ public class FixedRotateEnemy : MonoBehaviour, IDamage
     [SerializeField] Animator anim;
     [SerializeField] GameObject UI;
     [SerializeField] Image HPBar;
+    [SerializeField] LineRenderer line;
     [SerializeField] AudioSource aud;
 
     [Header("-----Enemy Stats-----")]
@@ -40,8 +41,9 @@ public class FixedRotateEnemy : MonoBehaviour, IDamage
     float angleToPlayer;
     float stoppingDistOrig;
     float agentSpeedOrig;
-    float idleTime;
+    float idleTime = 0;
     int hpOrig;
+
 
     void Start()
     {
@@ -84,10 +86,20 @@ public class FixedRotateEnemy : MonoBehaviour, IDamage
                 agent.stoppingDistance = stoppingDistOrig;
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
+                //if (agent.remainingDistance < agent.stoppingDistance)
+                    FacePlayer();
+
                 if (!isShooting  && playerInRange)
                     StartCoroutine(Shoot());
             }
         }
+    }
+
+    void FacePlayer()
+    {
+        playerDirection.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(playerDirection);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * playerBaseSpeed);
     }
 
     public void takeDamage(int dmg)
@@ -105,6 +117,8 @@ public class FixedRotateEnemy : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
+            aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)]);
+            line.enabled = false;
             gameManager.instance.updateEnemyNumber();
             anim.SetBool("Dead", true);
             agent.enabled = false;
