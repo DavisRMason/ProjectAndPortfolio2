@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootRate: 1
   shootDist: 3
-  shootDamage: 3
+  shootDamage: 10
   ammoCount: 0
   weaponModel: {fileID: 3418011884731919454, guid: 29b475577bd142043a2ccad80f84455f, type: 3}
   hitEffect: {fileID: 1815469655429636406, guid: e78c74796e294ae4dac0ba33b8add2da, type: 3}
