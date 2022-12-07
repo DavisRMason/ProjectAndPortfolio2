@@ -7,5 +7,6 @@ public class ChargeSpear : Shoot
     public override void shootBullet()
     {
         gameManager.instance.playerScript.spearMove = true;
+        gameManager.instance.playerScript.charge = 0;
     }
 }

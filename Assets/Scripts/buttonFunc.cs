@@ -46,11 +46,13 @@ public class buttonFunc : MonoBehaviour
     public void returntoMain()
     {
         SceneManager.LoadScene("TitleScreen");
+        resume();
     }
 
     public void returntoHub()
     {
         SceneManager.LoadScene("CumulativeScene");
+        resume();
     }
 
     public void startGame()

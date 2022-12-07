@@ -103,6 +103,8 @@ public class SirenEnemy : MonoBehaviour, IDamage
             agent.enabled = false;
             UI.SetActive(false);
             GetComponent<Collider>().enabled = false;
+            ParticleSystem.MainModule particle = GetComponentInChildren<ParticleSystem>().main;
+            particle.loop = false;
             StartCoroutine(MegaDeath());
         }
     }

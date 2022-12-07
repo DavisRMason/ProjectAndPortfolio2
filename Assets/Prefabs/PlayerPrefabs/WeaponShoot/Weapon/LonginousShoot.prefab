@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49c8dd40afa43f6499292c69fe6bf2be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audClip: {fileID: 0}
+  aud: {fileID: 0}
+  audClip: {fileID: 8300000, guid: b1d8ac3a3f31a164b86c76b54de4d6bd, type: 3}
