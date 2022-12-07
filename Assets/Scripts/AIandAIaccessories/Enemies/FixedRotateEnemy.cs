@@ -18,6 +18,7 @@ public class FixedRotateEnemy : MonoBehaviour, IDamage
     [SerializeField] int playerBaseSpeed;
     [SerializeField] int sightDist;
     [SerializeField] int sightAngle;
+    [SerializeField] float funnyWait;
     [SerializeField] GameObject headPos;
 
     [Header("-----Gun Stats-----")]
@@ -39,6 +40,7 @@ public class FixedRotateEnemy : MonoBehaviour, IDamage
     float angleToPlayer;
     float stoppingDistOrig;
     float agentSpeedOrig;
+    float idleTime;
     int hpOrig;
 
     void Start()
@@ -59,6 +61,7 @@ public class FixedRotateEnemy : MonoBehaviour, IDamage
     {
         if (agent.enabled)
         {
+            IdleTime();
             if (playerInRange)
             {
                 CanSeePlayer();
@@ -114,6 +117,19 @@ public class FixedRotateEnemy : MonoBehaviour, IDamage
     void UpdateHPBar()
     {
         HPBar.fillAmount = (float)HP / (float)hpOrig;
+    }
+
+    void IdleTime()
+    {
+        if (!playerInRange)
+            idleTime += Time.deltaTime;
+        else
+            idleTime = 0;
+        if (idleTime >= funnyWait)
+        {
+            anim.SetTrigger("Taunt");
+            idleTime = -2.6f;
+        }
     }
 
     IEnumerator FlashDamage()

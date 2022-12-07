@@ -18,6 +18,7 @@ public class AOEEnemy : MonoBehaviour, IDamage
     [SerializeField] int playerBaseSpeed;
     [SerializeField] int sightDist;
     [SerializeField] int sightAngle;
+    [SerializeField] int funnyWait;
     [SerializeField] GameObject headPos;
 
     [Header("-----Deal Damage-----")]
@@ -37,6 +38,7 @@ public class AOEEnemy : MonoBehaviour, IDamage
     Vector3 playerDirection;
     float angleToPlayer;
     float stoppingDistOrig;
+    float idleTime = 0;
     int hpOrig;
 
 
@@ -56,6 +58,7 @@ public class AOEEnemy : MonoBehaviour, IDamage
     {
         if (agent.enabled)
         {
+            IdleTime();
             if (playerInRange)
             {
                 CanSeePlayer();
@@ -122,6 +125,19 @@ public class AOEEnemy : MonoBehaviour, IDamage
     void UpdateHPBar()
     {
         HPBar.fillAmount = (float)HP / (float)hpOrig;
+    }
+
+    void IdleTime()
+    {
+        if (!playerInRange)
+            idleTime += Time.deltaTime;
+        else
+            idleTime = 0;
+        if (idleTime >= funnyWait)
+        {
+            anim.SetTrigger("Taunt");
+            idleTime = -2.6f;
+        }
     }
 
     IEnumerator DealFrost()

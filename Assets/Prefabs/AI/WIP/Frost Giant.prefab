@@ -2205,6 +2205,7 @@ MonoBehaviour:
   playerBaseSpeed: 10
   sightDist: 300
   sightAngle: 50
+  funnyWait: 20
   headPos: {fileID: 6948388120834736387}
   damageToDeal: 1
   dealDamageInterval: 1

@@ -2334,6 +2334,7 @@ MonoBehaviour:
   playerBaseSpeed: 10
   sightDist: 40
   sightAngle: 50
+  funnyWait: 20
   headPos: {fileID: 8383637905927145489}
   flipIt: 90
   audShoot:

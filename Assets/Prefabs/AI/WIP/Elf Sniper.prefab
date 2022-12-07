@@ -2480,6 +2480,7 @@ MonoBehaviour:
   playerBaseSpeed: 10
   sightDist: 500
   sightAngle: 180
+  funnyWait: 20
   headPos: {fileID: 3745422030442294022}
   bullet: {fileID: 7477582710434310770, guid: 7c313484d4d5a114bb760c21e392b26b, type: 3}
   hitEffect: {fileID: 3716275016998676315, guid: 6b37cd66c053f5c438d7a6854a9ee401, type: 3}
