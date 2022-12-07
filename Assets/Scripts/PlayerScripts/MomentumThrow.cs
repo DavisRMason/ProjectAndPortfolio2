@@ -37,6 +37,7 @@ public class MomentumThrow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(outOfBounds());
         if (gameObject.GetComponent<Collider>().enabled == false)
         {
             rb.useGravity = true;
@@ -114,5 +115,14 @@ public class MomentumThrow : MonoBehaviour
             gameManager.instance.playerScript.weaponHave = true;
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator outOfBounds()
+    {
+        yield return new WaitForSeconds(4);
+
+        gameManager.instance.playerScript.changeWeapons();
+        gameManager.instance.playerScript.weaponHave = true;
+        Destroy(gameObject);
     }
 }
