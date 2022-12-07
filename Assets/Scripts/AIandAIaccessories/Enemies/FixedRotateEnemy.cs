@@ -21,6 +21,7 @@ public class FixedRotateEnemy : MonoBehaviour, IDamage
 
     [Header("-----Gun Stats-----")]
     [SerializeField] GameObject bullet;
+    [SerializeField] GameObject hitEffect;
     [SerializeField] Transform shootPos;
     [SerializeField] float shootRate;
 
@@ -33,7 +34,6 @@ public class FixedRotateEnemy : MonoBehaviour, IDamage
     float stoppingDistOrig;
     float agentSpeedOrig;
     int hpOrig;
-
 
     void Start()
     {
@@ -124,6 +124,7 @@ public class FixedRotateEnemy : MonoBehaviour, IDamage
 
         anim.SetTrigger("Shoot");
 
+        Instantiate(hitEffect, shootPos.position, hitEffect.transform.rotation);
         Instantiate(bullet, shootPos.position, transform.rotation);
 
         yield return new WaitForSeconds(shootRate);

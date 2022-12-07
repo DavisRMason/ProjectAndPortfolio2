@@ -619,6 +619,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1531386797499435072, guid: 3f35412790897bd4583d7663776e0684, type: 3}
+      propertyPath: hitEffect
+      value: 
+      objectReference: {fileID: 1297937073129364672, guid: 69418da21aaf4054dab4d022a61e1bd3, type: 3}
+    - target: {fileID: 1531386797499435072, guid: 3f35412790897bd4583d7663776e0684, type: 3}
       propertyPath: SpawnerAlt
       value: 1
       objectReference: {fileID: 0}
