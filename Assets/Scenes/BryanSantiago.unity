@@ -463,10 +463,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6948388120827491003, guid: e0da46b7b3cff8d4ebb237aaadc4abdf, type: 3}
-      propertyPath: SpawnerAlt
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6948388120834448679, guid: e0da46b7b3cff8d4ebb237aaadc4abdf, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -683,10 +679,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6566798580441522083, guid: e6ec6f8ad6e553d4a8ea1e6f84db60e8, type: 3}
-      propertyPath: SpawnerAlt
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8383637905927145941, guid: e6ec6f8ad6e553d4a8ea1e6f84db60e8, type: 3}
       propertyPath: m_Name
       value: Siren

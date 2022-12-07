@@ -105,6 +105,8 @@ public class AOEEnemy : MonoBehaviour, IDamage
             anim.SetBool("Dead", true);
             agent.enabled = false;
             UI.SetActive(false);
+            ParticleSystem.MainModule particle = GetComponentInChildren<ParticleSystem>().main;
+            particle.loop = false;
             GetComponent<Collider>().enabled = false;
             StartCoroutine(MegaDeath());
         }
