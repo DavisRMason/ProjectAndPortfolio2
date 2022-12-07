@@ -225,7 +225,7 @@ MonoBehaviour:
   rb: {fileID: 7086817545972876093}
   spear: {fileID: 2039421191796501793, guid: 71aea8a9f8c1ad7499beda0403488346, type: 3}
   attackPos: {fileID: 4637202955788992503}
-  effect: {fileID: 7449919495549112001}
+  effect: {fileID: 5424713832124130526, guid: f9e5a83228d3a4b4a9e2319f6484b60a, type: 3}
   lowestValue: 0
   spearAudioSource: {fileID: -2519449902190484280}
   spearAudioClip: {fileID: 8300000, guid: 56703418e3aed4c47a5f6622816b8e41, type: 3}
@@ -542,10 +542,5 @@ PrefabInstance:
 --- !u!4 &7134978060472933869 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5184302050589662299, guid: 033bd505696417b4c98bafde13b1c69e, type: 3}
-  m_PrefabInstance: {fileID: 2663561975099294134}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &7449919495549112001 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4869994071508012919, guid: 033bd505696417b4c98bafde13b1c69e, type: 3}
   m_PrefabInstance: {fileID: 2663561975099294134}
   m_PrefabAsset: {fileID: 0}

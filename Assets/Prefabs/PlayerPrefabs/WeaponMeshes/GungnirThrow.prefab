@@ -181,8 +181,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3183055694361145030}
   - component: {fileID: 4379834511611290404}
+  - component: {fileID: 6131854688768398224}
   - component: {fileID: -1994707237481720012}
-  - component: {fileID: 3183055694361145031}
   - component: {fileID: 8585940806813933704}
   - component: {fileID: -6384026005145016449}
   m_Layer: 0
@@ -230,6 +230,20 @@ MonoBehaviour:
   spearAudioSource: {fileID: -6384026005145016449}
   spearAudioClip: {fileID: 8300000, guid: 2721c575d601b484f8ca20afccb12467, type: 3}
   attackDist: 2
+--- !u!114 &6131854688768398224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3183055694361145024}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45dcf76d36ab82349a221a46662e5633, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: {fileID: 3450625882284143201, guid: 8c9fddd8ae210c6449ca5e9f9f6d4dcf, type: 3}
+  aud: {fileID: 8300000, guid: c9b900879fa171d4eb821de6ee053020, type: 3}
 --- !u!136 &-1994707237481720012
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -244,19 +258,6 @@ CapsuleCollider:
   m_Height: 3.92
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: -0.61}
---- !u!135 &3183055694361145031
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3183055694361145024}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 15
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &8585940806813933704
 Rigidbody:
   m_ObjectHideFlags: 0

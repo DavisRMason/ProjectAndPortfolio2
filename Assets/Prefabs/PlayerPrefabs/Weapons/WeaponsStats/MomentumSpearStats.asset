@@ -18,7 +18,7 @@ MonoBehaviour:
   ammoCount: 0
   weaponModel: {fileID: 8753878702062529946, guid: aa9fec5003756d64894365fe83cb3fd3, type: 3}
   hitEffect: {fileID: 4949134739885022463, guid: 367b5d04f85d3744a97c33fd1e55e107, type: 3}
-  muzzleFlash: {fileID: 3806765957905710563, guid: 6d3459d35e34a35469cb20452042f931, type: 3}
+  muzzleFlash: {fileID: 1968882766584272030, guid: 305acc99ded2e944a82c79fd70b9299d, type: 3}
   weaponSound:
   - {fileID: 8300000, guid: 177c52877f30c4644b80d5bc874d3994, type: 3}
   shootScript: {fileID: 7077792707903276085, guid: ee81a96e152b3dd4b8464b80960a53d2, type: 3}

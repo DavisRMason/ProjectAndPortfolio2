@@ -20,6 +20,7 @@ public class GungnirThrow : MonoBehaviour
 
     [Header("----- Spear Stats -----")]
     [SerializeField] int attackDist;
+    [SerializeField] int radius;
 
 
     #endregion
@@ -63,7 +64,10 @@ public class GungnirThrow : MonoBehaviour
     private void Update()
     {
         AttackEnemy();
-        BelowValueReturn();
+        DestroySpear();
+
+        if(!enemyDetected)
+            DetectEnemy();
 
         if(enemyDetected)
         {
@@ -82,7 +86,7 @@ public class GungnirThrow : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(attackPos.transform.position, transform.TransformDirection(Vector3.forward), out hit, attackDist))
+        if (Physics.SphereCast(attackPos.transform.position, 2, transform.TransformDirection(Vector3.forward), out hit, attackDist))
         {
             if (hit.collider.GetComponent<IDamage>() != null)
             {
@@ -91,7 +95,16 @@ public class GungnirThrow : MonoBehaviour
                 Instantiate(gameManager.instance.playerScript.hitEffectTwo, attackPos.transform.position, gameObject.transform.rotation);
                 spearAudioSource.PlayOneShot(spearAudioClip, Random.Range(0.5f, 1f) + audioLevel);
             }
-            else
+        }
+    }
+
+    void DestroySpear()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(attackPos.transform.position, transform.TransformDirection(Vector3.forward), out hit, attackDist))
+        {
+            if (hit.collider.GetComponent <IDamage>() == null)
             {
                 Debug.DrawRay(attackPos.transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.white);
                 Instantiate(spear, gameObject.transform.position, gameObject.transform.rotation);
@@ -100,13 +113,24 @@ public class GungnirThrow : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    void DetectEnemy()
     {
-        if (other.CompareTag("Enemy") && !enemyDetected)
+        RaycastHit hit;
+
+        Vector3 front = Vector3.forward;
+        Vector3 back = Vector3.back;
+        Vector3 right = Vector3.right;
+        Vector3 left = Vector3.left;
+        Vector3 up = Vector3.up;
+        Vector3 down = Vector3.down;
+
+        if(Physics.SphereCast(attackPos.transform.position, radius, front, out hit) || Physics.SphereCast(attackPos.transform.position, radius, back, out hit) || Physics.SphereCast(attackPos.transform.position, radius, right, out hit) || Physics.SphereCast(attackPos.transform.position, radius, left, out hit) || Physics.SphereCast(attackPos.transform.position, radius, up, out hit) || Physics.SphereCast(attackPos.transform.position, radius, down, out hit))
         {
-            enemyPos = other.transform.position;
-            enemyPos.y += 1;
-            enemyDetected = true;
+            if (hit.collider.GetComponent<IDamage>() != null)
+            {
+                enemyPos = hit.collider.transform.position;
+                enemyDetected = true;
+            }
         }
     }
 
@@ -123,16 +147,6 @@ public class GungnirThrow : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         rb.useGravity = true;
-    }
-
-    void BelowValueReturn()
-    {
-        if (rb.transform.position.y < 0)
-        {
-            gameManager.instance.playerScript.changeWeapons();
-            gameManager.instance.playerScript.weaponHave = true;
-            Destroy(gameObject);
-        }
     }
 
     IEnumerator outOfBounds()

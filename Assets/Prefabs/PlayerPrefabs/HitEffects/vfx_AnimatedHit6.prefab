@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1152546038779266018}
   - component: {fileID: 7217372889572840801}
   - component: {fileID: 7217372889572840802}
+  - component: {fileID: 1143403795517505900}
   m_Layer: 0
   m_Name: vfx_AnimatedHit6
   m_TagString: Untagged
@@ -4883,3 +4884,15 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &1143403795517505900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7217372889572840803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79cc9eddd1d4a9c45b6a5a2629fc793b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
