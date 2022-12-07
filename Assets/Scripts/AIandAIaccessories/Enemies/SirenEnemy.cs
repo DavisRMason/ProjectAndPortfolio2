@@ -137,6 +137,7 @@ public class SirenEnemy : MonoBehaviour, IDamage
         if (other.CompareTag("Player") && !isDead)
         {
             playerInRange = true;
+            anim.SetTrigger("Sing");
             gameManager.instance.playerScript.transform.Rotate(0, flipIt, 0);
         }
     }
