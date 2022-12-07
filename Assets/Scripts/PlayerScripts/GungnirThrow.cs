@@ -39,6 +39,7 @@ public class GungnirThrow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(outOfBounds());
         enemyPos = Vector3.zero;
         if (gameObject.GetComponent<Collider>().enabled == false)
         {
@@ -132,5 +133,14 @@ public class GungnirThrow : MonoBehaviour
             gameManager.instance.playerScript.weaponHave = true;
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator outOfBounds()
+    {
+        yield return new WaitForSeconds(4);
+
+        gameManager.instance.playerScript.changeWeapons();
+        gameManager.instance.playerScript.weaponHave = true;
+        Destroy(gameObject);
     }
 }

@@ -40,6 +40,7 @@ public class SpearThrow : MonoBehaviour
         rb.AddForce(gameObject.transform.forward * 2500);
         Vector3.Slerp(gameObject.transform.forward, rb.velocity.normalized, Time.deltaTime * 2);
         rb.ResetCenterOfMass();
+        StartCoroutine(outOfBounds());
     }
 
     private void Update()
@@ -85,5 +86,14 @@ public class SpearThrow : MonoBehaviour
             gameManager.instance.playerScript.weaponHave = true;
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator outOfBounds()
+    {
+        yield return new WaitForSeconds(4);
+
+        gameManager.instance.playerScript.changeWeapons();
+        gameManager.instance.playerScript.weaponHave = true;
+        Destroy(gameObject);
     }
 }

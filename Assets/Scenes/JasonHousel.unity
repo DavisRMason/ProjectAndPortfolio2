@@ -774,26 +774,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1188098795, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1188098795, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 6332312677548483169, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
-      propertyPath: dashAudioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: b0e62ed71b1538648b719821f4f63b4c, type: 3}
-    - target: {fileID: 6332312677548483169, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
-      propertyPath: weapons.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6332312677548483169, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
-      propertyPath: weapons.Array.data[4]
-      value: 
-      objectReference: {fileID: 11400000, guid: f3e0429b604942841a0a8855085dcd6c, type: 2}
     - target: {fileID: 6332312677548483171, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -837,10 +817,6 @@ PrefabInstance:
     - target: {fileID: 6332312677548483171, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6332312677548483173, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6332312677548483175, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
       propertyPath: m_Name
