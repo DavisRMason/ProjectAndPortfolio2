@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class WeaponPickup : MonoBehaviour
 {
-    [SerializeField] string scene;
+    [SerializeField] GameObject effect;
+    [SerializeField] AudioClip aud;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,5 +16,11 @@ public class WeaponPickup : MonoBehaviour
             Destroy(gameObject);
             gameManager.instance.playerScript.weaponHave = true;
         }
+    }
+
+    private void OnDestroy()
+    {
+        Instantiate(effect, gameObject.transform.position, gameObject.transform.rotation);
+        gameManager.instance.playerScript.PlayEffect(aud);
     }
 }

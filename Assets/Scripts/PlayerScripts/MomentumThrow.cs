@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class MomentumThrow : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class MomentumThrow : MonoBehaviour
     [SerializeField] GameObject attackPos;
     [SerializeField] ParticleSystem effect;
     [SerializeField] int lowestValue;
+    [SerializeField] AudioSource spearAudioSource;
+    [SerializeField] AudioClip spearAudioClip;
 
     [Header("----- Spear Stats -----")]
     [SerializeField] int attackDist;
@@ -25,6 +28,7 @@ public class MomentumThrow : MonoBehaviour
     #region Bools_&_Statics
 
     Vector3 move;
+    float audioLevel = .25f;
 
     #endregion
 
@@ -36,17 +40,17 @@ public class MomentumThrow : MonoBehaviour
         if (gameObject.GetComponent<Collider>().enabled == false)
         {
             rb.useGravity = true;
-            rb.AddForce(gameObject.transform.forward * 1500);
+            rb.AddForce(gameObject.transform.forward * 2500);
             Vector3.Slerp(gameObject.transform.forward, rb.velocity.normalized, Time.deltaTime * 2);
             rb.ResetCenterOfMass();
         }
         else
         {
             Vector3 temp = rb.position;
-            temp.y += 1;
+            temp.y += .75f;
             rb.position = temp;
             rb.useGravity = false;
-            rb.AddForce(gameObject.transform.forward * 1500);
+            rb.AddForce(gameObject.transform.forward * 2500);
             Vector3.Slerp(gameObject.transform.forward, rb.velocity.normalized, Time.deltaTime * 2);
             StartCoroutine(TurnOnGravity());
         }
@@ -75,7 +79,8 @@ public class MomentumThrow : MonoBehaviour
             {
                 Debug.DrawRay(attackPos.transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
                 hit.collider.GetComponent<IDamage>().takeDamage(gameManager.instance.playerScript.shootDamage);
-                effect.Play();
+                Instantiate(gameManager.instance.playerScript.hitEffectTwo, attackPos.transform.position, gameObject.transform.rotation);
+                spearAudioSource.PlayOneShot(spearAudioClip, Random.Range(.5f, 1.0f) + audioLevel);
             }
             else
             {

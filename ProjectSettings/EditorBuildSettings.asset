@@ -11,14 +11,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CumulativeScene.unity
     guid: 8a0808f1fb3e36e409e28c7239f97807
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/BryanSantiago.unity
     guid: 01300afdd27a6554da737336fb5e251b
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/JasonHousel.unity
     guid: d82de76676fdefd409fbfbed2a9ae2d7
   - enabled: 1
-    path: Assets/Scenes/Bala.unity
+    path: Assets/Scenes/Midgard.unity
     guid: 99dcafc95368712418438a148d4cc745
   - enabled: 1
     path: Assets/Scenes/Niflheim.unity
