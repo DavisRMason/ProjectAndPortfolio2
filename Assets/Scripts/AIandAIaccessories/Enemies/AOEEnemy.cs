@@ -164,6 +164,7 @@ public class AOEEnemy : MonoBehaviour, IDamage
             if (!dealingDamage && playerInRange && !isDead)
             {
                 aud.PlayOneShot(audShoot[Random.Range(0, audShoot.Length)]);
+                anim.SetTrigger("Sing");
                 gameManager.instance.playerScript.playerSpeed /= 1.2f;
                 StartCoroutine(DealFrost());
             }
