@@ -27,7 +27,6 @@ public class SpearThrow : MonoBehaviour
     #region Bools_&_Statics
 
     Vector3 move;
-    float audioLevel = .25f;
 
     #endregion
 
