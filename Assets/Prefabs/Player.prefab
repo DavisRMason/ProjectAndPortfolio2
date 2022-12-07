@@ -206,7 +206,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d82f4db26ee0ba0448d2fb62ad23d383, type: 3}
   shootAudioClip:
   - {fileID: 0}
-  dashAudioClip: {fileID: 8300000, guid: b0e62ed71b1538648b719821f4f63b4c, type: 3}
+  dashAudioClip: {fileID: 8300000, guid: 7c93ebc421e8ad74891a9c54c9dd2ae7, type: 3}
   walkAudioClip: {fileID: 0}
   wallRunAudioClip: {fileID: 0}
   weapons:
