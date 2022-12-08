@@ -89,7 +89,7 @@ public class playerController : MonoBehaviour
     public float weaponFlyDist;
     public bool spearMove;
     public bool chargeCool;
-
+    bool rButtonUp = true;
 
     //DMason: adding player health functionallity
     //Health Stuff
@@ -155,9 +155,14 @@ public class playerController : MonoBehaviour
 
         if (!weaponHave || weaponFunc.Melee)
         {
-            if (Input.GetKey(KeyCode.R))
+            if (Input.GetKey(KeyCode.R) && rButtonUp)
             {
                 weaponFunc.emptyHandScript.emptyHandScript.rButtonFunction();
+                rButtonUp = false;
+            }
+            else if (Input.GetKeyUp(KeyCode.R))
+            {
+                rButtonUp = true;
             }
 
             if (Input.GetButtonDown("Right Mouse"))
@@ -165,6 +170,7 @@ public class playerController : MonoBehaviour
                 weaponFunc.emptyHandScript.emptyHandScript.RightClick();
             }
         }
+        
     }
 
     private void FixedUpdate()
