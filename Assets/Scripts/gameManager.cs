@@ -24,8 +24,9 @@ public class gameManager : MonoBehaviour
     public Image DashBar;
     public TextMeshProUGUI enemiesLeft;
     [Header("---timer---")]
-    public TextMeshProUGUI timer;
+    public TextMeshProUGUI digTimer;
     [SerializeField] float maxTime = 1000f;
+    public Image timerFill;
     [Header("--TBS--")]
 
     public int enemiesToKill;
@@ -63,14 +64,8 @@ public class gameManager : MonoBehaviour
             }
         }
 
-        currTime -= 1 * Time.deltaTime;
-        timer.text = currTime.ToString("000");
+        updateTimer();
 
-        if (currTime <= 0)
-        {
-            gameManager.instance.playerDeadMenu.SetActive(true);
-            gameManager.instance.pause();
-        }
     }
     public void pause()
     {
@@ -116,5 +111,27 @@ public class gameManager : MonoBehaviour
     public void resetTimer()
     {
         currTime = maxTime;
+        timerFill.color = Color.white;
+    }
+
+    public void updateTimer()
+    {
+
+        currTime -= 1 * Time.deltaTime;
+        digTimer.text = currTime.ToString("000");
+
+        timerFill.fillAmount = (float)currTime / (float)maxTime;
+
+        if (currTime <= (maxTime * .5))
+        {
+            timerFill.color = Color.Lerp(timerFill.color, Color.red, (.1f * Time.deltaTime));
+            
+        }
+
+        if (currTime <= 0)
+        {
+            gameManager.instance.playerDeadMenu.SetActive(true);
+            gameManager.instance.pause();
+        }
     }
 }
