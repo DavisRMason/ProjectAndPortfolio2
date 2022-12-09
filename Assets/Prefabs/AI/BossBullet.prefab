@@ -186,6 +186,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 7011880448099786791}
   damage: 1
-  timer: 3
+  timer: 45
   speed: 18
   rotateSpeed: 3

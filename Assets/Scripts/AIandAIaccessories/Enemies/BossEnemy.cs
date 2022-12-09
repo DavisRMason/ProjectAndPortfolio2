@@ -28,6 +28,10 @@ public class BossEnemy : MonoBehaviour, IDamage
 
     [Header("-----Explosion Stats-----")]
     [SerializeField] GameObject explosion;
+    [SerializeField] Transform explosionPos;
+
+    [Header("-----Sword Stats-----")]
+    [SerializeField] GameObject Sword;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] audShoot;
@@ -42,6 +46,7 @@ public class BossEnemy : MonoBehaviour, IDamage
     float stoppingDistOrig;
     float agentSpeedOrig;
     int hpOrig;
+    int timesShot;
 
 
     void Start()
@@ -84,10 +89,28 @@ public class BossEnemy : MonoBehaviour, IDamage
                 agent.stoppingDistance = stoppingDistOrig;
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
+                FacePlayer();
+
                 if (!isShooting && playerInRange)
+                {
+                    if (timesShot == 3)
+                        anim.SetTrigger("Shoot");
+                    if (timesShot == 5)
+                    {
+                        Explode();
+                        timesShot = 0;
+                    }
                     StartCoroutine(Shoot());
+                }
             }
         }
+    }
+
+    void FacePlayer()
+    {
+        playerDirection.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(playerDirection);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * playerBaseSpeed);
     }
 
     public void takeDamage(int dmg)
@@ -118,6 +141,12 @@ public class BossEnemy : MonoBehaviour, IDamage
         HPBar.fillAmount = (float)HP / (float)hpOrig;
     }
 
+    void Explode()
+    {
+        anim.SetTrigger("Kaboom");
+        Instantiate(explosion, explosionPos.position, transform.rotation);
+    }
+
     IEnumerator FlashDamage()
     {
         model.material.color = Color.red;
@@ -136,6 +165,7 @@ public class BossEnemy : MonoBehaviour, IDamage
         {
             Instantiate(bullet, shootPos[i].position, shootPos[i].rotation);
         }
+        ++timesShot;
 
         yield return new WaitForSeconds(shootRate);
         agent.speed = agentSpeedOrig;
@@ -165,5 +195,15 @@ public class BossEnemy : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
             playerInRange = false;
+    }
+
+    public void MeleeOn()
+    {
+        Sword.SetActive(true);
+    }
+
+    public void MeleeOff()
+    {
+        Sword.SetActive(false);
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 442321108819994250}
   - component: {fileID: 9100958124078500883}
   - component: {fileID: 8709089609658344572}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3460374856899867074}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -113,4 +113,4 @@ MonoBehaviour:
   rb: {fileID: 0}
   damage: 8
   timer: 4
-  expandSpeed: 8
+  expandSpeed: 10
