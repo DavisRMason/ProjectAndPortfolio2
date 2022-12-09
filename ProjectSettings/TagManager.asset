@@ -10,6 +10,7 @@ TagManager:
   - PlayerWeapon
   - Wall
   - ThrownWeapon
+  - Floor
   layers:
   - Default
   - TransparentFX

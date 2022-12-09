@@ -47,6 +47,7 @@ public class SniperEnemy : MonoBehaviour, IDamage
 
     void Start()
     {
+        line.enabled = false;
         if (SpawnerAlt)
         {
             gameManager.instance.updateUIEnemyCount(1);
@@ -185,12 +186,18 @@ public class SniperEnemy : MonoBehaviour, IDamage
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
             playerInRange = true;
+            line.enabled = true;
+        }
     }
 
     public void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
+        {
             playerInRange = false;
+            line.enabled = false;
+        }
     }
 }
