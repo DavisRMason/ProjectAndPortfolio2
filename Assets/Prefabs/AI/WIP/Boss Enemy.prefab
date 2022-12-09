@@ -6128,7 +6128,7 @@ MonoBehaviour:
   sightAngle: 180
   headPos: {fileID: 803090879003036740}
   bullet: {fileID: 2730952232407839821, guid: ae83b2a8af47f3942a464f8e1e2ed743, type: 3}
-  hitEffect: {fileID: 0}
+  hitEffect: {fileID: 1297937073129364672, guid: 69418da21aaf4054dab4d022a61e1bd3, type: 3}
   shootPos:
   - {fileID: 5847559165856638087}
   - {fileID: 5847559165259873265}
@@ -6159,12 +6159,18 @@ MonoBehaviour:
   - {fileID: 5847559165052764310}
   - {fileID: 5847559164668411860}
   - {fileID: 5847559165538283672}
-  shootRate: 3
+  shootRate: 5
   explosion: {fileID: 3460374856899867074, guid: a6ae55ebf7054344abf516d9fd028d1c, type: 3}
   explosionPos: {fileID: 2445006780410532424}
   Sword: {fileID: 743606576}
-  audShoot: []
-  audDeath: []
+  audShoot:
+  - {fileID: 8300000, guid: c91fcf414acc0344cb03b13996f1bf3b, type: 3}
+  - {fileID: 8300000, guid: f11db4559b3ffff45b62e9327fc5535d, type: 3}
+  audMelee: {fileID: 8300000, guid: 1d74880bed4586644a16a79a2d9dc8af, type: 3}
+  audExplode: {fileID: 8300000, guid: a652877b012108e41871f867ada9f176, type: 3}
+  audDeath:
+  - {fileID: 8300000, guid: 21c4a490b24ba2045bc815f7626a40ef, type: 3}
+  - {fileID: 8300000, guid: d1afd3f4d23c24f418ffc315afb04965, type: 3}
   SpawnerAlt: 1
 --- !u!95 &4186428673301766476
 Animator:
@@ -6219,9 +6225,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 3.2
+  m_Height: 1.7
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!135 &4437056976366031901
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -6233,7 +6239,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10
+  m_Radius: 8
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &4437056976366031890
 AudioSource:

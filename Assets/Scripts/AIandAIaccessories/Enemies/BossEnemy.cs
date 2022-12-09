@@ -22,7 +22,6 @@ public class BossEnemy : MonoBehaviour, IDamage
 
     [Header("-----Gun Stats-----")]
     [SerializeField] GameObject bullet;
-    [SerializeField] GameObject hitEffect;
     [SerializeField] Transform[] shootPos;
     [SerializeField] float shootRate;
 
@@ -35,11 +34,16 @@ public class BossEnemy : MonoBehaviour, IDamage
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] audShoot;
+    [SerializeField] AudioClip audMelee;
+    [SerializeField] AudioClip audExplode;
     [SerializeField] AudioClip[] audDeath;
 
+    [Header("----- Alt -----")]
     [SerializeField] bool SpawnerAlt;
 
     bool isShooting;
+    bool isAttacking;
+    bool hasAttacked;
     bool playerInRange;
     Vector3 playerDirection;
     float angleToPlayer;
@@ -95,12 +99,13 @@ public class BossEnemy : MonoBehaviour, IDamage
                 {
                     if (timesShot == 3)
                         anim.SetTrigger("Shoot");
-                    if (timesShot == 5)
+                    else if (timesShot == 8)
                     {
                         Explode();
                         timesShot = 0;
                     }
-                    StartCoroutine(Shoot());
+                    else if (!isAttacking)
+                        StartCoroutine(Shoot());
                 }
             }
         }
@@ -128,6 +133,7 @@ public class BossEnemy : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
+            aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)]);
             gameManager.instance.updateEnemyNumber();
             agent.enabled = false;
             UI.SetActive(false);
@@ -144,6 +150,7 @@ public class BossEnemy : MonoBehaviour, IDamage
     void Explode()
     {
         anim.SetTrigger("Kaboom");
+        aud.PlayOneShot(audExplode);
         Instantiate(explosion, explosionPos.position, transform.rotation);
     }
 
@@ -164,6 +171,7 @@ public class BossEnemy : MonoBehaviour, IDamage
         for (int i = 0; i < shootPos.Length; ++i)
         {
             Instantiate(bullet, shootPos[i].position, shootPos[i].rotation);
+            aud.PlayOneShot(audShoot[Random.Range(0, audShoot.Length)]);
         }
         ++timesShot;
 
@@ -200,10 +208,12 @@ public class BossEnemy : MonoBehaviour, IDamage
     public void MeleeOn()
     {
         Sword.SetActive(true);
+        aud.PlayOneShot(audMelee);
     }
 
     public void MeleeOff()
     {
         Sword.SetActive(false);
+        ++timesShot;
     }
 }
