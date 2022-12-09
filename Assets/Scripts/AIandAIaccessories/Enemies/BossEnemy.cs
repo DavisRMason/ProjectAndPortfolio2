@@ -6,11 +6,12 @@ using UnityEngine.UI;
 public class BossEnemy : MonoBehaviour, IDamage
 {
     [Header("-----Components-----")]
-    [SerializeField] Renderer[] model;
-    [SerializeField] BoxCollider[] hurtBox;
+    [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] Animator anim;
     [SerializeField] GameObject UI;
     [SerializeField] Image HPBar;
+    [SerializeField] AudioSource aud;
 
     [Header("-----Enemy Stats-----")]
     [SerializeField] int HP;
@@ -21,8 +22,20 @@ public class BossEnemy : MonoBehaviour, IDamage
 
     [Header("-----Gun Stats-----")]
     [SerializeField] GameObject bullet;
+    [SerializeField] GameObject hitEffect;
     [SerializeField] Transform[] shootPos;
     [SerializeField] float shootRate;
+
+    [Header("-----Explosion Stats-----")]
+    [SerializeField] GameObject explosion;
+    [SerializeField] Transform explosionPos;
+
+    [Header("-----Sword Stats-----")]
+    [SerializeField] GameObject Sword;
+
+    [Header("----- Audio -----")]
+    [SerializeField] AudioClip[] audShoot;
+    [SerializeField] AudioClip[] audDeath;
 
     [SerializeField] bool SpawnerAlt;
 
@@ -33,6 +46,7 @@ public class BossEnemy : MonoBehaviour, IDamage
     float stoppingDistOrig;
     float agentSpeedOrig;
     int hpOrig;
+    int timesShot;
 
 
     void Start()
@@ -75,10 +89,28 @@ public class BossEnemy : MonoBehaviour, IDamage
                 agent.stoppingDistance = stoppingDistOrig;
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
+                FacePlayer();
+
                 if (!isShooting && playerInRange)
+                {
+                    if (timesShot == 3)
+                        anim.SetTrigger("Shoot");
+                    if (timesShot == 5)
+                    {
+                        Explode();
+                        timesShot = 0;
+                    }
                     StartCoroutine(Shoot());
+                }
             }
         }
+    }
+
+    void FacePlayer()
+    {
+        playerDirection.y = 0;
+        Quaternion rotation = Quaternion.LookRotation(playerDirection);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * playerBaseSpeed);
     }
 
     public void takeDamage(int dmg)
@@ -99,8 +131,7 @@ public class BossEnemy : MonoBehaviour, IDamage
             gameManager.instance.updateEnemyNumber();
             agent.enabled = false;
             UI.SetActive(false);
-            for (int i = 0; i < hurtBox.Length; ++i)
-                hurtBox[i].enabled = false;
+            GetComponent<Collider>().enabled = false;
             StartCoroutine(MegaDeath());
         }
     }
@@ -110,13 +141,17 @@ public class BossEnemy : MonoBehaviour, IDamage
         HPBar.fillAmount = (float)HP / (float)hpOrig;
     }
 
+    void Explode()
+    {
+        anim.SetTrigger("Kaboom");
+        Instantiate(explosion, explosionPos.position, transform.rotation);
+    }
+
     IEnumerator FlashDamage()
     {
-        for (int i = 0; i < model.Length; i++)
-            model[i].material.color = Color.red;
+        model.material.color = Color.red;
         yield return new WaitForSeconds(0.3F);
-        for (int i = 0; i < model.Length; i++)
-            model[i].material.color = Color.white;
+        model.material.color = Color.white;
     }
 
     IEnumerator Shoot()
@@ -124,8 +159,13 @@ public class BossEnemy : MonoBehaviour, IDamage
         isShooting = true;
         agent.speed = 0;
 
+        anim.SetTrigger("Locked");
+
         for (int i = 0; i < shootPos.Length; ++i)
-            Instantiate(bullet, shootPos[i].position, transform.rotation);
+        {
+            Instantiate(bullet, shootPos[i].position, shootPos[i].rotation);
+        }
+        ++timesShot;
 
         yield return new WaitForSeconds(shootRate);
         agent.speed = agentSpeedOrig;
@@ -155,5 +195,15 @@ public class BossEnemy : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
             playerInRange = false;
+    }
+
+    public void MeleeOn()
+    {
+        Sword.SetActive(true);
+    }
+
+    public void MeleeOff()
+    {
+        Sword.SetActive(false);
     }
 }
