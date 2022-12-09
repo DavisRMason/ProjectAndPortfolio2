@@ -122,9 +122,9 @@ public class gameManager : MonoBehaviour
 
         timerFill.fillAmount = (float)currTime / (float)maxTime;
 
-        if (currTime <= (maxTime * .5))
+        if (currTime <= (maxTime * .25))
         {
-            timerFill.color = Color.Lerp(timerFill.color, Color.red, (.1f * Time.deltaTime));
+            timerFill.color = Color.Lerp(timerFill.color, Color.red, (.5f * Time.deltaTime));
             
         }
 
