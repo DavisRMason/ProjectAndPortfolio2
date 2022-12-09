@@ -387,6 +387,7 @@ public class playerController : MonoBehaviour
      void updatePlayerHBar()
     {
         gameManager.instance.HPBar.fillAmount = (float)healthPoints / (float)hpOrig;
+       // gameManager.instance.DamageBar.fillAmount = Mathf.Lerp(gameManager.instance.HPBar.fillAmount, (float)healthPoints, Time.deltaTime * 3);
         if (healthPoints < hpOrig * 0.6 && healthPoints > hpOrig *0.3 )
         {
             gameManager.instance.HPBar.color = Color.yellow;
