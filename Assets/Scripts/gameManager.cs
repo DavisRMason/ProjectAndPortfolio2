@@ -21,6 +21,7 @@ public class gameManager : MonoBehaviour
     public GameObject playerDamageScreen;
     [Header("---meters---")]
     public Image HPBar;
+    public Image DamageBar;
     public Image DashBar;
     public TextMeshProUGUI enemiesLeft;
     [Header("---timer---")]
@@ -45,7 +46,7 @@ public class gameManager : MonoBehaviour
 
         currTime = maxTime;
     }
-   
+
     void Update()
     {
         if (Input.GetButtonDown("Cancel") && !playerDeadMenu.activeSelf && !winMenu.activeSelf)
@@ -116,16 +117,23 @@ public class gameManager : MonoBehaviour
 
     public void updateTimer()
     {
-
-        currTime -= 1 * Time.deltaTime;
-        digTimer.text = currTime.ToString("000");
+        float flashSpeed;
+        currTime -= Time.deltaTime;
+        if (currTime < 10)
+        {
+            digTimer.text = currTime.ToString("0.00");
+        }
+        else
+        {
+            digTimer.text = currTime.ToString("0");
+        }
 
         timerFill.fillAmount = (float)currTime / (float)maxTime;
-
         if (currTime <= (maxTime * .25))
         {
-            timerFill.color = Color.Lerp(timerFill.color, Color.red, (.5f * Time.deltaTime));
-            
+            flashSpeed = (float)(maxTime / currTime);
+
+            timerFill.color = Color.Lerp(Color.white, Color.red, Mathf.Cos(Time.time * flashSpeed));
         }
 
         if (currTime <= 0)
