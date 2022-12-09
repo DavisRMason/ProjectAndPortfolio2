@@ -54,8 +54,6 @@ public class playerController : MonoBehaviour
     //[Range(0, 1)][SerializeField] float hurtAudioVolume;
     [SerializeField] public List <AudioClip> shootAudioClip = new List<AudioClip>();
     [SerializeField] AudioClip dashAudioClip;
-    [SerializeField] AudioClip walkAudioClip;
-    [SerializeField] AudioClip wallRunAudioClip;
     //[Range(0, 1)][SerializeField] public float shootAudioVolume;
 
     [Header("For Demonstration")]
@@ -287,7 +285,7 @@ public class playerController : MonoBehaviour
                     gravityValue = 1;
                     onWall = true;
                 }
-
+                wallRunning = true;
                 playerVelocity.y = 0;
 
                 move = transform.forward * (Input.GetAxis("Vertical") + 1);
@@ -299,6 +297,7 @@ public class playerController : MonoBehaviour
         {
             ResetGravity();
             onWall = false;
+            wallRunning= false;
         }
     }
 
