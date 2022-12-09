@@ -135,6 +135,7 @@ public class BossEnemy : MonoBehaviour, IDamage
         {
             aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)]);
             gameManager.instance.updateEnemyNumber();
+            anim.SetBool("Dead", true);
             agent.enabled = false;
             UI.SetActive(false);
             GetComponent<Collider>().enabled = false;
