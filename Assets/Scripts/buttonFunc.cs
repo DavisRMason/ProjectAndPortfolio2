@@ -58,6 +58,7 @@ public class buttonFunc : MonoBehaviour
     public void startGame()
     {
         SceneManager.LoadScene("CumulativeScene");
+        gameManager.instance.unPause();
     }
 
 }
