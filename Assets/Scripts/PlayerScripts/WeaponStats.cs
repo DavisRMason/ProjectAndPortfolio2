@@ -16,4 +16,5 @@ public class WeaponStats : ScriptableObject
     public List <AudioClip> weaponSound = new List<AudioClip>();
     public Shoot shootScript;
     public AudioClip attackSound;
+    public int currentWeapon;
 }

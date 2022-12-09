@@ -90,6 +90,7 @@ public class playerController : MonoBehaviour
     public bool spearMove;
     public bool chargeCool;
     bool rButtonUp = true;
+    public int currentWeapon;
 
     //DMason: adding player health functionallity
     //Health Stuff
@@ -430,6 +431,8 @@ public class playerController : MonoBehaviour
         shootAudioClip = weaponFunc.weaponStats.weaponSound;
         hitEffect = weaponFunc.weaponStats.hitEffect;
         hitEffectTwo = weaponFunc.weaponStats.muzzleFlash;
+
+        currentWeapon = weaponFunc.weaponStats.currentWeapon;
 
         weaponModel.transform.localScale = weaponFunc.weaponStats.weaponModel.transform.localScale;
     }
