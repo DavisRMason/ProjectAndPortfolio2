@@ -45,7 +45,7 @@ public class gameManager : MonoBehaviour
 
         currTime = maxTime;
     }
-   
+
     void Update()
     {
         if (Input.GetButtonDown("Cancel") && !playerDeadMenu.activeSelf && !winMenu.activeSelf)
@@ -116,11 +116,11 @@ public class gameManager : MonoBehaviour
 
     public void updateTimer()
     {
-
+        float flashSpeed;
         currTime -= Time.deltaTime;
         if (currTime < 10)
         {
-        digTimer.text = currTime.ToString("0.00");
+            digTimer.text = currTime.ToString("0.00");
         }
         else
         {
@@ -128,9 +128,11 @@ public class gameManager : MonoBehaviour
         }
 
         timerFill.fillAmount = (float)currTime / (float)maxTime;
-        if (currTime <= (maxTime * .75))
+        if (currTime <= (maxTime * .25))
         {
-            timerFill.color = Color.Lerp(Color.white, Color.red, Mathf.Cos(Time.time * 2));
+            flashSpeed = (float)(maxTime / currTime);
+
+            timerFill.color = Color.Lerp(Color.white, Color.red, Mathf.Cos(Time.time * flashSpeed));
         }
 
         if (currTime <= 0)
