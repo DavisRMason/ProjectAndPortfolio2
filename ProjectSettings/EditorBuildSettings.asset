@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Niflheim.unity
     guid: 5c264cf79ddd2cc48b0d81e2b12722e9
+  - enabled: 1
+    path: "Assets/Scenes/\xC1lfheim.unity"
+    guid: 95410f0702b21c1478ce556a278fafba
   m_configObjects: {}
