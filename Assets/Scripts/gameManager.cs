@@ -117,15 +117,20 @@ public class gameManager : MonoBehaviour
     public void updateTimer()
     {
 
-        currTime -= 1 * Time.deltaTime;
-        digTimer.text = currTime.ToString("000");
+        currTime -= Time.deltaTime;
+        if (currTime < 10)
+        {
+        digTimer.text = currTime.ToString("0.00");
+        }
+        else
+        {
+            digTimer.text = currTime.ToString("0");
+        }
 
         timerFill.fillAmount = (float)currTime / (float)maxTime;
-
-        if (currTime <= (maxTime * .25))
+        if (currTime <= (maxTime * .75))
         {
-            timerFill.color = Color.Lerp(timerFill.color, Color.red, (.5f * Time.deltaTime));
-            
+            timerFill.color = Color.Lerp(Color.white, Color.red, Mathf.Cos(Time.time * 2));
         }
 
         if (currTime <= 0)
