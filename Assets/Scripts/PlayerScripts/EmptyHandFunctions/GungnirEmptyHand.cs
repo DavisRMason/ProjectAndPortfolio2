@@ -15,12 +15,12 @@ public class GungnirEmptyHand : EmptyHand
 
             Destroy(GameObject.FindGameObjectWithTag("PlayerWeapon"));
         }
-        //else if (GameObject.FindGameObjectWithTag("ThrownWeapon") != null)
-        //{
-        //    gameManager.instance.playerScript.weaponHave = true;
-        //    gameManager.instance.playerScript.changeWeapons();
-        //    Destroy(GameObject.FindGameObjectWithTag("ThrownWeapon"));
-        //}
+        else if (GameObject.FindGameObjectWithTag("ThrownWeapon") != null)
+        {
+            gameManager.instance.playerScript.weaponHave = true;
+            gameManager.instance.playerScript.changeWeapons();
+            Destroy(GameObject.FindGameObjectWithTag("ThrownWeapon"));
+        }
     }
 
     public override void RightClick()

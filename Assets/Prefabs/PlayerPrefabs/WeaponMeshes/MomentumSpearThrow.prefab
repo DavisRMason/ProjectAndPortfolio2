@@ -225,7 +225,7 @@ MonoBehaviour:
   rb: {fileID: 7086817545972876093}
   spear: {fileID: 2039421191796501793, guid: 71aea8a9f8c1ad7499beda0403488346, type: 3}
   attackPos: {fileID: 4637202955788992503}
-  effect: {fileID: 5424713832124130526, guid: f9e5a83228d3a4b4a9e2319f6484b60a, type: 3}
+  effect: {fileID: 1815469655429636405, guid: e78c74796e294ae4dac0ba33b8add2da, type: 3}
   lowestValue: 0
   spearAudioSource: {fileID: -2519449902190484280}
   spearAudioClip: {fileID: 8300000, guid: 56703418e3aed4c47a5f6622816b8e41, type: 3}
@@ -258,8 +258,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45dcf76d36ab82349a221a46662e5633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  effect: {fileID: 0}
-  aud: {fileID: 0}
+  effect: {fileID: 1815469655429636406, guid: e78c74796e294ae4dac0ba33b8add2da, type: 3}
+  aud: {fileID: 8300000, guid: e13325721879ad0418b4ddbcb65409e8, type: 3}
 --- !u!136 &580094197168347537
 CapsuleCollider:
   m_ObjectHideFlags: 0
