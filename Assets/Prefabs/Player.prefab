@@ -207,7 +207,7 @@ MonoBehaviour:
   shootAudioClip:
   - {fileID: 0}
   dashAudioClip: {fileID: 8300000, guid: 7c93ebc421e8ad74891a9c54c9dd2ae7, type: 3}
-  walkAudioClip: {fileID: 0}
+  walkAudioClip: {fileID: 8300000, guid: e795f509382b95540b20ff618cd98927, type: 3}
   wallRunAudioClip: {fileID: 0}
   weapons:
   - {fileID: 11400000, guid: 83adc6bad65b7f844a36e1600aaba3d3, type: 2}
@@ -223,6 +223,7 @@ MonoBehaviour:
   weaponFlyDist: 0
   spearMove: 0
   chargeCool: 0
+  currentWeapon: 0
   hpBar: {fileID: 0}
   healthBar: {fileID: 0}
 --- !u!33 &6332312677548483172

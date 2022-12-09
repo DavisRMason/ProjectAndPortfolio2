@@ -21,6 +21,7 @@ public class gameManager : MonoBehaviour
     public GameObject playerDamageScreen;
     [Header("---meters---")]
     public Image HPBar;
+    public Image DamageBar;
     public Image DashBar;
     public TextMeshProUGUI enemiesLeft;
     [Header("---timer---")]
