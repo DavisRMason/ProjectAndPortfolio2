@@ -95,6 +95,7 @@ public class gameManager : MonoBehaviour
     public void updateEnemyNumber()
     {
         updateUIEnemyCount(-1);
+        currTime += 4;
 
         if (enemiesToKill <= 0)
         {
