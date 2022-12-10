@@ -6122,13 +6122,12 @@ MonoBehaviour:
   UI: {fileID: 5847559165940054755}
   HPBar: {fileID: 5847559165764932714}
   aud: {fileID: 4437056976366031890}
-  HP: 200
+  HP: 3000
   playerBaseSpeed: 10
   sightDist: 50
   sightAngle: 180
   headPos: {fileID: 803090879003036740}
   bullet: {fileID: 2730952232407839821, guid: ae83b2a8af47f3942a464f8e1e2ed743, type: 3}
-  hitEffect: {fileID: 1297937073129364672, guid: 69418da21aaf4054dab4d022a61e1bd3, type: 3}
   shootPos:
   - {fileID: 5847559165856638087}
   - {fileID: 5847559165259873265}
