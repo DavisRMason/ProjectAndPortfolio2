@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Scenes/\xC1lfheim.unity"
     guid: 95410f0702b21c1478ce556a278fafba
+  - enabled: 1
+    path: Assets/Scenes/Muspelheim.unity
+    guid: 62fd16657e421d54e8973a20b7daec5f
   m_configObjects: {}
