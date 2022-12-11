@@ -3678,7 +3678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589238851e008864b9425dc729a43a19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: Migard
+  sceneName: Midgard
 --- !u!1 &1192462917
 GameObject:
   m_ObjectHideFlags: 0
