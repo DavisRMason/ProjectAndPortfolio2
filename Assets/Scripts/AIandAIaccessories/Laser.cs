@@ -1,21 +1,15 @@
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 
-public class Explosion : MonoBehaviour
+public class Laser : MonoBehaviour
 {
     [Header("-----Explosion Stats-----")]
     [SerializeField] int damage;
     [SerializeField] int timer;
-    [SerializeField] int expandSpeed;
 
     void Start()
     {
         Destroy(gameObject, timer);
-    }
-
-    void Update()
-    {
-        transform.localScale = transform.localScale + (new Vector3(expandSpeed, expandSpeed, expandSpeed) * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
