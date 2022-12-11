@@ -456,6 +456,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 957194116, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.23137255
+      objectReference: {fileID: 0}
+    - target: {fileID: 957194116, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.81209564
+      objectReference: {fileID: 0}
+    - target: {fileID: 957194116, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.8784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 957194116, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4282109920
+      objectReference: {fileID: 0}
     - target: {fileID: 6014251127044030904, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
       propertyPath: m_Name
       value: UI
