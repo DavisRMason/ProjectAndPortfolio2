@@ -26,7 +26,6 @@ public class ChargedShotEnemy : MonoBehaviour, IDamage
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject hitEffect;
     [SerializeField] Transform shootPos;
-    [SerializeField] float shootRate;
     [SerializeField] float chargeTime;
 
     [Header("----- Audio -----")]
@@ -94,7 +93,7 @@ public class ChargedShotEnemy : MonoBehaviour, IDamage
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
                 //if (agent.remainingDistance < agent.stoppingDistance)
-                    FacePlayer();
+                FacePlayer();
 
                 if (!isShooting && playerInRange)
                     ChargedShot();
@@ -156,13 +155,19 @@ public class ChargedShotEnemy : MonoBehaviour, IDamage
     void ChargedShot()
     {
         aud.PlayOneShot(chargeSound);
-        FacePlayer();
-        if (playerInRange)
-            charging = true;
+        charging = true;
         if (charging)
+        {
             chargingTime += Time.deltaTime;
+            FacePlayer();
+        }
         if (chargingTime >= chargeTime)
+        {
             StartCoroutine(Shoot());
+            playerInRange = false;
+            charging = false;
+            chargeTime = 0;
+        }
     }
 
     IEnumerator FlashDamage()
@@ -183,7 +188,7 @@ public class ChargedShotEnemy : MonoBehaviour, IDamage
         Instantiate(hitEffect, shootPos.position, hitEffect.transform.rotation);
         Instantiate(bullet, shootPos.position, transform.rotation);
 
-        yield return new WaitForSeconds(shootRate);
+        yield return new WaitForSeconds(chargeTime);
         agent.speed = agentSpeedOrig;
         isShooting = false;
     }
@@ -212,11 +217,5 @@ public class ChargedShotEnemy : MonoBehaviour, IDamage
     {
         if (other.CompareTag("Player"))
             playerInRange = true;
-    }
-
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-            playerInRange = false;
     }
 }

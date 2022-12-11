@@ -162,7 +162,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '+4
+  m_text: '+4s
 
 
 '
@@ -1001,9 +1001,9 @@ GameObject:
   - component: {fileID: 2765917380101713703}
   - component: {fileID: 2765917380101713700}
   - component: {fileID: 2765917380101713701}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Charged Shot Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1060,8 +1060,7 @@ MonoBehaviour:
   bullet: {fileID: 7477582710434310770, guid: 7c313484d4d5a114bb760c21e392b26b, type: 3}
   hitEffect: {fileID: 8856629437242833163, guid: fca4c80c52330524cbd4309c118af89c, type: 3}
   shootPos: {fileID: 2765917380111271622}
-  shootRate: 3
-  chargeTime: 3
+  chargeTime: 5
   audShoot:
   - {fileID: 8300000, guid: 1eb7cbaf61d23a64bbd36c0a38b5cb0c, type: 3}
   - {fileID: 8300000, guid: c91fcf414acc0344cb03b13996f1bf3b, type: 3}
