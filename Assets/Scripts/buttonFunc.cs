@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class buttonFunc : MonoBehaviour
 {
+
+    [SerializeField] string sceneName;
     public void resume()
     {
         gameManager.instance.unPause();
@@ -39,11 +41,20 @@ public class buttonFunc : MonoBehaviour
 
     public void LevelSelect()
     {
+        gameManager.instance.pauseMenu.SetActive(false);
+        gameManager.instance.lvlSelectMenu.SetActive(true);
+    }
 
+    public void chooseLevel()
+    {
+        SceneManager.LoadScene(sceneName);
+        resume();
     }
 
     public void back()
     {
+        //introduces minor bug of returning to game from level select
+        gameManager.instance.lvlSelectMenu.SetActive(false);
         gameManager.instance.optionsMenu.SetActive(false);
         gameManager.instance.pauseMenu.SetActive(true);
     }
