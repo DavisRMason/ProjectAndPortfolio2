@@ -24,6 +24,7 @@ public class gameManager : MonoBehaviour
     public Image DamageBar;
     public Image DashBar;
     public TextMeshProUGUI enemiesLeft;
+    public TextMeshProUGUI TotalScore;
     [Header("---timer---")]
     public TextMeshProUGUI digTimer;
     [SerializeField] float maxTime = 1000f;
@@ -31,6 +32,7 @@ public class gameManager : MonoBehaviour
     [Header("--TBS--")]
 
     public int enemiesToKill;
+    public int Score;
     float currTime = 0f;
 
     public GameObject spawnPos;
@@ -108,6 +110,12 @@ public class gameManager : MonoBehaviour
         enemiesToKill += amount;
         enemiesLeft.text = enemiesToKill.ToString("F0");  //0 - 0 float (therefore an int), 1 - float...
 
+    }
+
+    public void updateScore(int points)
+    {
+        Score += points;
+        TotalScore.text = Score.ToString("F0");
     }
 
     public void resetTimer()
