@@ -33,7 +33,7 @@ public class gameManager : MonoBehaviour
 
     public int enemiesToKill;
     public int Score;
-    float currTime = 0f;
+    public float currTime = 0f;
 
     public GameObject spawnPos;
 
