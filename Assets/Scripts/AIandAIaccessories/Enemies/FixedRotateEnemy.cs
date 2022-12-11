@@ -115,6 +115,7 @@ public class FixedRotateEnemy : MonoBehaviour, IDamage
             anim.SetBool("Dead", true);
             agent.enabled = false;
             UI.SetActive(false);
+            gameManager.instance.updateScore(100);
             GetComponent<Collider>().enabled = false;
             StartCoroutine(MegaDeath());
         }

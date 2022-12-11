@@ -117,6 +117,7 @@ public class SirenEnemy : MonoBehaviour, IDamage
             anim.SetBool("Dead", true);
             agent.enabled = false;
             UI.SetActive(false);
+            gameManager.instance.updateScore(200);
             GetComponent<Collider>().enabled = false;
             ParticleSystem.MainModule particle = GetComponentInChildren<ParticleSystem>().main;
             particle.loop = false;

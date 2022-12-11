@@ -122,6 +122,7 @@ public class AOEEnemy : MonoBehaviour, IDamage
             UI.SetActive(false);
             ParticleSystem.MainModule particle = GetComponentInChildren<ParticleSystem>().main;
             particle.loop = false;
+            gameManager.instance.updateScore(700);
             GetComponent<Collider>().enabled = false;
             StartCoroutine(MegaDeath());
         }

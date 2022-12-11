@@ -129,6 +129,7 @@ public class ChargedShotEnemy : MonoBehaviour, IDamage
             anim.SetBool("Dead", true);
             agent.enabled = false;
             UI.SetActive(false);
+            gameManager.instance.updateScore(400);
             GetComponent<Collider>().enabled = false;
             StartCoroutine(MegaDeath());
         }

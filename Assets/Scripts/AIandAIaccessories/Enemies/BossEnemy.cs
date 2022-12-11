@@ -139,6 +139,7 @@ public class BossEnemy : MonoBehaviour, IDamage
             anim.SetBool("Dead", true);
             agent.enabled = false;
             UI.SetActive(false);
+            gameManager.instance.updateScore(1000);
             GetComponent<Collider>().enabled = false;
             StartCoroutine(MegaDeath());
         }
