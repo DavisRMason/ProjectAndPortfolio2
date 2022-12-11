@@ -118,6 +118,8 @@ public class gameManager : MonoBehaviour
         TotalScore.text = Score.ToString("F0");
     }
 
+    #region TimerCode
+
     public void resetTimer()
     {
         currTime = maxTime;
@@ -151,4 +153,14 @@ public class gameManager : MonoBehaviour
             gameManager.instance.pause();
         }
     }
+
+    public void setTimer(float t)
+    {
+        currTime = t;
+    }
+    public float getTimer()
+    {
+        return currTime;
+    }
+    #endregion
 }

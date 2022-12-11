@@ -37,6 +37,11 @@ public class buttonFunc : MonoBehaviour
         gameManager.instance.optionsMenu.SetActive(true);
     }
 
+    public void LevelSelect()
+    {
+
+    }
+
     public void back()
     {
         gameManager.instance.optionsMenu.SetActive(false);
