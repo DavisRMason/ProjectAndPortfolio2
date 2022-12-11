@@ -28,7 +28,6 @@ public class playerController : MonoBehaviour
     [SerializeField] int dashWait;
     [SerializeField] int dashCooldown;
     [SerializeField] bool isDashing;
-    [Range(1.5f, 5)][SerializeField] float sprintMod;
     [Range(0, 20)][SerializeField] float jumpHeight;
     [Range(0, 40)][SerializeField] float gravityValue;
     [Range(1, 3)][SerializeField] int jumpMax;
@@ -122,7 +121,6 @@ public class playerController : MonoBehaviour
     void Update()
     {
         movement();
-        sprint();
         WallJump();
         WallRun();
         WeaponChanger();
@@ -221,7 +219,7 @@ public class playerController : MonoBehaviour
         }
         else
         {
-            controller.Move(move * Time.deltaTime * playerSpeed);
+                controller.Move(move * Time.deltaTime * playerSpeed);
         }
 
         if (Input.GetButtonDown("Jump") && jumpTimes < jumpMax)
@@ -305,20 +303,6 @@ public class playerController : MonoBehaviour
     {
         onWall = false;
         gravityValue = gravityValueOrig;
-    }
-
-    void sprint()
-    {
-        if (Input.GetButtonDown("Sprint"))
-        {
-            playerSpeed *= sprintMod;
-            isSprinting = true;
-        }
-        else if (Input.GetButtonUp("Sprint") && isSprinting)
-        {
-            playerSpeed /= sprintMod;
-            isSprinting = false;
-        }
     }
 
     IEnumerator Dash()

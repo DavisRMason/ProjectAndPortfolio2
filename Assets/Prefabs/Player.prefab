@@ -170,14 +170,13 @@ MonoBehaviour:
   playerCollider: {fileID: 6332312677548483174}
   aud: {fileID: 246757356}
   healthPoints: 30
-  playerSpeed: 20
+  playerSpeed: 50
   dashMod: 7
   dashTime: 0.1
   dashCount: 3
   dashWait: 0
   dashCooldown: 7
   isDashing: 0
-  sprintMod: 2.5
   jumpHeight: 20
   gravityValue: 30
   jumpMax: 2
@@ -207,8 +206,6 @@ MonoBehaviour:
   shootAudioClip:
   - {fileID: 0}
   dashAudioClip: {fileID: 8300000, guid: 7c93ebc421e8ad74891a9c54c9dd2ae7, type: 3}
-  walkAudioClip: {fileID: 8300000, guid: e795f509382b95540b20ff618cd98927, type: 3}
-  wallRunAudioClip: {fileID: 0}
   weapons:
   - {fileID: 11400000, guid: 83adc6bad65b7f844a36e1600aaba3d3, type: 2}
   - {fileID: 11400000, guid: e0fe7a9683ed9bd48b669049f8e040ed, type: 2}
