@@ -71,6 +71,12 @@ public class gameManager : MonoBehaviour
         updateTimer();
 
     }
+
+    public void addTimerToScore()
+    {
+        updateScore((int)gameManager.instance.currTime * 100);
+    }
+
     public void pause()
     {
         Time.timeScale = 0;
@@ -102,6 +108,7 @@ public class gameManager : MonoBehaviour
 
         if (enemiesToKill <= 0)
         {
+            addTimerToScore();
             youWin();
         }
     }

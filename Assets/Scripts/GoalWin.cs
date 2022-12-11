@@ -8,7 +8,7 @@ public class GoalWin : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            gameManager.instance.updateScore((int)gameManager.instance.currTime * 100);
+            gameManager.instance.addTimerToScore();
 
             gameManager.instance.youWin();
         }
