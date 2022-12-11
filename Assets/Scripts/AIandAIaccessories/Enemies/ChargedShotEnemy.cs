@@ -154,19 +154,20 @@ public class ChargedShotEnemy : MonoBehaviour, IDamage
 
     void ChargedShot()
     {
-        aud.PlayOneShot(chargeSound);
         charging = true;
         if (charging)
         {
             chargingTime += Time.deltaTime;
             FacePlayer();
         }
+        if (chargingTime >= 0.0015)
+            aud.PlayOneShot(chargeSound);
         if (chargingTime >= chargeTime)
         {
             StartCoroutine(Shoot());
             playerInRange = false;
             charging = false;
-            chargeTime = 0;
+            chargingTime = 0;
         }
     }
 
@@ -184,6 +185,7 @@ public class ChargedShotEnemy : MonoBehaviour, IDamage
 
         anim.SetTrigger("Shoot");
 
+        aud.priority = 1;
         aud.PlayOneShot(audShoot[Random.Range(0, audShoot.Length)]);
         Instantiate(hitEffect, shootPos.position, hitEffect.transform.rotation);
         Instantiate(bullet, shootPos.position, transform.rotation);

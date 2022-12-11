@@ -1017,7 +1017,7 @@ Transform:
   m_GameObject: {fileID: 2765917380111085446}
   m_LocalRotation: {x: 0, y: -0.28635725, z: 0, w: 0.95812297}
   m_LocalPosition: {x: -1.585886, y: -0, z: -49.88451}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.66412, y: 0.66412, z: 0.66412}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2765917380111275154}
@@ -1060,7 +1060,7 @@ MonoBehaviour:
   bullet: {fileID: 7477582710434310770, guid: 7c313484d4d5a114bb760c21e392b26b, type: 3}
   hitEffect: {fileID: 8856629437242833163, guid: fca4c80c52330524cbd4309c118af89c, type: 3}
   shootPos: {fileID: 2765917380111271622}
-  chargeTime: 5
+  chargeTime: 3
   audShoot:
   - {fileID: 8300000, guid: 1eb7cbaf61d23a64bbd36c0a38b5cb0c, type: 3}
   - {fileID: 8300000, guid: c91fcf414acc0344cb03b13996f1bf3b, type: 3}

@@ -22,6 +22,7 @@ public class BossEnemy : MonoBehaviour, IDamage
 
     [Header("-----Gun Stats-----")]
     [SerializeField] GameObject bullet;
+    [SerializeField] GameObject hitEffect;
     [SerializeField] Transform[] shootPos;
     [SerializeField] float shootRate;
 
@@ -172,6 +173,7 @@ public class BossEnemy : MonoBehaviour, IDamage
         for (int i = 0; i < shootPos.Length; ++i)
         {
             Instantiate(bullet, shootPos[i].position, shootPos[i].rotation);
+            Instantiate(hitEffect, shootPos[i].position, hitEffect.transform.rotation);
             aud.PlayOneShot(audShoot[Random.Range(0, audShoot.Length)]);
         }
         ++timesShot;
