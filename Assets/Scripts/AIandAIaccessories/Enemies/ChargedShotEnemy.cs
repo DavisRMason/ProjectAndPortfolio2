@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class SirenEnemy : MonoBehaviour, IDamage
+public class ChargedShotEnemy : MonoBehaviour, IDamage
 {
     [Header("-----Components-----")]
     [SerializeField] Renderer model;
@@ -22,22 +22,30 @@ public class SirenEnemy : MonoBehaviour, IDamage
     [SerializeField] float funnyWait;
     [SerializeField] GameObject headPos;
 
-    [Header("-----Angle Flip-----")]
-    [SerializeField] int flipIt;
+    [Header("-----Gun Stats-----")]
+    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject hitEffect;
+    [SerializeField] Transform shootPos;
+    [SerializeField] float shootRate;
+    [SerializeField] float chargeTime;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip[] audShoot;
     [SerializeField] AudioClip[] audDeath;
+    [SerializeField] AudioClip chargeSound;
 
     [Header("----- Alt -----")]
     [SerializeField] bool SpawnerAlt;
 
-    bool isDead;
+    bool isShooting;
     bool playerInRange;
+    bool charging;
     Vector3 playerDirection;
     float angleToPlayer;
     float stoppingDistOrig;
+    float agentSpeedOrig;
     float idleTime = 0;
+    float chargingTime;
     int hpOrig;
 
 
@@ -47,7 +55,9 @@ public class SirenEnemy : MonoBehaviour, IDamage
         {
             gameManager.instance.updateUIEnemyCount(1);
         }
+
         hpOrig = HP;
+        agentSpeedOrig = agent.speed;
         stoppingDistOrig = agent.stoppingDistance;
         UpdateHPBar();
     }
@@ -83,7 +93,11 @@ public class SirenEnemy : MonoBehaviour, IDamage
                 agent.stoppingDistance = stoppingDistOrig;
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
-                FacePlayer();
+                //if (agent.remainingDistance < agent.stoppingDistance)
+                    FacePlayer();
+
+                if (!isShooting && playerInRange)
+                    ChargedShot();
             }
         }
     }
@@ -110,7 +124,6 @@ public class SirenEnemy : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            isDead = true;
             StartCoroutine(FlashTimeAdded());
             aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)]);
             gameManager.instance.updateEnemyNumber();
@@ -118,8 +131,6 @@ public class SirenEnemy : MonoBehaviour, IDamage
             agent.enabled = false;
             UI.SetActive(false);
             GetComponent<Collider>().enabled = false;
-            ParticleSystem.MainModule particle = GetComponentInChildren<ParticleSystem>().main;
-            particle.loop = false;
             StartCoroutine(MegaDeath());
         }
     }
@@ -138,8 +149,20 @@ public class SirenEnemy : MonoBehaviour, IDamage
         if (idleTime >= funnyWait)
         {
             anim.SetTrigger("Taunt");
-            idleTime= -2.6f;
+            idleTime = -2.6f;
         }
+    }
+
+    void ChargedShot()
+    {
+        aud.PlayOneShot(chargeSound);
+        FacePlayer();
+        if (playerInRange)
+            charging = true;
+        if (charging)
+            chargingTime += Time.deltaTime;
+        if (chargingTime >= chargeTime)
+            StartCoroutine(Shoot());
     }
 
     IEnumerator FlashDamage()
@@ -147,6 +170,22 @@ public class SirenEnemy : MonoBehaviour, IDamage
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.3F);
         model.material.color = Color.white;
+    }
+
+    IEnumerator Shoot()
+    {
+        isShooting = true;
+        agent.speed = 0;
+
+        anim.SetTrigger("Shoot");
+
+        aud.PlayOneShot(audShoot[Random.Range(0, audShoot.Length)]);
+        Instantiate(hitEffect, shootPos.position, hitEffect.transform.rotation);
+        Instantiate(bullet, shootPos.position, transform.rotation);
+
+        yield return new WaitForSeconds(shootRate);
+        agent.speed = agentSpeedOrig;
+        isShooting = false;
     }
 
     IEnumerator FlashTimeAdded()
@@ -163,7 +202,6 @@ public class SirenEnemy : MonoBehaviour, IDamage
             UI.SetActive(false);
     }
 
-
     IEnumerator MegaDeath()
     {
         yield return new WaitForSeconds(60);
@@ -172,13 +210,8 @@ public class SirenEnemy : MonoBehaviour, IDamage
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !isDead)
-        {
+        if (other.CompareTag("Player"))
             playerInRange = true;
-            aud.PlayOneShot(audShoot[Random.Range(0, audShoot.Length)]);
-            anim.SetTrigger("Sing");
-            gameManager.instance.playerScript.transform.Rotate(0, flipIt, 0);
-        }
     }
 
     public void OnTriggerExit(Collider other)
