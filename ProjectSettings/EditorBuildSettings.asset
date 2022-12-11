@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Hel.unity
     guid: e2b20c451aa0b7847a5aac4c25706ba8
+  - enabled: 1
+    path: "Assets/Scenes/J\xF6tunheimr.unity"
+    guid: f9f566404987832488da022c3d4b5bc5
   m_configObjects: {}
