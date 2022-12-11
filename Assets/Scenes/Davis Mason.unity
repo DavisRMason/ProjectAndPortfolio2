@@ -456,22 +456,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1242859733, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.0996935
-      objectReference: {fileID: 0}
-    - target: {fileID: 2135485350818556, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
-      propertyPath: m_Color.b
-      value: 0.66180134
-      objectReference: {fileID: 0}
-    - target: {fileID: 2135485350818556, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
-      propertyPath: m_Color.g
-      value: 0.75207675
-      objectReference: {fileID: 0}
-    - target: {fileID: 2135485350818556, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
-      propertyPath: m_Color.r
-      value: 0.8301887
-      objectReference: {fileID: 0}
     - target: {fileID: 6014251127044030904, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
       propertyPath: m_Name
       value: UI
@@ -559,30 +543,6 @@ PrefabInstance:
     - target: {fileID: 6014251127044030908, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6014251128539890640, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: d10033e511df5654287d83d04fe18a27, type: 3}
-    - target: {fileID: 6014251128539890640, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6014251128539890640, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6014251128539890640, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
-      propertyPath: m_Color.r
-      value: 0.77832055
-      objectReference: {fileID: 0}
-    - target: {fileID: 6014251128539890643, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6014251128539890643, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f470f08107d0be46a471e1b731f0daf, type: 3}
