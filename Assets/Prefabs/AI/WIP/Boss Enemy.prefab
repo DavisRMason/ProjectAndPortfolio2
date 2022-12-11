@@ -6122,7 +6122,7 @@ MonoBehaviour:
   UI: {fileID: 5847559165940054755}
   HPBar: {fileID: 5847559165764932714}
   aud: {fileID: 4437056976366031890}
-  HP: 3000
+  HP: 400
   playerBaseSpeed: 10
   sightDist: 50
   sightAngle: 180

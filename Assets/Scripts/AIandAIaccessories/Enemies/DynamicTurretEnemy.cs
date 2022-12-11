@@ -126,6 +126,7 @@ public class DynamicTurretEnemy : MonoBehaviour, IDamage
             anim.SetBool("Dead", true);
             agent.enabled = false;
             UI.SetActive(false);
+            gameManager.instance.updateScore(300);
             GetComponent<Collider>().enabled = false;
             StartCoroutine(MegaDeath());
         }
