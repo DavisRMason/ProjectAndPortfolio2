@@ -10,6 +10,7 @@ public class AOEEnemy : MonoBehaviour, IDamage
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator anim;
     [SerializeField] GameObject UI;
+    [SerializeField] GameObject UID;
     [SerializeField] Image HPBar;
     [SerializeField] AudioSource aud;
 
@@ -64,6 +65,9 @@ public class AOEEnemy : MonoBehaviour, IDamage
                 CanSeePlayer();
             }
         }
+
+        if (UID.activeInHierarchy)
+            UID.transform.position = UID.transform.position + (new Vector3(0, 3, 0) * Time.deltaTime);
     }
 
     void CanSeePlayer()
@@ -108,6 +112,7 @@ public class AOEEnemy : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
+            StartCoroutine(FlashTimeAdded());
             aud.PlayOneShot(audDeath[Random.Range(0, audDeath.Length)]);
             gameManager.instance.playerScript.playerSpeed = gameManager.instance.playerScript.playerOrigSpeed;
             isDead = true;
@@ -153,6 +158,13 @@ public class AOEEnemy : MonoBehaviour, IDamage
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.3F);
         model.material.color = Color.white;
+    }
+
+    IEnumerator FlashTimeAdded()
+    {
+        UID.SetActive(true);
+        yield return new WaitForSeconds(1.6f);
+        UID.SetActive(false);
     }
 
     IEnumerator DisableUI()
