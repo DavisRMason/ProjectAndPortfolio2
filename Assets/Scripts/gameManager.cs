@@ -24,6 +24,7 @@ public class gameManager : MonoBehaviour
     public Image DamageBar;
     public Image DashBar;
     public TextMeshProUGUI enemiesLeft;
+    public TextMeshProUGUI TotalScore;
     [Header("---timer---")]
     public TextMeshProUGUI digTimer;
     [SerializeField] float maxTime = 1000f;
@@ -31,7 +32,8 @@ public class gameManager : MonoBehaviour
     [Header("--TBS--")]
 
     public int enemiesToKill;
-    float currTime = 0f;
+    public int Score;
+    public float currTime = 0f;
 
     public GameObject spawnPos;
 
@@ -110,6 +112,14 @@ public class gameManager : MonoBehaviour
 
     }
 
+    public void updateScore(int points)
+    {
+        Score += points;
+        TotalScore.text = Score.ToString("F0");
+    }
+
+    #region TimerCode
+
     public void resetTimer()
     {
         currTime = maxTime;
@@ -143,4 +153,14 @@ public class gameManager : MonoBehaviour
             gameManager.instance.pause();
         }
     }
+
+    public void setTimer(float t)
+    {
+        currTime = t;
+    }
+    public float getTimer()
+    {
+        return currTime;
+    }
+    #endregion
 }
