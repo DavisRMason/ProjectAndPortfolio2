@@ -174,9 +174,9 @@ public class BossEnemy : MonoBehaviour, IDamage
         for (int i = 0; i < shootPos.Length; ++i)
         {
             Instantiate(bullet, shootPos[i].position, shootPos[i].rotation);
-            Instantiate(hitEffect, shootPos[i].position, hitEffect.transform.rotation);
             aud.PlayOneShot(audShoot[Random.Range(0, audShoot.Length)]);
         }
+            Instantiate(hitEffect, shootPos[shootPos.Length/2].position, hitEffect.transform.rotation);
         ++timesShot;
 
         yield return new WaitForSeconds(shootRate);
