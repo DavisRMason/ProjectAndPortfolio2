@@ -186,7 +186,6 @@ public class ChargedShotEnemy : MonoBehaviour, IDamage
 
         anim.SetTrigger("Shoot");
 
-        aud.priority = 1;
         aud.PlayOneShot(audShoot[Random.Range(0, audShoot.Length)]);
         Instantiate(hitEffect, shootPos.position, hitEffect.transform.rotation);
         Instantiate(bullet, shootPos.position, transform.rotation);
