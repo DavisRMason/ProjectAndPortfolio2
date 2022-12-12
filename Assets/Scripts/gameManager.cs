@@ -11,6 +11,8 @@ public class gameManager : MonoBehaviour
     [Header("-----Player Stuff-----")]
     public GameObject player;
     public playerController playerScript;
+    public GameObject weaponHolder;
+    public WeaponHolder weaponHolderScript;
 
     [Header("-----UI-----")]
     [Header("--menus--")]
@@ -46,6 +48,8 @@ public class gameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         spawnPos = GameObject.FindGameObjectWithTag("Spawn Pos");
+        weaponHolder = GameObject.FindGameObjectWithTag("WeaponHolder");
+        weaponHolderScript = weaponHolder.GetComponent<WeaponHolder>();
 
         currTime = maxTime;
     }

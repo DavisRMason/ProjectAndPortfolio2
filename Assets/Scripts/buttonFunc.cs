@@ -80,25 +80,30 @@ public class buttonFunc : MonoBehaviour
     public void switchTele()
     {
         gameManager.instance.playerScript.WeaponChanger(0);
+        gameManager.instance.weaponHolderScript.ChangeWeapon(gameManager.instance.playerScript.weaponFunc);
     }
 
     public void switchMomen()
     {
         gameManager.instance.playerScript.WeaponChanger(1);
+        gameManager.instance.weaponHolderScript.ChangeWeapon(gameManager.instance.playerScript.weaponFunc);
     }
 
     public void switchCharge()
     {
         gameManager.instance.playerScript.WeaponChanger(2);
+        gameManager.instance.weaponHolderScript.ChangeWeapon(gameManager.instance.playerScript.weaponFunc);
     }
 
     public void switchLong()
     {
         gameManager.instance.playerScript.WeaponChanger(3);
+        gameManager.instance.weaponHolderScript.ChangeWeapon(gameManager.instance.playerScript.weaponFunc);
     }
 
     public void switchGung()
     {
         gameManager.instance.playerScript.WeaponChanger(4);
+        gameManager.instance.weaponHolderScript.ChangeWeapon(gameManager.instance.playerScript.weaponFunc);
     }
 }

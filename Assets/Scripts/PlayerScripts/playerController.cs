@@ -44,7 +44,7 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject weaponModel;
     [SerializeField] GameObject hitEffect;
     [SerializeField] public GameObject hitEffectTwo;
-    [SerializeField] Weapon weaponFunc;
+    [SerializeField] public Weapon weaponFunc;
 
     [Header("----- Audio -----")]
     [SerializeField] List<AudioClip> jumpAudioClips = new List<AudioClip>();
@@ -114,6 +114,7 @@ public class playerController : MonoBehaviour
 
         weaponHave = true;
 
+        gameManager.instance.weaponHolderScript.DoThing();
         changeWeapons();
     }
 

@@ -11,6 +11,7 @@ TagManager:
   - Wall
   - ThrownWeapon
   - Floor
+  - WeaponHolder
   layers:
   - Default
   - TransparentFX
