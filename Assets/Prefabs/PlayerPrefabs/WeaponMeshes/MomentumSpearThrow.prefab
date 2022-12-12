@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 4690326605094141218}
   - component: {fileID: 580094197168347537}
   - component: {fileID: -2519449902190484280}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MomentumSpearThrow
   m_TagString: ThrownWeapon
   m_Icon: {fileID: 0}
@@ -283,7 +283,7 @@ AudioSource:
   m_GameObject: {fileID: 5064061764624016122}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 4764081369635280775, guid: f11337388da676444807ef045605a189, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -293,7 +293,7 @@ AudioSource:
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 5
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
@@ -345,7 +345,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.11111111
       inSlope: 0
       outSlope: 0
       tangentMode: 0

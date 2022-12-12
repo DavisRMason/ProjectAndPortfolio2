@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SpearTeleEmptyHand : EmptyHand
 {
+
+    [SerializeField] GameObject particle;
+
     public override void RightClick()
     {
         if (GameObject.FindGameObjectsWithTag("PlayerWeapon").Length == 1) 
@@ -22,6 +26,7 @@ public class SpearTeleEmptyHand : EmptyHand
     {
         if (GameObject.FindGameObjectsWithTag("PlayerWeapon").Length > 0)
         {
+            Instantiate(particle, GameObject.FindGameObjectWithTag("PlayerWeapon").transform.position, GameObject.FindGameObjectWithTag("PlayerWeapon").transform.rotation);
             Destroy(GameObject.FindGameObjectWithTag("PlayerWeapon"));
             gameManager.instance.playerScript.weaponHave = true;
             gameManager.instance.playerScript.changeWeapons();

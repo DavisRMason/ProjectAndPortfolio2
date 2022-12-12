@@ -20,7 +20,6 @@ public class WeaponPickup : MonoBehaviour
 
     private void OnDestroy()
     {
-        Instantiate(effect, gameObject.transform.position, gameObject.transform.rotation);
         gameManager.instance.playerScript.PlayEffect(aud);
     }
 }

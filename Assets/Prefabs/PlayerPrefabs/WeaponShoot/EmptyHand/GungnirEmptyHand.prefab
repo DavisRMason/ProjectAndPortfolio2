@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 3183055694361145024, guid: 4d669f57ac92b1946938027a50807469, type: 3}
+  Particle: {fileID: 1815469655429636406, guid: e78c74796e294ae4dac0ba33b8add2da, type: 3}

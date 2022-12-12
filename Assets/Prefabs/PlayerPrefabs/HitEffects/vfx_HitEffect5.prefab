@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 237513704313585157}
   - component: {fileID: 237513704313585159}
   - component: {fileID: 237513704313585158}
-  - component: {fileID: 3643439470336380675}
+  - component: {fileID: -6794086600028546020}
   m_Layer: 0
   m_Name: vfx_HitEffect5
   m_TagString: Untagged
@@ -45,7 +45,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 2
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -4872,7 +4872,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &3643439470336380675
+--- !u!114 &-6794086600028546020
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
