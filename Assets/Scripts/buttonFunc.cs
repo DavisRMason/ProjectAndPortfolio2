@@ -77,4 +77,28 @@ public class buttonFunc : MonoBehaviour
         gameManager.instance.unPause();
     }
 
+    public void switchTele()
+    {
+        gameManager.instance.playerScript.WeaponChanger(0);
+    }
+
+    public void switchMomen()
+    {
+        gameManager.instance.playerScript.WeaponChanger(1);
+    }
+
+    public void switchCharge()
+    {
+        gameManager.instance.playerScript.WeaponChanger(2);
+    }
+
+    public void switchLong()
+    {
+        gameManager.instance.playerScript.WeaponChanger(3);
+    }
+
+    public void switchGung()
+    {
+        gameManager.instance.playerScript.WeaponChanger(4);
+    }
 }

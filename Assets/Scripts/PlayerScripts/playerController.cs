@@ -123,7 +123,6 @@ public class playerController : MonoBehaviour
         movement();
         WallJump();
         WallRun();
-        WeaponChanger();
 
         //Dash
         if (dashCount > 0 && !isDashing && Input.GetButtonDown("Dash"))
@@ -505,32 +504,41 @@ public class playerController : MonoBehaviour
         aud.PlayOneShot(effect, Random.Range(0.5f, 1.0f));
     }
 
-    void WeaponChanger()
+    public void WeaponChanger(int choice)
     {
-        if(Input.GetKey(KeyCode.Alpha1))
+        if (GameObject.FindGameObjectWithTag("PlayerWeapon") != null)
         {
-            weaponFunc = weapons[0];
-            changeWeapons();
+            Destroy(GameObject.FindGameObjectWithTag("Playerweapon"));
         }
-        if (Input.GetKey(KeyCode.Alpha2))
+        else if (GameObject.FindGameObjectWithTag("ThrownWeapon") != null)
         {
-            weaponFunc = weapons[1];
-            changeWeapons();
+            Destroy(GameObject.FindGameObjectWithTag("ThrownWeapon"));
         }
-        if (Input.GetKey(KeyCode.Alpha3))
+
+        weaponHave = true;
+
+        switch (choice)
         {
-            weaponFunc = weapons[2];
-            changeWeapons();
-        }
-        if (Input.GetKey(KeyCode.Alpha4))
-        {
-            weaponFunc = weapons[3];
-            changeWeapons();
-        }
-        if(Input.GetKey(KeyCode.Alpha5))
-        {
-            weaponFunc = weapons[4];
-            changeWeapons();
+            case 0:
+                weaponFunc = weapons[0];
+                changeWeapons();
+                break;
+            case 1:
+                weaponFunc = weapons[1];
+                changeWeapons();
+                break ;
+            case 2:
+                weaponFunc = weapons[2];
+                changeWeapons();
+                break;
+            case 3:
+                weaponFunc = weapons[3];
+                changeWeapons();
+                break;
+            case 4:
+                weaponFunc = weapons[4];
+                changeWeapons();
+                break;
         }
     }
 
