@@ -31,5 +31,12 @@ public class SpearTeleEmptyHand : EmptyHand
             gameManager.instance.playerScript.weaponHave = true;
             gameManager.instance.playerScript.changeWeapons();
         }
+        else if (GameObject.FindGameObjectWithTag("ThrownWeapon") != null)
+        {
+            Instantiate(particle, GameObject.FindGameObjectWithTag("ThrownWeapon").transform.position, GameObject.FindGameObjectWithTag("ThrownWeapon").transform.rotation);
+            Destroy(GameObject.FindGameObjectWithTag("ThrownWeapon"));
+            gameManager.instance.playerScript.weaponHave = true;
+            gameManager.instance.playerScript.changeWeapons();
+        }
     }
 }
