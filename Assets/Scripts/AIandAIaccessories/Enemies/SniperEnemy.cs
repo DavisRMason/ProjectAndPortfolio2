@@ -92,9 +92,9 @@ public class SniperEnemy : MonoBehaviour, IDamage
                 agent.SetDestination(gameManager.instance.player.transform.position);
 
                 //if (agent.remainingDistance < agent.stoppingDistance)
-                    FacePlayer();
+                FacePlayer();
 
-                if (!isShooting  && playerInRange)
+                if (!isShooting && playerInRange)
                     StartCoroutine(Shoot());
             }
         }
@@ -200,7 +200,8 @@ public class SniperEnemy : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
-            line.enabled = true;
+            if (agent.isActiveAndEnabled)
+                line.enabled = true;
         }
     }
 
