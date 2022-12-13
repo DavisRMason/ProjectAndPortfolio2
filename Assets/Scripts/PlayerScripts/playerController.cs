@@ -345,6 +345,7 @@ public class playerController : MonoBehaviour
     {
         controller.enabled = false;
 
+        newPos.y += 1;
         gameObject.transform.position = newPos;
 
         controller.enabled = true;
