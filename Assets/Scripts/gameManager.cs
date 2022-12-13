@@ -32,11 +32,13 @@ public class gameManager : MonoBehaviour
     public TextMeshProUGUI digTimer;
     [SerializeField] float maxTime = 1000f;
     public Image timerFill;
+    public float currTime = 0f;
     [Header("--TBS--")]
 
     public int enemiesToKill;
     public int Score;
-    public float currTime = 0f;
+
+    public bool isHub;
 
     public GameObject spawnPos;
 
@@ -52,6 +54,7 @@ public class gameManager : MonoBehaviour
         weaponHolderScript = weaponHolder.GetComponent<WeaponHolder>();
 
         currTime = maxTime;
+
     }
 
     void Update()
@@ -72,7 +75,10 @@ public class gameManager : MonoBehaviour
             }
         }
 
+        if (isHub == false)
+        {
         updateTimer();
+        }
 
     }
 
