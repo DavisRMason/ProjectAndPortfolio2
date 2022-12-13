@@ -68,6 +68,8 @@ public class playerController : MonoBehaviour
     int jumpTimes;
     bool jumpKeyHeld;
     float gravityValueOrig;
+    //Please fucking work variable
+    bool isDead;
     //I touch
     public float playerOrigSpeed;
     //
@@ -113,6 +115,7 @@ public class playerController : MonoBehaviour
         shootDistOrig = shootDist;
 
         weaponHave = true;
+        isDead = false;
 
         gameManager.instance.weaponHolderScript.DoThing();
         changeWeapons();
@@ -138,7 +141,7 @@ public class playerController : MonoBehaviour
         }
 
         //Shoot
-        if (Input.GetButtonDown("Shoot") && weaponHave && !isShooting && !gameManager.instance.isPaused)
+        if (!isDead && Input.GetButtonDown("Shoot") && weaponHave && !isShooting && !gameManager.instance.isPaused)
         {
             //aud.PlayOneShot(shootAudioClip, shootAudioVolume);
             weaponFunc.weaponStats.shootScript.shootBullet();
@@ -361,6 +364,7 @@ public class playerController : MonoBehaviour
 
         if (healthPoints <= 0)
         {
+            isDead = true;
             gameManager.instance.playerDeadMenu.SetActive(true);
             gameManager.instance.pause();
         }
@@ -397,10 +401,11 @@ public class playerController : MonoBehaviour
         gameManager.instance.playerDeadMenu.SetActive(false);
 
         Destroy(GameObject.FindGameObjectWithTag("PlayerWeapon"));
-        gameManager.instance.playerScript.weaponHave = true;
-        gameManager.instance.playerScript.changeWeapons();
 
         controller.enabled = true;
+        gameManager.instance.playerScript.weaponHave = true;
+        gameManager.instance.playerScript.changeWeapons();
+        isDead = false;
     }
 
     public void changeWeapons()

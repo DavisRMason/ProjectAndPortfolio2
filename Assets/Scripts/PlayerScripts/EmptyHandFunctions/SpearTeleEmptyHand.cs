@@ -10,7 +10,7 @@ public class SpearTeleEmptyHand : EmptyHand
 
     public override void RightClick()
     {
-        if (GameObject.FindGameObjectsWithTag("PlayerWeapon").Length == 1) 
+        if (GameObject.FindGameObjectsWithTag("PlayerWeapon") != null)
         {
             GameObject obj;
             obj = GameObject.FindGameObjectWithTag("PlayerWeapon");

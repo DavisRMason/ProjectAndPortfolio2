@@ -45,7 +45,7 @@ public class GungnirThrow : MonoBehaviour
         if (gameObject.GetComponent<Collider>().enabled == false)
         {
             rb.useGravity = true;
-            rb.AddForce(gameObject.transform.forward * 2500);
+            rb.AddForce(gameObject.transform.forward * 3500);
             Vector3.Slerp(gameObject.transform.forward, rb.velocity.normalized, Time.deltaTime * 2);
             rb.ResetCenterOfMass();
         }
@@ -55,7 +55,7 @@ public class GungnirThrow : MonoBehaviour
             temp.y += 1;
             rb.position = temp;
             rb.useGravity = false;
-            rb.AddForce(gameObject.transform.forward * 2500);
+            rb.AddForce(gameObject.transform.forward * 3500);
             Vector3.Slerp(gameObject.transform.forward, rb.velocity.normalized, Time.deltaTime * 2);
             StartCoroutine(TurnOnGravity());
         }
@@ -93,7 +93,7 @@ public class GungnirThrow : MonoBehaviour
                 Debug.DrawRay(attackPos.transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
                 hit.collider.GetComponent<IDamage>().takeDamage(gameManager.instance.playerScript.shootDamage);
                 Instantiate(gameManager.instance.playerScript.hitEffectTwo, attackPos.transform.position, gameObject.transform.rotation);
-                spearAudioSource.PlayOneShot(spearAudioClip, Random.Range(0.5f, 1f) + audioLevel);
+                spearAudioSource.PlayOneShot(spearAudioClip);
             }
         }
     }
@@ -151,7 +151,7 @@ public class GungnirThrow : MonoBehaviour
 
     IEnumerator outOfBounds()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3);
 
         gameManager.instance.playerScript.changeWeapons();
         gameManager.instance.playerScript.weaponHave = true;

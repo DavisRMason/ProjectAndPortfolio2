@@ -36,7 +36,7 @@ public class SpearThrow : MonoBehaviour
     void Start()
     {
         rb.useGravity = true;
-        rb.AddForce(gameObject.transform.forward * 2500);
+        rb.AddForce(gameObject.transform.forward * 4000);
         Vector3.Slerp(gameObject.transform.forward, rb.velocity.normalized, Time.deltaTime * 2);
         rb.ResetCenterOfMass();
         StartCoroutine(outOfBounds());
@@ -45,13 +45,14 @@ public class SpearThrow : MonoBehaviour
     private void Update()
     {
         AttackEnemy();
+        DetectGround();
     }
 
     void AttackEnemy()
     {
         RaycastHit hit;
 
-        if(Physics.Raycast(attackPos.transform.position, transform.TransformDirection(Vector3.forward) , out hit, attackDist))
+        if(Physics.SphereCast(attackPos.transform.position, 3, transform.TransformDirection(Vector3.forward), out hit, attackDist))
         {
             if(hit.collider.GetComponent<IDamage>() != null)
             {
@@ -60,9 +61,17 @@ public class SpearThrow : MonoBehaviour
                 Instantiate(gameManager.instance.playerScript.hitEffectTwo, attackPos.transform.position, gameObject.transform.rotation);
                 spearAudioSource.PlayOneShot(spearAudioClip);
             }
-            else
+        }
+    }
+
+    void DetectGround()
+    {
+        RaycastHit hit;
+
+        if(Physics.Raycast(attackPos.transform.position, transform.TransformDirection(Vector3.forward), out hit, attackDist))
+        {
+            if (hit.collider.GetComponent<IDamage>() == null)
             {
-                Debug.DrawRay(attackPos.transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.white);
                 Instantiate(spear, gameObject.transform.position, gameObject.transform.rotation);
                 Destroy(gameObject);
             }
@@ -89,7 +98,7 @@ public class SpearThrow : MonoBehaviour
 
     IEnumerator outOfBounds()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3);
 
         gameManager.instance.playerScript.changeWeapons();
         gameManager.instance.playerScript.weaponHave = true;

@@ -41,7 +41,7 @@ public class MomentumThrow : MonoBehaviour
         if (gameObject.GetComponent<Collider>().enabled == false)
         {
             rb.useGravity = true;
-            rb.AddForce(gameObject.transform.forward * 2500);
+            rb.AddForce(gameObject.transform.forward * 4000);
             Vector3.Slerp(gameObject.transform.forward, rb.velocity.normalized, Time.deltaTime * 2);
             rb.ResetCenterOfMass();
         }
@@ -51,7 +51,7 @@ public class MomentumThrow : MonoBehaviour
             temp.y += .75f;
             rb.position = temp;
             rb.useGravity = false;
-            rb.AddForce(gameObject.transform.forward * 2500);
+            rb.AddForce(gameObject.transform.forward * 4000);
             Vector3.Slerp(gameObject.transform.forward, rb.velocity.normalized, Time.deltaTime * 2);
             StartCoroutine(TurnOnGravity());
         }
@@ -119,7 +119,7 @@ public class MomentumThrow : MonoBehaviour
 
     IEnumerator outOfBounds()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3);
 
         gameManager.instance.playerScript.changeWeapons();
         gameManager.instance.playerScript.weaponHave = true;
