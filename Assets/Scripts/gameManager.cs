@@ -55,6 +55,7 @@ public class gameManager : MonoBehaviour
 
         currTime = maxTime;
         Score = PlayerPrefs.GetInt("TotPoints");
+        updateScore(0);
 
         if (GameObject.FindGameObjectsWithTag("WeaponHolder").Length > 1)
         {
@@ -84,9 +85,6 @@ public class gameManager : MonoBehaviour
         {
         updateTimer();
         }
-
-        PlayerPrefs.SetInt("TotPoints", Score);
-
     }
 
     public void addTimerToScore()
@@ -140,6 +138,7 @@ public class gameManager : MonoBehaviour
     public void updateScore(int points)
     {
         Score += points;
+        PlayerPrefs.SetInt("TotPoints", Score);
         TotalScore.text = Score.ToString("F0");
     }
 
