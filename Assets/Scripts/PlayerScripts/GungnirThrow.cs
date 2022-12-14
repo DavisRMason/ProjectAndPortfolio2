@@ -31,7 +31,6 @@ public class GungnirThrow : MonoBehaviour
     Vector3 enemyPos;
     bool enemyDetected;
     bool once;
-    float audioLevel = .25f;
 
     #endregion
 

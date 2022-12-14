@@ -10,7 +10,7 @@ public class LonginousSpear : Shoot
     {
         RaycastHit hit;
         Vector3 mousePos = Input.mousePosition;
-        mousePos.z = 1.0f;
+        //mousePos.z = 1.0f;
         Vector3 objectPos = Camera.main.ScreenToWorldPoint(mousePos);
 
         Debug.Log("Shooty McBangBang");
