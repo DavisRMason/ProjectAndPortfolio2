@@ -10784,7 +10784,7 @@ MonoBehaviour:
   currTime: 0
   enemiesToKill: 0
   Score: 0
-  isHub: 1
+  isHub: 0
   spawnPos: {fileID: 0}
   isPaused: 0
 --- !u!1 &6014251127148351685
