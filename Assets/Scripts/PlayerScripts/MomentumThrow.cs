@@ -60,8 +60,7 @@ public class MomentumThrow : MonoBehaviour
     private void Update()
     {
         AttackEnemy();
-        BelowValueReturn();
-
+        DetectGround();
 
         if(gameObject.GetComponent<Collider>().enabled == true)
         {
@@ -74,18 +73,26 @@ public class MomentumThrow : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (Physics.Raycast(attackPos.transform.position, transform.TransformDirection(Vector3.forward), out hit, attackDist))
+        if (Physics.SphereCast(attackPos.transform.position, 3, transform.TransformDirection(Vector3.forward), out hit, attackDist))
         {
             if (hit.collider.GetComponent<IDamage>() != null)
             {
                 Debug.DrawRay(attackPos.transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
                 hit.collider.GetComponent<IDamage>().takeDamage(gameManager.instance.playerScript.shootDamage);
                 Instantiate(gameManager.instance.playerScript.hitEffectTwo, attackPos.transform.position, gameObject.transform.rotation);
-                spearAudioSource.PlayOneShot(spearAudioClip, Random.Range(.5f, 1.0f) + audioLevel);
+                spearAudioSource.PlayOneShot(spearAudioClip);
             }
-            else
+        }
+    }
+
+    void DetectGround()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(attackPos.transform.position, transform.TransformDirection(Vector3.forward), out hit, attackDist))
+        {
+            if (hit.collider.GetComponent<IDamage>() == null)
             {
-                Debug.DrawRay(attackPos.transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.white);
                 Instantiate(spear, gameObject.transform.position, gameObject.transform.rotation);
                 Destroy(gameObject);
             }
@@ -105,16 +112,6 @@ public class MomentumThrow : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         rb.useGravity = true;
-    }
-
-    void BelowValueReturn()
-    {
-        if(rb.transform.position.y < 0)
-        {
-            gameManager.instance.playerScript.changeWeapons();
-            gameManager.instance.playerScript.weaponHave = true;
-            Destroy(gameObject);
-        }
     }
 
     IEnumerator outOfBounds()

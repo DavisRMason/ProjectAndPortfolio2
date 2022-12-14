@@ -75,12 +75,6 @@ public class SpearThrow : MonoBehaviour
                 Instantiate(spear, gameObject.transform.position, gameObject.transform.rotation);
                 Destroy(gameObject);
             }
-            else if (hit.collider.CompareTag("DeathZone"))
-            {
-                gameManager.instance.playerScript.weaponHave = true;
-                gameManager.instance.playerScript.changeWeapons();
-                Destroy(gameObject);
-            }
         }
     }
 
