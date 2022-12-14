@@ -437,6 +437,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Niflheim
+  LoadingScreen: {fileID: 2410417797417200950}
+  Slider: {fileID: 2613038966995757601}
 --- !u!1 &216904704
 GameObject:
   m_ObjectHideFlags: 0
@@ -944,6 +946,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
+  LoadingScreen: {fileID: 0}
+  Slider: {fileID: 0}
 --- !u!1 &273954267
 GameObject:
   m_ObjectHideFlags: 0
@@ -1565,6 +1569,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: "\xC1lfheim"
+  LoadingScreen: {fileID: 2410417797417200950}
+  Slider: {fileID: 2613038966995757601}
 --- !u!1 &435309525
 GameObject:
   m_ObjectHideFlags: 0
@@ -1849,6 +1855,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Muspelheim
+  LoadingScreen: {fileID: 2410417797417200950}
+  Slider: {fileID: 2613038966995757601}
 --- !u!1 &444932885
 GameObject:
   m_ObjectHideFlags: 0
@@ -2676,6 +2684,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
+  LoadingScreen: {fileID: 0}
+  Slider: {fileID: 0}
 --- !u!1 &715457458
 GameObject:
   m_ObjectHideFlags: 0
@@ -3586,6 +3596,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
+  LoadingScreen: {fileID: 0}
+  Slider: {fileID: 0}
 --- !u!1 &1114417598
 GameObject:
   m_ObjectHideFlags: 0
@@ -3871,6 +3883,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
+  LoadingScreen: {fileID: 0}
+  Slider: {fileID: 0}
 --- !u!1 &1188638871
 GameObject:
   m_ObjectHideFlags: 0
@@ -4019,6 +4033,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Midgard
+  LoadingScreen: {fileID: 2410417797417200950}
+  Slider: {fileID: 2613038966995757601}
 --- !u!1 &1192462917
 GameObject:
   m_ObjectHideFlags: 0
@@ -5134,6 +5150,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Hel
+  LoadingScreen: {fileID: 2410417797417200950}
+  Slider: {fileID: 2613038966995757601}
 --- !u!1 &1611635501
 GameObject:
   m_ObjectHideFlags: 0
@@ -5417,6 +5435,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: "J\xF6tunheimr"
+  LoadingScreen: {fileID: 2410417797417200950}
+  Slider: {fileID: 2613038966995757601}
 --- !u!1 &1686520715
 GameObject:
   m_ObjectHideFlags: 0
@@ -5678,6 +5698,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
+  LoadingScreen: {fileID: 0}
+  Slider: {fileID: 0}
 --- !u!1 &1735718632
 GameObject:
   m_ObjectHideFlags: 0
@@ -6045,6 +6067,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: Niflheim
+  LoadingScreen: {fileID: 0}
+  Slider: {fileID: 0}
 --- !u!1 &1833188165
 GameObject:
   m_ObjectHideFlags: 0
@@ -6598,6 +6622,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
+  LoadingScreen: {fileID: 0}
+  Slider: {fileID: 0}
 --- !u!1 &1981363151
 GameObject:
   m_ObjectHideFlags: 0
@@ -6783,6 +6809,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
+  LoadingScreen: {fileID: 0}
+  Slider: {fileID: 0}
 --- !u!1 &2046686308
 GameObject:
   m_ObjectHideFlags: 0
@@ -7066,6 +7094,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
+  LoadingScreen: {fileID: 0}
+  Slider: {fileID: 0}
 --- !u!1 &2122835898
 GameObject:
   m_ObjectHideFlags: 0
@@ -7754,6 +7784,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
+  LoadingScreen: {fileID: 0}
+  Slider: {fileID: 0}
 --- !u!1 &1417858070122903304
 GameObject:
   m_ObjectHideFlags: 0
@@ -9017,7 +9049,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5937062865916785385}
         m_TargetAssemblyTypeName: buttonFunc, Assembly-CSharp
-        m_MethodName: returntoHub
+        m_MethodName: chooseLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9039,7 +9071,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589238851e008864b9425dc729a43a19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: CumulativeScene
+  LoadingScreen: {fileID: 2410417797417200950}
+  Slider: {fileID: 2613038966995757601}
 --- !u!1 &4276590661616801298
 GameObject:
   m_ObjectHideFlags: 0
@@ -9401,6 +9435,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
+  LoadingScreen: {fileID: 0}
+  Slider: {fileID: 0}
 --- !u!1 &4914566363851221735
 GameObject:
   m_ObjectHideFlags: 0
@@ -9684,6 +9720,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
+  LoadingScreen: {fileID: 0}
+  Slider: {fileID: 0}
 --- !u!1 &5075963665470382131
 GameObject:
   m_ObjectHideFlags: 0
@@ -10155,7 +10193,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2837967937018772883}
         m_TargetAssemblyTypeName: buttonFunc, Assembly-CSharp
-        m_MethodName: returntoHub
+        m_MethodName: chooseLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10177,7 +10215,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589238851e008864b9425dc729a43a19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: CumulativeScene
+  LoadingScreen: {fileID: 2410417797417200950}
+  Slider: {fileID: 2613038966995757601}
 --- !u!1 &5783301342809641076
 GameObject:
   m_ObjectHideFlags: 0
@@ -10326,6 +10366,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
+  LoadingScreen: {fileID: 0}
+  Slider: {fileID: 0}
 --- !u!1 &5936664056868092548
 GameObject:
   m_ObjectHideFlags: 0
@@ -11071,6 +11113,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
+  LoadingScreen: {fileID: 0}
+  Slider: {fileID: 0}
 --- !u!1 &6014251127405134138
 GameObject:
   m_ObjectHideFlags: 0
@@ -11571,6 +11615,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
+  LoadingScreen: {fileID: 0}
+  Slider: {fileID: 0}
 --- !u!1 &6014251127619136775
 GameObject:
   m_ObjectHideFlags: 0
@@ -11719,6 +11765,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
+  LoadingScreen: {fileID: 0}
+  Slider: {fileID: 0}
 --- !u!1 &6014251127681809838
 GameObject:
   m_ObjectHideFlags: 0
@@ -12338,7 +12386,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6014251128436498464}
         m_TargetAssemblyTypeName: buttonFunc, Assembly-CSharp
-        m_MethodName: returntoMain
+        m_MethodName: returntoHub
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12360,7 +12408,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589238851e008864b9425dc729a43a19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  sceneName: CumulaticeScene
+  LoadingScreen: {fileID: 2410417797417200950}
+  Slider: {fileID: 2613038966995757601}
 --- !u!1 &6014251128449347919
 GameObject:
   m_ObjectHideFlags: 0
@@ -12509,6 +12559,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
+  LoadingScreen: {fileID: 0}
+  Slider: {fileID: 0}
 --- !u!1 &6014251128539890642
 GameObject:
   m_ObjectHideFlags: 0
@@ -13377,6 +13429,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
+  LoadingScreen: {fileID: 0}
+  Slider: {fileID: 0}
 --- !u!1 &8008092685113716311
 GameObject:
   m_ObjectHideFlags: 0
@@ -13525,6 +13579,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
+  LoadingScreen: {fileID: 0}
+  Slider: {fileID: 0}
 --- !u!1 &8153291484142797707
 GameObject:
   m_ObjectHideFlags: 0
@@ -13930,6 +13986,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: 
+  LoadingScreen: {fileID: 0}
+  Slider: {fileID: 0}
 --- !u!1 &8866112031175170620
 GameObject:
   m_ObjectHideFlags: 0
@@ -14149,3 +14207,19 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2934406159940580762, guid: 18eddcfcf58e5f44480a360dbef9b2be, type: 3}
   m_PrefabInstance: {fileID: 705548836758427819}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2410417797417200950 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2934406159940580765, guid: 18eddcfcf58e5f44480a360dbef9b2be, type: 3}
+  m_PrefabInstance: {fileID: 705548836758427819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2613038966995757601 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3281433033812750986, guid: 18eddcfcf58e5f44480a360dbef9b2be, type: 3}
+  m_PrefabInstance: {fileID: 705548836758427819}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

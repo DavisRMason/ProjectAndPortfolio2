@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class buttonFunc : MonoBehaviour
 {
 
     [SerializeField] string sceneName;
+
+    public GameObject LoadingScreen;
+    public Slider Slider;
     public void resume()
     {
         gameManager.instance.unPause();
@@ -47,7 +51,7 @@ public class buttonFunc : MonoBehaviour
 
     public void chooseLevel()
     {
-        SceneManager.LoadScene(sceneName);
+        StartCoroutine(LoadAsync(sceneName));
         resume();
     }
 
@@ -59,7 +63,23 @@ public class buttonFunc : MonoBehaviour
         gameManager.instance.pauseMenu.SetActive(true);
     }
 
-    public void returntoMain()
+    IEnumerator LoadAsync(string s)
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(s);
+
+        LoadingScreen.SetActive(true);
+
+        while (!operation.isDone)
+        {
+            float progress = Mathf.Clamp01(operation.progress / .9f);
+
+            Slider.value = progress;
+
+            yield return null;
+        }
+    }
+
+public void returntoMain()
     {
         SceneManager.LoadScene("TitleScreen");
         resume();
