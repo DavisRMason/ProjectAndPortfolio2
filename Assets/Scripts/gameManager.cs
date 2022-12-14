@@ -55,6 +55,10 @@ public class gameManager : MonoBehaviour
 
         currTime = maxTime;
 
+        if (GameObject.FindGameObjectsWithTag("WeaponHolder").Length > 1)
+        {
+            Destroy(GameObject.FindGameObjectsWithTag("WeaponHolder")[1]);
+        }
     }
 
     void Update()
