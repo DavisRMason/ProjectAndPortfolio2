@@ -782,6 +782,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.719
       objectReference: {fileID: 0}
+    - target: {fileID: 6332312677548483169, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
+      propertyPath: weaponFunc
+      value: 
+      objectReference: {fileID: 11400000, guid: 5b0b3bc591953c3489a75a849de99685, type: 2}
     - target: {fileID: 6332312677548483171, guid: c8d00aed3a98f4b4fa22191d8f512d93, type: 3}
       propertyPath: m_RootOrder
       value: 2

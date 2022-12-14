@@ -188,6 +188,7 @@ public class playerController : MonoBehaviour
     {
         if (controller.isGrounded && playerVelocity.y < 0)
         {
+            isJumping = false;
             jumpTimes = 0;
             playerVelocity.y = 0;
         }
@@ -447,9 +448,9 @@ public class playerController : MonoBehaviour
 
     IEnumerator ForceMove()
     {
-
+        isJumping = true;
         yield return new WaitForSeconds(calculateCharge());
-
+        
         spearMove = false;
     }
 
@@ -469,22 +470,23 @@ public class playerController : MonoBehaviour
         switch(charge)
         {
             case 0:
-                chargeMod = .5f;
+                chargeMod = .25f;
                 break;
             case 1:
-                chargeMod = .75f;
+                chargeMod = .5f;
                 break;
             case 2:
-                chargeMod = 1f;
+                chargeMod = 75f;
                 break;
             case 3:
-                chargeMod = 1.25f;
+                chargeMod = 1f;
                 break;
             case 4:
-                chargeMod = 1.5f;
+                chargeMod = 1.25f;
                 break;
         }
 
+        jumpKeyHeld = false;
         return chargeMod;
     }
 
