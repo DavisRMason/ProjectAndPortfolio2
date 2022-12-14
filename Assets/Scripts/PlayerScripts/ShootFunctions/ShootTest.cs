@@ -9,7 +9,7 @@ public class ShootTest : Shoot
     public override void shootBullet()
     {
         Vector3 mousePos = Input.mousePosition;
-        //mousePos.z = 2.0f;
+        mousePos.z = 3.0f;
         Vector3 objectPos = Camera.main.ScreenToWorldPoint(mousePos);
 
         //float x = Mathf.Sin(Camera.main.transform.rotation.x * Mathf.Deg2Rad);
