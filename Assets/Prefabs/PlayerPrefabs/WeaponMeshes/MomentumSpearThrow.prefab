@@ -381,6 +381,7 @@ GameObject:
   - component: {fileID: 7807010903017938292}
   - component: {fileID: 7807010903014514004}
   - component: {fileID: 7807010903015645076}
+  - component: {fileID: 62891430854201581}
   m_Layer: 0
   m_Name: Halberd_master
   m_TagString: Untagged
@@ -454,6 +455,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &62891430854201581
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7807010903017898324}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 9a62db51fa3fbf946bb9424ac8365892, type: 3}
 --- !u!1001 &2663561975099294134
 PrefabInstance:
   m_ObjectHideFlags: 0

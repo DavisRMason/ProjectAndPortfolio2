@@ -12,6 +12,7 @@ TagManager:
   - ThrownWeapon
   - Floor
   - WeaponHolder
+  - DeathZone
   layers:
   - Default
   - TransparentFX

@@ -382,6 +382,7 @@ GameObject:
   - component: {fileID: 3183055695915548981}
   - component: {fileID: 3183055695916351765}
   - component: {fileID: 3183055695917450197}
+  - component: {fileID: 7546047682634128573}
   m_Layer: 0
   m_Name: Halberd_tiny
   m_TagString: Untagged
@@ -454,3 +455,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7546047682634128573
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3183055695915457813}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: c647ed14bfa88504d94aaf8b07d70ab6, type: 3}
