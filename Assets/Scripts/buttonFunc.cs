@@ -49,6 +49,12 @@ public class buttonFunc : MonoBehaviour
         gameManager.instance.lvlSelectMenu.SetActive(true);
     }
 
+    public void QuitMenu()
+    {
+        gameManager.instance.pauseMenu.SetActive(false);
+        gameManager.instance.quitMenu.SetActive(true);
+    }
+
     public void chooseLevel()
     {
         StartCoroutine(LoadAsync(sceneName));

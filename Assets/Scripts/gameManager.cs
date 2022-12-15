@@ -22,6 +22,7 @@ public class gameManager : MonoBehaviour
     public GameObject winMenu;
     public GameObject playerDamageScreen;
     public GameObject lvlSelectMenu;
+    public GameObject quitMenu;
     [Header("---meters---")]
     public Image HPBar;
     public Image DamageBar;
