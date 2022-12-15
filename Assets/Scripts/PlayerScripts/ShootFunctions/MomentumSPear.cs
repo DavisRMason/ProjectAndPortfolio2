@@ -49,13 +49,11 @@ public class MomentumSPear : MonoBehaviour
         {
             if(hit.collider.GetComponent<IDamage>() != null)
             {
-                Debug.DrawRay(attackPos.transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
                 hit.collider.GetComponent<IDamage>().takeDamage(gameManager.instance.playerScript.shootDamage);
                 Instantiate(gameManager.instance.playerScript.hitEffectTwo, attackPos.transform.position, gameObject.transform.rotation);
             }
             else
             {
-                Debug.DrawRay(attackPos.transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.white);
                 rb.AddForce(gameObject.transform.forward * 0);
             }
         }

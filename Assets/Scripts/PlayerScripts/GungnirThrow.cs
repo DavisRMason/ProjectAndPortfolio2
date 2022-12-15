@@ -89,7 +89,6 @@ public class GungnirThrow : MonoBehaviour
         {
             if (hit.collider.GetComponent<IDamage>() != null)
             {
-                Debug.DrawRay(attackPos.transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
                 hit.collider.GetComponent<IDamage>().takeDamage(gameManager.instance.playerScript.shootDamage);
                 Instantiate(gameManager.instance.playerScript.hitEffectTwo, attackPos.transform.position, gameObject.transform.rotation);
                 spearAudioSource.PlayOneShot(spearAudioClip);
@@ -105,7 +104,6 @@ public class GungnirThrow : MonoBehaviour
         {
             if (hit.collider.GetComponent <IDamage>() == null)
             {
-                Debug.DrawRay(attackPos.transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.white);
                 Instantiate(spear, gameObject.transform.position, gameObject.transform.rotation);
                 Destroy(gameObject);
             }

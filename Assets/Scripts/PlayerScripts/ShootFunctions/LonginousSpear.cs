@@ -16,19 +16,13 @@ public class LonginousSpear : Shoot
         Debug.Log("Shooty McBangBang");
 
         if (Physics.Raycast(gameManager.instance.playerScript.shootPoint.transform.position, gameManager.instance.playerScript.shootPoint.transform.forward, out hit, 3))
-        {
-            Debug.Log("Ray shot");
+        {;
             if (hit.collider.GetComponent<IDamage>() != null)
             {
-                Debug.Log("Ray Hit");
                 hit.collider.GetComponent<IDamage>().takeDamage(gameManager.instance.playerScript.shootDamage);
                 Instantiate(gameManager.instance.playerScript.hitEffectTwo, hit.transform.position, gameObject.transform.rotation);
                 gameManager.instance.playerScript.PlayEffect(audClip);
             }
-        }
-        else
-        {
-            Debug.Log("Ray Not Shot");
         }
     }
 }

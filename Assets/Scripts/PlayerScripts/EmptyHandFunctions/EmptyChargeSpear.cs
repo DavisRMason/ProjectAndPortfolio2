@@ -9,7 +9,6 @@ public class EmptyChargeSpear : EmptyHand
 
     public override void rButtonFunction()
     {
-        Debug.Log("Charge Dispel");
         gameManager.instance.playerScript.MakeRaySphere(gameManager.instance.playerScript.shootDist * gameManager.instance.playerScript.charge, 5, (int)(gameManager.instance.playerScript.shootDamage * gameManager.instance.playerScript.calculateCharge()));
         gameManager.instance.playerScript.charge = 0;
     }

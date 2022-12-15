@@ -189,7 +189,7 @@ public class DynamicTurretEnemy : MonoBehaviour, IDamage
 
     IEnumerator MegaDeath()
     {
-        yield return new WaitForSeconds(60);
+        yield return new WaitForSeconds(10);
         Destroy(gameObject);
     }
 

@@ -145,7 +145,6 @@ public class playerController : MonoBehaviour
         {
             //aud.PlayOneShot(shootAudioClip, shootAudioVolume);
             weaponFunc.weaponStats.shootScript.shootBullet();
-            Debug.Log("Shoot button pressed");
             if (weaponFunc.Melee)
             {
                 hitEffect.GetComponent<ParticleSystem>().Play();
@@ -459,8 +458,6 @@ public class playerController : MonoBehaviour
         if (!chargeCool && charge < chargeMax)
             charge++;
         StartCoroutine(CoolDown(.5f, chargeCool));
-
-        Debug.Log("Charge is" + charge);
     }
 
     public float calculateCharge()
@@ -499,7 +496,6 @@ public class playerController : MonoBehaviour
         {
             if (hit.collider.GetComponent<IDamage>() != null)
             {
-                Debug.DrawRay(hit.transform.forward, transform.forward, color: Color.red);
                 hit.collider.GetComponent<IDamage>().takeDamage(damage);
                 hitEffect.GetComponent<ParticleSystem>().Play();
                 Instantiate(hitEffectTwo, hit.transform.position, hit.transform.rotation);
