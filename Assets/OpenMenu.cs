@@ -21,7 +21,6 @@ public class OpenMenu : MonoBehaviour
 
         if(Input.GetButtonDown("Cancel"))
         {
-            eButton.SetActive(true);
             Menu.SetActive(false);
         }
     }
